@@ -1,0 +1,103 @@
+%%% Vlastne makra
+
+%%%
+%%% Theorem environments
+%%%
+\theoremstyle{plain}% default
+	\newtheorem{thm}{Theorem}[chapter]
+	\newtheorem{lem}[thm]{Lemma}
+	\newtheorem{prop}[thm]{Proposition}
+	\newtheorem{cor}[thm]{Corollary}
+	%\newtheorem*{KL}{Klein's Lemma}
+
+\theoremstyle{definition}
+	\newtheorem{defn}[thm]{Definition}
+	\newtheorem{conj}[thm]{Conjecture}
+	\newtheorem{exmp}[thm]{Example}
+	\newtheorem{prob-intro}{Problem}
+	\newtheorem{conj-intro}{Conjecture}
+
+\theoremstyle{remark}
+	\newtheorem*{rem}{Remark}
+	\newtheorem*{note}{Note}
+
+%%%
+%%% Custom commands
+%%%
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\gdist}{\mathop{\mathrm{gdist}}}
+\newcommand{\dist}{\mathop{\mathrm{dist}}}
+\newcommand{\spb}{\mathop{\mathrm{spb}}}
+
+%%%
+%%% Todos and notes
+%%%
+\newcommand\todo[1]{{\color{red}#1}}
+\newcommand\side[1]{\normalmarginpar\mbox{}\marginpar{\footnotesize\raggedright\hspace{0pt}\color{Green}\emph{#1}}}
+
+%%%
+%%% Custom framebox
+%%%
+\newdimen\vmez
+\vmez2pt
+\newdimen\hmez
+\hmez2pt
+\def\myframebox#1{%
+\setbox0%
+\hbox{\vrule
+	\vbox{\hrule
+		\vskip\vmez
+		\hbox{\hskip\hmez #1\hskip\hmez}
+		\vskip\vmez
+	\hrule
+	}%
+\vrule
+}%
+{\everycr{}\tabskip0pt \ooalign{\phantom#1\cr \hss\hbox to0pt{\hss \vbox to0pt{\vss\box0 \vskip-\vmez\vskip-0.4pt}\hss}\hss}}%
+}
+
+%%%
+%%% Compact equations
+%%%
+\newenvironment{cosyeqnarray}%
+{\setlength{\belowdisplayskip}{4pt} \setlength{\belowdisplayshortskip}{4pt}
+\setlength{\abovedisplayskip}{4pt} \setlength{\abovedisplayshortskip}{4pt}
+\begin{eqnarray}}%
+{\end{eqnarray}}%
+
+\newcommand\cosyalign[1]
+{\setlength{\belowdisplayskip}{4pt} \setlength{\belowdisplayshortskip}{4pt}
+\setlength{\abovedisplayskip}{4pt} \setlength{\abovedisplayshortskip}{4pt}
+\begin{align}#1
+\end{align}}
+
+\newcommand\cosyalig[1]
+{\setlength{\belowdisplayskip}{4pt} \setlength{\belowdisplayshortskip}{4pt}
+\setlength{\abovedisplayskip}{4pt} \setlength{\abovedisplayshortskip}{4pt}
+\begin{align*}#1
+\end{align*}}
+
+%%%
+%%% Tables
+%%%
+\renewcommand{\arraystretch}{1.2}
+\setlength{\tabcolsep}{5pt}
+
+\newcommand\M[1]{{\myframebox#1}}
+
+%%%
+%%% Shorter overline
+%%%
+\newcommand{\overbar}[1]{\mkern 1.5mu\overline{\mkern-1.5mu#1\mkern-1.5mu}\mkern 1.5mu}
+
+%%%
+%%% Compact lists
+%%%
+\newenvironment{cosyitemize}%
+{\begin{itemize}[topsep=2pt,itemsep=2pt,parsep=2pt,partopsep=2pt]}%
+{\end{itemize}}%
+
+\newenvironment{cosyenumerate}%
+{\begin{enumerate}[topsep=2pt,itemsep=2pt,parsep=2pt,partopsep=2pt]}%
+{\end{enumerate}}%

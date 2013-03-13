@@ -1,0 +1,370 @@
+\chapter{Dissections of equilateral triangles}
+
+The study of dissections was initiated by the paper \emph{The dissection of rectangles into squares} by Brooks, Smith, Stone and Tutte \cite{BrooksSmithStoneTutte40}. They answered the question whether it is possible to dissect a square into some number of unequal squares (yes, it is), and developed methods to study such dissections.\footnote{They showed, for example, that dissections into squares are related to electrical circuits obeying Kirchhoff's laws.}
+
+Inspired by a puzzle called \emph{Mrs Perkins's quilt} by Dudeney~\cite{Dudeney17}, Conway~\cite{Conway64} considered the case where the dissecting squares can be equally large. He proposed a question about the minimal number of integer-sided squares needed to dissect a square of side $n$. Because when $n$ is divisible by $d$ then it is possible to use a scaled up dissection of a square of side $d$, he considered only dissections where the dissecting squares do not have a common factor.
+
+Conway proved that at least $c \log(n)$ squares are needed. A year later Trustrum~\cite{Trustrum65} proved that $O(\log(n))$ is sufficient, and thus established that the answer is asymptotically logarithmic. However, the best constants in the estimates do not appear to be known.
+
+\bigskip
+
+In this chapter we prove that it is possible to dissect an equilateral triangle of side $n$ into $O(\log(n))$ triangles. To do so, \todo{@}
+
+@ After publishing the paper \cite{BrooksSmithStoneTutte40} on squares, Tutte generalized the theorems for dissections of equilateral triangles in \cite{Tutte48}. 
+
+
+%%%
+%%%
+%%%
+\section{Definitions}
+
+In the rest of this chapter, for brevity we use \emph{triangle} instead of \emph{equilateral triangle}, unless specified otherwise.
+
+\begin{defn}
+\emph{A dissection of size $m$ of a rectangle} is a set of $m$ squares of integral side which cover the rectangle and overlap at most on their boundaries. Such a dissection is \emph{$\oplus$-free} if no four squares share a common point, it is \emph{prime} if their sides do not have a common factor.
+
+We denote by $r_d(n)$ the minimal size of a dissection of an $n \times (n+d)$ rectangle.
+\end{defn}
+
+\begin{defn}
+\label{defn:triangle-dissection}
+\emph{A dissection of size $m$ of a triangle} is a set of $m$ triangles of integral side which cover the original triangle and overlap at most on their boundaries. Such a dissection is \emph{$\circledast$-free} if no six triangles share a common point, it is \emph{prime} if their sides do not have a common factor.
+
+We denote by $t(n)$ (respectively, $\hat t(n)$) the minimal size of a dissection (respectively, prime dissection) of a triangle of side $n$.
+\end{defn}
+
+We use terms \emph{dissection} and \emph{tiling} interchangeably. Similarly, for squares and triangles we mean the same by \emph{side} and \emph{size}.
+
+Note that in a triangle dissection only 2,3,4 or 6 triangles can share a common point. Therefore $\circledast$-freeness implies that actually no more than 4 triangles meet.
+
+\todo{@ Lemma? $t(n) \leq \hat t(n)$, $t(p) = \hat t(p)$.}
+
+%%%
+%%%
+%%%
+\section{Logarithmic dissection of a rectangle}
+\label{sec:log-rectangle}
+
+Let us describe an algorithm to dissect an $n \times (n+3)$ rectangle for $n \geq 2$. Fix the orientation of the rectangle with the shorter side on the left. For convenience, we say that a dissection is \emph{padded} if it has a square of side at least 2 in the upper left corner. Then the algorithm is as follows:
+
+\begin{enumerate}
+	\item[(A1)] For $n=2,3,4,5,6,7,8,9,10$ dissect into $4,2,5,5,3,6,6,4,7$ squares respectively such that the dissection is $\oplus$-free and padded;
+	\item[(A2)] for $n$ of form $4k+z$ with $k \geq 2, z \in \{3,4,5,6\}$, depending on $z$ dissect into $3$ or $5$ squares and a rectangle of size $2k \times 2(k+3)$. Then dissect this rectangle with two times larger tiles recursively. Figure \ref{fig:kk3} illustrates the method.
+\end{enumerate}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/kk3.pdf}
+\caption{Dissecting a rectangle of size $n \times (n+3)$}
+\label{fig:kk3}
+\end{figure}
+
+
+Recall that by $r_3(n)$ we denote the smallest size of a $\oplus$-free dissection of an $n \times (n+3)$ rectangle. Note that $r_3(1) = 4$, and let us estimate the remaining values using the algorithm:
+
+\begin{lem}
+\label{lem:r3n}
+Let $n \geq 2$ be an integer. Then the algorithm results in a padded $\oplus$-free dissection of an $n \times (n+3)$ rectangle. Furthermore $r_3(n) \leq 5\log_4(n)+\frac{3}{2}$.
+\end{lem}
+\begin{proof}
+The proof is by induction on $n$; for $n$ in (A1) the claim holds.
+
+Let $n = 4k+z$ where $k \geq 2, z \in \{3,4,5,6\}$. By (A2) we clearly get a padded rectangle dissection. The inside of the recursively dissected rectangle $2k \times 2(k+3)$ is $\oplus$-free by the induction hypothesis, and the outside is such by design. Therefore the only points where $\oplus$-freeness might be broken lie on its border.
+
+However, the recursive dissection is padded and tiled with two times larger tiles, therefore there is a square of size at least 4 in the upper left corner which covers all possible problematic points.
+
+Finally,
+\begin{cosyeqnarray}
+	r_3(4k+z) \leq 5 + r_3(k) \leq 5 + 5\log_4(k) + \tfrac{3}{2} \leq 5 \log_4(4k+z) + \tfrac{3}{2}.
+\end{cosyeqnarray}%
+\end{proof}
+
+%%%
+%%%
+%%%
+\section{Logarithmic dissection of a triangle}
+
+\begin{lem}
+\label{lem:triangles-to-squares}
+Let $5 \leq n = 2k+3$ be an odd integer not divisible by 3. Then $\hat t(n) \leq 2\,r_3(k)+2$.
+\end{lem}
+
+\begin{proof}
+Consider a triangle of side $n$. We can cut off triangles of sides $k$ and $(k+3)$ from two of its corners, which leaves us with a parallelogram of sides $k$ and $(k+3)$. By a linear mapping $f$ we can transform it into a $k\times (k+3)$ rectangle (see Figure \ref{fig:transf}), which can be dissected into $r_3(k)$ squares.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/transf.pdf}
+\caption{Dissecting a triangle using a dissection of a rectangle}
+\label{fig:transf}
+\end{figure}
+
+Now, every square in the dissection can be diagonally cut into two right-angled triangles, such that after application of $f^{-1}$ they transform into equilateral triangles. This gives us a dissection of the original triangle into $2\,r_3(k)+2$ triangles. Moreover $\gcd(k+3,3) =\gcd (k,3)$ and $3 \nmid k$, therefore the dissection is prime.
+
+It remains to prove $\circledast$-freeness. Clearly, the condition cannot be violated on the sides of the parallelogram.
+
+Note that all the diagonal cuts have to be parallel, which means that there is at most one of them adjacent to every square corner (the rectangle dissection is $\oplus$-free). Thus we increase the number of shapes incident with every point at most by one and the resulting dissection is $\circledast$-free.
+\end{proof}
+
+\begin{cor}
+\label{cor:hat-t-odd-n}
+Let $n > 1$ be an odd integer not divisible by 3. Then $\hat t(n) < 5\log_2(n)$.
+\end{cor}
+\begin{proof}
+The conditions imply $n \geq 5$. Now by plugging $k = \frac{n-3}{2}$ into Lemma~\ref{lem:r3n}:
+\cosyalign{
+	2r_3(\tfrac{n-3}{2})+2 \leq 10 \log_4(\tfrac{n-3}{2}) + 5 = 5 \log_2(n-3) < 5 \log_2(n).
+}
+\end{proof}
+
+
+\begin{thm}
+\label{thm:t-log-bound}
+Let $n \geq 2$ be an integer. Then $\hat t(n) < 5\log_2(n)$.
+\end{thm}
+\begin{proof}
+
+Set $n = 2^p3^qr$, where $p,q,r$ are nonnegative integers such that $\gcd(r,6) = 1$. Then use the following algorithm to get a dissection of a triangle of side $n$:
+
+\begin{cosyenumerate}
+	\item[(B1)] If $p > 0$, dissect into 4 triangles of size $n/2$ and repeat for one of them recursively;
+	\item[(B2)] If $q > 0$, dissect into 6 triangles and repeat for one of size $n/3$ recursively;
+	\item[(B3)] If $r=1$ then finish, otherwise dissect into at most $5\log_2(r)$ triangles as in Corollary~\ref{cor:hat-t-odd-n}.
+\end{cosyenumerate}
+
+Steps (B1) and (B2) are illustrated on \todo{Figure}. In (B3) we always use a prime dissection, therefore the resulting dissection is also prime. Clearly it is also $\circledast$-free.
+
+Let us count the number of used triangles. If $r > 1$, then
+\cosyalig{
+	\hat t(n)
+		&< 3p + 5q + 5\log_2(r) \\
+		&< 5p \log_2(2) + 5q \log_2(3) + 5 \log_2(r) \\
+		&= 5 \log_2(2^p3^qr).
+}
+If $r=1$, then $\hat t(n) \leq 3p + 5q + 1$ and
+\cosyalig{
+	3p + 5q + 1 &< 5 \log_2(2^p3^q) \qquad \Leftrightarrow \\
+	5q + 1 &< 2p + 5q \log_2(3) \qquad \Leftrightarrow \\
+	1 &< 2p + (5\log_2(3)-5)q,
+}
+which holds every time at least one of $p,q$ is nonzero.
+\end{proof}
+
+%%%
+%%%
+%%%
+\section{Upper bound for gdist(n)}
+
+The following lemma by Drápal \cite{Drapal91} reveals the interesting connection between triangle dissections and embeddings of latin bitrades into groups:
+
+\begin{thm}
+\label{thm:gdist-leq-tn}
+$\gdist(n) \leq t(n)$.
+\end{thm}
+\begin{proof}
+Set $G = \Z_n$ and take a triangle of side $n$ with its $\circledast$-free dissection into $t(n)$ triangles. All the boundary lines of the triangles can be divided into three groups $s_1,s_2,s_3$ depending on which side of the original triangle they are parallel to. Let us label the lines in each group consecutively by $0,1,\dots,n-1$ such that the sides of the original triangle are labeled by $0$, as illustrated on Figure \ref{fig:arrows}.
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}{.43\linewidth}
+		\centering
+		\includegraphics[width=0.9\textwidth]{img/arrows.pdf}
+	\end{minipage}
+	\hspace{.04\linewidth}
+	\begin{minipage}{.43\linewidth}
+		\begin{center}
+		\begin{tabular}{| c | c c c c c c c |}
+			\hline
+			$\vartriangle$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
+			\hline
+			0 & \M3 & 1 & 2 & \M0 & 4 & 5 & 6 \\
+			1 & 1 & 2 & 3 & 4 & 5 & 6 & 0 \\
+			2 & 2 & 3 & 4 & 5 & 6 & 0 & 1 \\
+			3 & \M5 & 4 & \M6 & \M3 & 0 & 1 & 2 \\
+			4 & 4 & 5 & \M0 & \M6 & 1 & 2 & 3 \\
+			5 & \M0 & 6 & \M5 & 1 & 2 & 3 & 4 \\
+			6 & 6 & 0 & 1 & 2 & 3 & 4 & 5 \\
+			\hline
+		\end{tabular}
+		\end{center}
+	\end{minipage}
+	\caption{Construction of $(G,\vartriangle)$ from a triangulation for $n=7$}
+	\label{fig:arrows}
+\end{figure}
+
+Consider triples of lines $(p,q,r)$ such that they belong to groups $s_1,s_2,s_3$ respectively. Then $p, q$ and $r$ meet at one point if and only if $p+q+r=n$, in the other case they determine a triangle bounded by these three lines. For our purposes, let us consider $(0,0,0)$ as a special case and not as a triple determining a triangle.
+
+Computing modulo $n$, define a new operation $\vartriangle$ on $G$ by
+\begin{itemize}
+	\item $p \vartriangle q = -r$ if $(p,q,r)$ determines a triangle in our tiling,
+	\item $p \vartriangle q = p + q$ otherwise.
+\end{itemize}
+Since the tiling is $\circledast$-free, for every $p,q$ there exists at most one $r$ such that $(p,q,r)$ forms a triangle. Therefore the operation is well defined and differs from $+$ on exactly $t(n)$ inputs.
+
+If we show that the Cayley table of $(G,\vartriangle)$ is a latin square, we are finished. \todo{That follows almost immediately from the $\circledast$-freeness, a more detailed proof can be found in \cite{Drapal91}, Theorem 2.5.}
+\end{proof}
+
+\todo{@ The following corollary states Conjecture \ref{conj:main}.}
+
+\begin{cor}
+\label{cor:conj-proof}
+Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
+\cosyalign{
+	3 \log_3(p) \leq \gdist(n) < 5 log_2(p).
+}
+\end{cor}%
+\begin{proof}
+The lower bound is \todo{Theorem}. For the upper bound, combine Lemma \ref{lem:gdist-n-leq-gdist-p}, Theorem \ref{thm:gdist-leq-tn} and Theorem \ref{thm:t-log-bound} to get
+\cosyalign{
+	\gdist(n) \leq \gdist(p) \leq t(p) = \hat t(p) < 5 \log_2(n).
+}
+\end{proof}
+
+\begin{cor}
+\label{cor:constants}
+Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
+\cosyalign{
+	3 \log_3(e) \leq \frac{\gdist(n)}{\log(p)} < 5 \log_2(e).
+}
+\end{cor}%
+
+
+%%%
+%%%
+%%%
+\section{Families of logarithmic dissections}
+
+In previous sections we have seen how to use a logarithmic dissection into squares to get a logarithmic dissection into triangles. While the method presented gives the best results that we are aware of, in this section we show how it can be generalized as it can possibly lead to ideas, which might be able to improve the upper bound in Corollary \ref{cor:constants}.
+
+Let us sketch the method first. A convex hexagon, which we call \emph{core}, defines a dissection of a parallelogram into the core, 6 triangles and a smaller parallelogram. The sizes of the parallelograms depend on the shape of the core, and if chosen appropriately, the smaller parallelogram can be dissected recursively.
+
+In the following, all shapes considered are aligned in a grid formed by unit equilateral triangles, i.e. all lengths are integer and all angles are multiples of $\pi/3$.
+
+For this section we redefine $t(n)$ -- \textbf{we relax the $\circledast$-freeness condition} on the dissections. We also do not concern ourselves with prime dissections.
+
+\begin{defn}
+A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its sides consecutively by $a_0,\dots,a_5 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
+\cosyalign{
+	a_0 + a_1 &= a_3 + a_4 =: \alpha \\
+	a_1 + a_2 &= a_4 + a_5 =: \beta \\
+	a_2 + a_3 &= a_5 + a_0 =: \gamma
+}
+Therefore the hexagon is uniquely specified by a 4-tuple $(a_0, \alpha, \beta, \gamma)$. We denote its perimeter by
+\cosyalign{
+	p := a_0 + \dots + a_5 = \alpha + \beta +\gamma.
+}
+\end{defn}
+
+Note that not every 4-tuple specifies a valid hexagon. We will indentify a core $H$ with the 4-tuple which defines it. We usually write $H = (a_0, \alpha, \beta, \gamma)$ and $t(H) = t(a_0, \alpha, \beta, \gamma)$.
+
+\begin{defn}
+\emph{A shape S} is a union of finitely many unit triangles in the grid. Let us denote by $t(S)$ the minimal number of triangles needed to dissect the shape $S$, and let $t_\gamma(n)$ denote $t(P)$ for a parallelogram P of size $n \times (n+\gamma)$.
+\end{defn}
+
+We kindly ask the reader to extrapolate the formal definition of a dissection from Definition \ref{defn:triangle-dissection}. As an example, if we denote a triangle of side $n$ by $\Delta_n$, then $t(\Delta_n) = t(n)$.
+
+\begin{lem}
+\label{lem:core-tiling}
+Let $H = (a_0, \alpha, \beta, \gamma)$ be a core and $k$ a positive integer. Set $n = 2k+a_0+\alpha+\beta$ and denote by $P_0$ and $P_1$ parallelograms of sizes $n\times(n+p)$ and $k\times(k+p)$. Then there exists a dissection of $P_0$ into $H$, $P_1$ and six triangles. Therefore
+\cosyalign{
+	t_\gamma(n) \leq 6 + t(H) + t_p(k)
+}
+\end{lem}
+\begin{proof}
+See Figure \ref{fig:core-tiling1}.
+\end{proof}
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/core_tiling1.pdf}
+\caption{\todo{Caption}}
+\label{fig:core-tiling1}
+\end{figure}
+
+Now, let us set the variables such that we can use the tiling recursively. First, fix $p$ and $\gamma$ so that $P_1$ is always of size $k \times (k+p)$, and fix $\gamma$ so that $P_0$ is always of size $n \times (n+\gamma)$.
+
+Second, we would like to tile $P_1$ with tiles of sides which are multiples of an integer $d$. Therefore reset $k := dk$ and set $p = d\gamma$. In this setting,
+\cosyalig{
+	&P_0 \textrm{ is of size } n \times (n + \gamma)\textrm{, and} \\
+	&P_1 \textrm{ is of size } dk \times (dk + d\gamma)
+}
+with $n = 2dk + a_0 + (p-\gamma) = 2dk + (d-1)\gamma + a_0$.
+
+Finally, if $n$ can be of any integer value (possibly for $n > n_0$ for some $n_0$), we can use the dissection recursively. Since $k$ can be any integer, it suffices for $(d-1)\gamma + a_0$ to go through all remainders modulo $2d$. The term $(d-1)\gamma$ is constant, therefore $a_0$ must be such. Because $a_0$ is nonnegative and $a_0 \leq \gamma = a_0 + a_1$, this gives us the final requirement $2d-1 \leq \gamma$.
+
+\begin{lem}
+\label{lem:t-gamma-n}
+
+and let $\gamma, d \geq 2$ be positive integers such that $2d-1 \leq \gamma$. Then there exists $n_0$ and a constant $T$ such that
+\cosyalign{
+	t_\gamma(n) \leq 6 + T + t_\gamma(k)
+}
+for $n > n_0$ and some $k < n/(2d)$.
+\end{lem}
+\begin{proof}
+For $a \in [2d]$ denote
+\cosyalig{
+	T_a = \min \{t(H) \mid\ &H=(a_0,\alpha,\beta,\gamma) \mbox{ is a core, } \\
+	&\alpha+\beta+\gamma = d\gamma,  \\
+	&a_0 \equiv a \pmod{2d}\}
+}
+and define $T = \max \{T_a \mid a \in [2d]\}$. $T_a$ is well-defined for every $a$, since it can be easily seen that there always exists a core with required parameters.
+
+Set $n_0 = 2d+d\gamma$ and take $n > n_0$. Then there is $a \in [2d]$ such that $n \equiv (d-1)\gamma + a \pmod{2d}$ and a core $H=(a_0,\alpha,\beta,\gamma)$ which we have chosen such that $t(H) = T_a$.
+
+Now, $n$ can be written as $2dk + (d-1)\gamma + a_0$ for a positive integer $k$. Plugging into Lemma \ref{lem:core-tiling} we get
+\cosyalign{
+	t_\gamma(n) \leq 6 + t(H) + t_{d\gamma}(dk) \leq 6 + T + t_\gamma(k).
+}
+Clearly $k < n/(2d)$ which completes the proof.
+\end{proof}
+
+\begin{cor}
+\label{cor:log-t-gamma-n}
+Let $\gamma,d$ be as in Lemma \ref{lem:t-gamma-n}. Then there exist constants $T,C$ such that
+\cosyalign{
+	t_\gamma(n) \leq (6+T) \log_{2d}(n) + C.
+}
+\end{cor}%
+
+\begin{exmp}
+Let us choose $d=2$ and $\gamma=3$, they meet the conditiion $2d-1 \leq \gamma$. Consider the cores on Figure \ref{fig:core-kk3}, they have to have perimeter $d\gamma = 6$.
+
+We have chosen $a_0 \in \{0,1,2,3\}$ as this is the only choice such that $a_0 \leq \gamma$ and $a_0$ runs through all remainders modulo $2d=4$. We can set $T=4$ and from Corollary \ref{cor:log-t-gamma-n} we have
+\cosyalign{
+	t_3(n) \leq 10 \log_{4}(n) + C = 5 \log_2(n) + C
+}
+for a constant $C$. The resulting tiling is in fact the tiling from Section \ref{sec:log-rectangle}  with every square diagonally cut in halves.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.8\textwidth]{img/example_core_kk3.pdf}
+\caption{\todo{Caption}}
+\label{fig:core-kk3}
+\end{figure}
+\end{exmp}%
+
+Is it possible to construct a chain of better and better dissections using this method? The following lemmas give a partial answer to this question.
+
+\begin{lem}
+Let $H = (a_0, \alpha, \beta, \gamma)$ be a core with perimeter $d\gamma$ and $a_0 \ne 0 \ne a_5$. Then $t(H) \geq d$.
+\end{lem}
+\begin{proof}
+The distance between the pair of parallel lines $a_1, a_4$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_1$ and $a_4$ we have to use at least $(a_1+a_4)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
+
+Since $a_0 \ne 0 \ne a_5$, we have to use one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_4$ and $a_1$, hence $t(H) \geq d$.
+
+\todo{Figure}
+\end{proof}
+
+\begin{thm}
+\cosyalign{
+	dis_\gamma(n) \geq (6+d) \log_{2d}(n)+c
+}
+\end{thm}%
+
+
+
+
+
+

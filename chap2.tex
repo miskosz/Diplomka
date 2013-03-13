@@ -1,0 +1,146 @@
+\chapter{Embedding latin trades into groups}
+
+@ Only finite groups
+
+@ Credit to Drápal
+
+%%%
+%%%
+%%%
+\section{Sparse matrices}
+
+\begin{defn}
+A matrix is \emph{sparse} if its elements are from $\{0,1\}$ and there is at most one occurrence of 1 in every row.
+\end{defn}
+
+\begin{lem}
+\label{lem:sparse2}
+Let $M_0,M_1$ be sparse matrices with the same number of rows such that $M = (M_0M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
+\end{lem}
+\begin{proof}
+Let $c_0,c_1$ be the number of columns in $M_0$ and $M_1$ respectively. The proof is by induction on $n := c_0+c_1$. The case with $n=1$ is trivial. Therefore assume $n>1$.
+
+There are at most two ones in every row of M.
+\begin{cosyitemize}
+	\item If there is a row with zeros only, then $\det(M) = 0$.
+	\item If every row contains exactly two ones, then
+		\begin{cosyeqnarray}
+			v := (\underbrace{1,\dots,1}_{c_0},\underbrace{-1,\dots,-1}_{c_1}) \nonumber
+		\end{cosyeqnarray}%
+		is such that $Mv^T = 0$. Thus $M$ is singular and $\det(M) = 0$.
+	\item Otherwise there is a row $r$ which contains only single one in column $c$. Then expanding the determinant by row $r$ yields
+	 \begin{cosyeqnarray}
+	 	\det(M) = \pm \det(\overbar{M}_r^c).
+	 \end{cosyeqnarray}%
+	The matrix $\overbar{M}_r^c$ consists also from two sparse matrices, thus the result follows by induction.
+\end{cosyitemize}
+\end{proof}
+
+\begin{lem}
+\label{lem:sparse3}
+Let $M_0,M_1,M_2$ be sparse matrices of sizes $n \times c_0, n \times c_1, n \times c_2$ such that $M = (M_0,M_1,M_2)$ is a square block matrix. Let $k_i$ denote the number of ones in column $i$. Then
+\begin{cosyeqnarray}
+	|\det(M)| \leq \prod_{i \in [c_0]} k_i.
+\end{cosyeqnarray}%
+\end{lem}
+\begin{proof}
+The proof is by induction on $c_0$.
+\begin{enumerate}
+	\item If $c_0 = 0$, then $|\det(M)| \leq \prod_{i=0}^{0} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
+	\item Otherwise expand by the first column:
+	\begin{cosyeqnarray}
+		|\det(M)| \leq \sum_{i\in[n]} |\det(\overbar{M}_i^1)| = k_0 |\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
+	\end{cosyeqnarray}%
+	The last inequality follows from induction.
+\end{enumerate}
+\end{proof}
+
+\todo{@ Technical lemma}
+
+\begin{lem}
+\label{lem:technical}
+Let $n \in \N$ and $k_0 + \dots + k_{m-1} = n$ for some $m \in \N$. Then
+\begin{cosyeqnarray}
+	\prod_{i \in [m]} k_i \leq 3^{n/3}.
+\end{cosyeqnarray}%
+\end{lem}
+\begin{proof}
+For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_0 \leq \dots \leq k_{m-1}$ be lexicographically smallest such that the maximum is attained. Observe:
+\begin{cosyitemize}
+	\item $2 \cdot (k-2) \geq k$ for $k \geq 4$, therefore $k_i \leq 3$;
+	\item $(1+k) > 1 \cdot k$, therefore $k_i > 1$;
+	\item $3 \cdot 3 > 2 \cdot 2 \cdot 2$, therefore there are at most two twos amongst $k_i$.
+\end{cosyitemize}%
+Thus there are 3 possibilities:
+\cosyalig{
+&n =3k &\Rightarrow&\ k_0 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 3^{n/3} \\
+&n =3k+2 &\Rightarrow&\ k_0 = 2, k_1 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-2)/3} \\
+&n =3k+4 &\Rightarrow&\ k_0 = k_1 = 2, k_2 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-4)/3} 
+}
+Where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$ and we are done.
+\end{proof}
+
+\begin{lem}
+Let $M_0,M_1,M_2$ be sparse matrices such that $M = (M_0,M_1,M_2)$ is a  square block $n \times n$ matrix. Then
+\begin{cosyeqnarray}
+ 	|\det(M)| \leq 3^{n/3}
+\end{cosyeqnarray}% 
+and thus $3 \log_3(|\det(M)|) \leq n$.
+\end{lem}
+\begin{proof}
+Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the column $i$. Since $M_0$ is sparse, surely $\sum_{i \in [c_0]} k_i \leq n$. The proof is finished by combining Lemmas \ref{lem:sparse3} and \ref{lem:technical}:
+\begin{cosyeqnarray}
+	|\det(M)| \leq \prod_{i \in [c_0]} k_i \leq 3^{n/3}.
+\end{cosyeqnarray}%
+\end{proof}
+
+%%%
+%%%
+%%%
+\section{Trade matrices}
+Recall that
+\begin{itemize}
+	\item $R = \{r_1,\dots,r_{|R|}\}$ is the set of rows,
+	\item $C = \{c_1,\dots,c_{|C|}\}$ is the set of columns and
+	\item $S = \{s_1,\dots,s_{|S|}\}$ is the set of symbols.
+\end{itemize}
+Without loss of generality assume thar these sets are disjoint and let $X = R \cup C \cup S$.
+
+\begin{defn}
+Let $T$ be a latin trade. We define a matrix $M$ of size $|T| \times |X|$ such that if we index the rows by elements of $T$ and columns by elements of $X$, then
+\begin{cosyeqnarray}
+	t = (r,c,s) \in T \Rightarrow
+	\begin{cases}
+		M_{t,r} = M_{t,c} = M_{t,s} = 1, & \\
+		M_{t,x} = 0 & \textrm{ for } x \in X \setminus \{r,c,s\}.
+	\end{cases}
+\end{cosyeqnarray}%
+\end{defn}
+We call it the \emph{trade matrix} and denote by $M_T$.
+
+
+%%%
+%%%
+%%%
+\section{Definition of gdist(n)}
+
+A Cayley table of a group $G$ can be formally defined as a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $rc = s$.% We shall use $G$ also to denote the  Cayley table of $G$.
+
+\begin{defn}
+A latin trade $T$ \emph{can be embedded} in a group $G$ if there exists an injective homotopy from $T$ to the Cayley talbe of $G$. Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
+\end{defn}
+
+We shall explain this definition in more detail. The latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$ (see Figure \todo{1}).
+
+Without loss of generality now assume that $(T,T')$ is a bitrade on $G \times G \times G$  (i.e. that the isotopy is the identity function). In that case we can change the symbols in the cells of $T$ with the corresponding symbols in $T'$ to get a latin square. This can be also reversed -- a latin square $L \subset G \times G \times G$ uniquely defines a latin bitrade $(C_G\setminus L, L\setminus C_G)$ such that $C_G\setminus L$ is embedded in G, where $C_G$ denotes the Cayley table of $G$.
+
+Therefore $\gdist(G)$ is the smallest number of cells we have to change in a Cayley table of $G$ to get another latin square.
+
+\bigskip
+
+Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. Hence from Cauchy's theorem:
+
+\begin{lem}
+\label{lem:gdist-n-leq-gdist-p}
+If $p$ is a prime factor of $n$, then $\gdist(n) \leq \gdist(p)$.
+\end{lem}%

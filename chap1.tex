@@ -1,0 +1,99 @@
+\chapter{Latin bitrades}
+
+An $n \times n$ table such that every row and column contains every number in $[n]$ exactly once is a well-known combinatorial object called \emph{latin square}. In this chapter we define \emph{latin bitrade}, which can be thought of as an object of differences between two latin squares.
+
+To describe a table of elements formally, we use ordered triples $(r,c,s)$ to represent the fact that the cell in row $r$ and column $c$ contains the symbol $s$. For that we use the following notation. Let
+\begin{itemize}
+	\item $R = \{r_1,\dots,r_{|R|}\}$ denote the set of rows,
+	\item $C = \{c_1,\dots,c_{|C|}\}$ denote the set of columns and
+	\item $S = \{s_1,\dots,s_{|S|}\}$ denote the set of symbols.
+\end{itemize}
+\todo{@} We consider only the finite case. As an example, a latin square is formally a subset of $R \times C \times S$ with $R = C = S = [n]$. We shall see this in more detail in a moment.
+
+In this chapter we define only the necessary notions for our purposes. For a more comprehensive introduction to latin bitrades we refer the reader to a survey by Cavenagh \cite{Cavenagh08}.
+
+@
+
+%%%
+%%%
+%%%
+\section{Partial latin squares}
+
+\begin{defn}
+\emph{A partial latin square} L is a subset of ordered triples from $R \times C \times S$, such that if we know any two coordinates of $(r,c,s)\in L$, then the third one is determined uniquely.
+\end{defn}
+
+A partial latin square is usually interpreted as a partially filled $|R| \times |C|$ table. The uniqueness condition implies that the table is well defined (there is at most one symbol in every cell), and that no symbol repeats itself within a column or a row.
+
+\begin{defn}
+A partial latin square $L$ is \emph{a latin square} if $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are $r,c,s \in R$ such that
+\begin{cosyeqnarray}
+	(a_1, a_2, s), (a_1, c, a_2), (r, a_1, a_2) \in L.
+\end{cosyeqnarray}
+\end{defn}
+
+\subsection{Operations on partial latin squares}
+
+There are two important maps from partial latin squares to partial latin squares: \emph{isotopy} and \emph{conjugacy}.
+
+\begin{defn}
+Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ are partial latin squares. \emph{A homotopy} is a triple of maps $h = (h_R, h_C, h_S)$ such that
+\begin{eqnarray}
+	h_R : R_A \rightarrow R_B, \nonumber \\
+	h_C : C_A \rightarrow R_C, \nonumber \\
+	h_S : S_A \rightarrow R_S\phantom{..} \nonumber
+\end{eqnarray}
+and $(r,c,s) \in A \Rightarrow \big(h_R(r), h_C(c), h_S(s)\big) \in B$. \emph{An isotopy} is a homotopy with homotopic inverse.
+\end{defn}
+
+\todo{Figure isotopic PLSs.}
+
+\begin{defn}
+Let $A \subset R \times C \times S$ be a partial latin square and $\sigma$ be a permutation of the 3-element set $\{R,C,S\}$. Then the partial latin square
+\begin{cosyeqnarray}
+	\{(a_{\sigma(R)}, a_{\sigma(C)}, a_{\sigma(S)}) \mid (a_R, a_C, a_S) \in A)\}
+\end{cosyeqnarray}
+is said to be \emph{conjugated} with $A$.
+\end{defn}
+
+Note that there are six conjugacies, each one corresponding to a permutation of $\{R,C,S\}$.
+
+\begin{defn}
+Two partial latin squares belong to the same \emph{class} if one can be obtained from another by composition of conjugacy and isotopy.
+\end{defn}
+
+
+%%%
+%%%
+%%%
+\section{Latin bitrades}
+
+Now we can define latin bitrade.
+
+\begin{defn}
+\emph{A latin bitrade} is a tuple $(T, T')$ of partial latin squares on $R \times C \times S$ which are disjoint and for every $(r,c,s) \in T$ (respectively, $T'$) there exist unique $r', c', s'$ such that
+\begin{cosyeqnarray}
+	(r',c,s), (r,c',s), (r,c,s') \in T' \textrm{ (respectively, $T$)}.
+\end{cosyeqnarray}%
+Let us call $T$ and $T'$ \emph{latin trades}. Elements in $T$ and $T'$ can be paired with respect to the first two coordinates. Therefore $|T| = |T'|$ and we shall call this number the \emph{size} of the bitrade (or a trade).
+\end{defn}
+
+From the tabular point of view, a latin bitrade is a pair of partial latin squares such that they occupy the same cells, but the symbols in corresponding rows and columns are permuted. Moreover no symbol is at the same position in both of the tables.
+
+\todo{Figure of a latin bitrade of size X.}
+
+Note that two latin squares $L$, $L'$ defined on the same set specify a latin bitrade $(L \setminus L', L' \setminus L)$.
+
+\subsection{Graph representation of a latin bitrade.}
+
+Let $(T, T')$ be a latin bitrade. Then we can associate it with a graph $G = (V, E)$ such that
+\begin{align}
+	V &= T \cup T' \nonumber\\
+	E &= \{(t,t') \mid t \in T, t' \in T': \textrm{  $t$ and $t'$ differ at exactly one coordinate}\}.\nonumber
+\end{align}%
+We shall call it the \emph{graph of a latin bitrade $(T, T')$}. Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade.
+
+\todo{@ connected? planar? separated?}
+
+\todo{@ planar graphs $<=>$ separated planar bitrades}
+
