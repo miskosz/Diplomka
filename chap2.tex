@@ -15,7 +15,7 @@ A matrix is \emph{sparse} if its elements are from $\{0,1\}$ and there is at mos
 
 \begin{lem}
 \label{lem:sparse2}
-Let $M_0,M_1$ be sparse matrices with the same number of rows such that $M = (M_0M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
+Let $M_0,M_1$ be sparse matrices of the same number of rows such that $M = (M_0,M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
 \end{lem}
 \begin{proof}
 Let $c_0,c_1$ be the number of columns in $M_0$ and $M_1$ respectively. The proof is by induction on $n := c_0+c_1$. The case with $n=1$ is trivial. Therefore assume $n>1$.
@@ -28,7 +28,7 @@ There are at most two ones in every row of M.
 			v := (\underbrace{1,\dots,1}_{c_0},\underbrace{-1,\dots,-1}_{c_1}) \nonumber
 		\end{cosyeqnarray}%
 		is such that $Mv^T = 0$. Thus $M$ is singular and $\det(M) = 0$.
-	\item Otherwise there is a row $r$ which contains only single one in column $c$. Then expanding the determinant by row $r$ yields
+	\item Otherwise there is a row $r$ which contains only a single one in column $c$. Then expanding the determinant by row $r$ yields
 	 \begin{cosyeqnarray}
 	 	\det(M) = \pm \det(\overbar{M}_r^c).
 	 \end{cosyeqnarray}%
@@ -49,9 +49,9 @@ The proof is by induction on $c_0$.
 	\item If $c_0 = 0$, then $|\det(M)| \leq \prod_{i=0}^{0} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
 	\item Otherwise expand by the first column:
 	\begin{cosyeqnarray}
-		|\det(M)| \leq \sum_{i\in[n]} |\det(\overbar{M}_i^1)| = k_0 |\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
+		|\det(M)| \leq \sum_{i\in[n]} M_{i,0}\,|\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
 	\end{cosyeqnarray}%
-	The last inequality follows from induction.
+	The last inequality holds since there are $k_0$ nonzero summands and the product majorizes each subdeterminant from induction.
 \end{enumerate}
 \end{proof}
 
@@ -75,9 +75,9 @@ Thus there are 3 possibilities:
 \cosyalig{
 &n =3k &\Rightarrow&\ k_0 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 3^{n/3} \\
 &n =3k+2 &\Rightarrow&\ k_0 = 2, k_1 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-2)/3} \\
-&n =3k+4 &\Rightarrow&\ k_0 = k_1 = 2, k_2 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-4)/3} 
+&n =3k+4 &\Rightarrow&\ k_0 = k_1 = 2, k_2 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 4\cdot3^{(n-4)/3} 
 }
-Where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$ and we are done.
+Where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$, thus we are done.
 \end{proof}
 
 \begin{lem}
@@ -100,11 +100,11 @@ Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the 
 \section{Trade matrices}
 Recall that
 \begin{itemize}
-	\item $R = \{r_1,\dots,r_{|R|}\}$ is the set of rows,
-	\item $C = \{c_1,\dots,c_{|C|}\}$ is the set of columns and
-	\item $S = \{s_1,\dots,s_{|S|}\}$ is the set of symbols.
+	\item $R = \{r_0,\dots,r_{|R|-1}\}$ is the set of rows,
+	\item $C = \{c_0,\dots,c_{|C|-1}\}$ is the set of columns and
+	\item $S = \{s_0,\dots,s_{|S|-1}\}$ is the set of symbols.
 \end{itemize}
-Without loss of generality assume thar these sets are disjoint and let $X = R \cup C \cup S$.
+Without loss of generality assume that these sets are disjoint and let $X = R \cup C \cup S$.
 
 \begin{defn}
 Let $T$ be a latin trade. We define a matrix $M$ of size $|T| \times |X|$ such that if we index the rows by elements of $T$ and columns by elements of $X$, then
@@ -118,6 +118,55 @@ Let $T$ be a latin trade. We define a matrix $M$ of size $|T| \times |X|$ such t
 \end{defn}
 We call it the \emph{trade matrix} and denote by $M_T$.
 
+\begin{lem}
+Suppose that all elements of $X$ are used in a connected latin trade $T$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
+\end{lem}
+\begin{proof}
+\todo{@ Prepisat dokaz! (x,y,z)}
+
+The vector
+\cosyalign{
+	v = (\underbrace{a, \dots, a}_{|R|}, \underbrace{b, \dots, b}_{|C|}, \underbrace{c, \dots, c}_{|S|})
+}
+is surely a solution for $M_Tv^T = 0$ if $a+b+c=0$. It suffices to show that these are the only solutions.
+
+Let $v$ be any solution and $f:X \rightarrow \Q$ is defined by
+\cosyalign{
+	v = (f(r_0), \dots, f(c_0), \dots, f(s_0), \dots).
+}
+Let $\bar s \in S$ be such that $v_{\bar s}$ is maximal. $\bar  s$ is surely a coordinate of a triple $(\bar r,\bar c,\bar s) \in T$. Without loss of generality assume that $(\bar r,\bar c,\bar s) = (0,0,0)$, otherwise we can shift the coordinates. Now we want to prove that $a = b = c = 0$.
+
+Since $0$ is the largest element of $f(s)$ and $T'$ occupies the same cells as $T$, then for any $(r,c,s) \in T \cup T'$
+\cosyalign{
+	f(r) + f(c) \geq 0.
+}
+
+We prove that for $(r,c,s) \in T\cup T'$ such that $f(t) = (0,0,0)$ holds that $f(\sigma_Y(r,c,s)) = (0,0,0)$ and $f(\sigma_Y^{-1}(r,c,s)) = (0,0,0)$ for $Y \in \{R, C, S\}$.
+
+Let $(r,c,s) \in T'$ such that $f(r,c,s) = (0,0,0)$. Then $\sigma_R^{-1}(r,c,s) = (r',c,s) \in T$ and $0=f(r')+f(c')+f(s')=f(r')$. Therefore $f(\sigma_R^{-1}(r,c,s)) = (0,0,0)$. For $\sigma_C$ and $\sigma_S$ analogously.
+
+Now let $(r,c,s) \in T$ such that $f(r,c,s)=(0,0,0)$. Consider a chain of elements in $T \cup T'$:
+\begin{align*}
+	(r,c,s) &\in T &\xrightarrow{\sigma_C}& &(r,c^1,s) &\in T' & \xrightarrow{\sigma_R^{-1}} \\
+	(r^1,c^1,s) &\in T &\xrightarrow{\sigma_C}& &(r^1,c^2,s) &\in T' & \xrightarrow{\sigma_R^{-1}} \\
+	(r^2,c^2,s) &\in T &\xrightarrow{\sigma_C}& &(r^2,c^3,s) &\in T' & \dots
+\end{align*}
+
+The inequality gives us
+\begin{align*}
+	f(r) + f(c) = 0, f(r) + f(c^1) \geq 0, \\
+	f(r^1) + f(c^1) = 0, f(r^1) + f(c^2) \geq 0, \dots 
+\end{align*}
+which yields
+\begin{align*}
+	0 = f(r) \geq f(r^1) \geq f(r^2) \geq \dots \\
+	0 = f(c) \leq f(c^1) \leq f(c^2) \leq \dots
+\end{align*}
+But it is a cycle, therefore all in the cycle are equal to zero. So $f(\sigma_C(r,c,s)) = (0,0,0)$. The result for $\sigma_R$ can be obtained by reversing the cycle.
+
+For $\sigma_S$, consider a cycle by alternating maps $\sigma_C$ and $\sigma_S^{-1}$. We already know that $f(\sigma_S^{-1}\sigma_C(r,c,s)) = \sigma_S^{-1}(0,0,0) = (0,0,0)$. Therefore all elements in the cycle are mappe to $(0,0,0)$. By reversing the cycle we get the result.
+
+\end{proof}
 
 %%%
 %%%

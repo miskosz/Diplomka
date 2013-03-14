@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  13 MAR 2013 17:38
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2012.6.30)  14 MAR 2013 23:23
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -527,7 +527,8 @@ Package uniquecounter Info: New unique counter `rerunfilecheck' on input line 2
 \vmez=\dimen118
 \hmez=\dimen119
 ) (./thesis.aux (./preface.aux) (./introduction.aux)
-(./chap1.aux) (./chap2.aux) (./chap3.aux) (./epilog.aux) (./bibliography.aux))
+(./chap1.aux) (./chap2.aux) (./chap3.aux) (./chap4.aux) (./epilog.aux)
+(./bibliography.aux))
 \openout1 = `thesis.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 79.
@@ -595,7 +596,7 @@ LaTeX Info: Redefining \nameref on input line 79.
 \openout3 = `thesis.out'.
 
 
-<./img/logo.pdf, id=91, 371.3875pt x 366.36874pt>
+<./img/logo.pdf, id=87, 371.3875pt x 366.36874pt>
 File: ./img/logo.pdf Graphic file (type pdf)
  <use ./img/logo.pdf>
 Package pdftex.def Info: ./img/logo.pdf used on input line 111.
@@ -680,28 +681,28 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
 .2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 \begin{cosyeqnarray}
+l.49 \begin{cosyeqnarray}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{equation.1.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 \begin{cosyeqnarray}
+l.49 \begin{cosyeqnarray}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{equation.1.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 \begin{cosyeqnarray}
+l.49 \begin{cosyeqnarray}
                          pdfTeX warning (ext4): destination with the same ident
 ifier (name{equation.1.1.2}) has been already used, duplicate ignored
 <to be read again> 
                    \relax 
-l.53 \begin{cosyeqnarray}
-                         ) [6]
+l.49 \begin{cosyeqnarray}
+                          [6]) [7]
 \openout2 = `chap2.aux'.
 
  (./chap2.tex
 Chapter 2.
-[7
+[8
 
 
 
@@ -710,8 +711,8 @@ pdfTeX warning (ext4): destination with the same identifier (name{equation.2.1.
 
 \AtBegShi@Output ...ipout \box \AtBeginShipoutBox 
                                                   \fi \fi 
-l.65 \end{cosyeqnarray}
-                       %] [8]) [9]
+l.61 \label
+           {lem:technical}] [9] [10]) [11]
 \openout2 = `chap3.aux'.
 
  (./chap3.tex
@@ -723,107 +724,125 @@ n/12 (\OML/cmm/m/it/12 n\OT1/cmr/m/n/12 )$ squares are need-ed. A year lat-er T
 rustrum [[]9[]]
  []
 
-[10
+[12
 
 
 
-] <img/kk3.pdf, id=257, 350.49846pt x 257.76299pt>
+] <img/kk3.pdf, id=272, 350.49846pt x 257.76299pt>
 File: img/kk3.pdf Graphic file (type pdf)
  <use img/kk3.pdf>
 Package pdftex.def Info: img/kk3.pdf used on input line 57.
 (pdftex.def)             Requested size: 371.30594pt x 273.08588pt.
 
-[11 <./img/kk3.pdf>] <img/transf.pdf, id=280, 546.84329pt x 113.223pt>
+[13 <./img/kk3.pdf>] <img/transf.pdf, id=296, 546.84329pt x 113.223pt>
 File: img/transf.pdf Graphic file (type pdf)
 
 <use img/transf.pdf>
 Package pdftex.def Info: img/transf.pdf used on input line 97.
 (pdftex.def)             Requested size: 371.30594pt x 76.88177pt.
- [12 <./img/transf.pdf>]
-<img/arrows.pdf, id=311, 150.78554pt x 143.25119pt>
+ [14 <./img/transf.pdf>]
+<img/arrows.pdf, id=326, 150.78554pt x 143.25119pt>
 File: img/arrows.pdf Graphic file (type pdf)
  <use img/arrows.pdf>
 Package pdftex.def Info: img/arrows.pdf used on input line 171.
 (pdftex.def)             Requested size: 159.65883pt x 151.68376pt.
 
-[13 <./img/arrows.pdf>] [14]
-<img/core_tiling1.pdf, id=345, 390.62257pt x 200.0032pt>
+[15 <./img/arrows.pdf>] [16]
+<img/core_tiling1.pdf, id=361, 390.62257pt x 200.0032pt>
 File: img/core_tiling1.pdf Graphic file (type pdf)
 
 <use img/core_tiling1.pdf>
-Package pdftex.def Info: img/core_tiling1.pdf used on input line 279.
+Package pdftex.def Info: img/core_tiling1.pdf used on input line 280.
 (pdftex.def)             Requested size: 371.30594pt x 190.12404pt.
- [15 <./img/core_tiling1.pdf>]
-<img/example_core_kk3.pdf, id=373, 303.95558pt x 96.55573pt>
+ [17 <./img/core_tiling1.pdf>]
+<img/example_core_kk3.pdf, id=388, 303.95558pt x 96.55573pt>
 File: img/example_core_kk3.pdf Graphic file (type pdf)
 
 <use img/example_core_kk3.pdf>
-Package pdftex.def Info: img/example_core_kk3.pdf used on input line 341.
+Package pdftex.def Info: img/example_core_kk3.pdf used on input line 342.
 (pdftex.def)             Requested size: 330.05322pt x 104.85172pt.
- [16]) [17 <./img/example_core_kk3.pdf>]
+ [18]
+<img/core_tiling_lower_bound.pdf, id=401, 349.22873pt x 114.99863pt>
+File: img/core_tiling_lower_bound.pdf Graphic file (type pdf)
+
+<use img/core_tiling_lower_bound.pdf>
+Package pdftex.def Info: img/core_tiling_lower_bound.pdf used on input line 361
+.
+(pdftex.def)             Requested size: 330.05322pt x 108.68654pt.
+ [19 <./img/example_core_kk3.pdf> <./img/core_tiling_lower_bound.pdf>]) [20]
+\openout2 = `chap4.aux'.
+
+ (./chap4.tex
+Chapter 4.
+) [21
+
+
+
+]
 \openout2 = `epilog.aux'.
 
-
-(./epilog.tex) [18
+ (./epilog.tex) [22
 
 
 
 ]
 \openout2 = `bibliography.aux'.
 
- (./bibliography.tex (./thesis.bbl)) [19
+ (./bibliography.tex (./thesis.bbl)) [23
 
 
 
-] [20
+] [24
 
-
-] [21
-
-] [22
 
 ]
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 281.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 281.
+[25
 
-(./thesis.aux (./preface.aux) (./introduction.aux) (./chap1.aux) (./chap2.aux)
-(./chap3.aux) (./epilog.aux) (./bibliography.aux))
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 281.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 281.
+] [26
+
+]
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 282.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 282.
+ (./thesis.aux (./preface.aux) (./introduction.aux) (./chap1.aux)
+(./chap2.aux) (./chap3.aux) (./chap4.aux) (./epilog.aux) (./bibliography.aux))
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 282.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 282.
 Package rerunfilecheck Info: File `thesis.out' has not changed.
-(rerunfilecheck)             Checksum: 62C00CE5CB327FF115CEBA2F8D54D279;3625.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 281.
+(rerunfilecheck)             Checksum: 432F9D70634BABB9C50E8ED0CC0EDE7B;3244.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 282.
  ) 
 Here is how much of TeX's memory you used:
- 8639 strings out of 493488
- 116514 string characters out of 3141326
- 222949 words of memory out of 3000000
- 11663 multiletter control sequences out of 15000+200000
+ 8670 strings out of 493488
+ 116961 string characters out of 3141326
+ 223509 words of memory out of 3000000
+ 11669 multiletter control sequences out of 15000+200000
  14654 words of font info for 56 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 29i,16n,35p,561b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 29i,18n,35p,561b,518s stack positions out of 5000i,500n,10000p,200000b,50000s
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
 ></usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb><
 /usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi12.pfb></
-usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></us
-r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/
-local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/lo
-cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/loca
-l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/t
-exlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texl
-ive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive
-/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/
-2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012
-/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/
-texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/t
-exmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/20
-12/texmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
-Output written on thesis.pdf (26 pages, 422504 bytes).
+usr/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></us
+r/local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi8.pfb></usr/
+local/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/lo
+cal/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></usr/loca
+l/texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr17.pfb></usr/local/
+texlive/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/local/tex
+live/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/local/texliv
+e/2012/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/local/texlive/2
+012/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/local/texlive/20
+12/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/local/texlive/2012
+/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/local/texlive/2012/tex
+mf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/local/texlive/2012/texm
+f-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/local/texlive/2012/texmf
+-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/local/texlive/2012/t
+exmf-dist/fonts/type1/public/amsfonts/symbols/msbm10.pfb>
+Output written on thesis.pdf (30 pages, 450931 bytes).
 PDF statistics:
- 505 PDF objects out of 1000 (max. 8388607)
- 438 compressed objects within 5 object streams
- 128 named destinations out of 1000 (max. 500000)
- 207 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 556 PDF objects out of 1000 (max. 8388607)
+ 480 compressed objects within 5 object streams
+ 145 named destinations out of 1000 (max. 500000)
+ 204 words of extra memory for PDF output out of 10000 (max. 10000000)
 

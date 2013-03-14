@@ -4,15 +4,13 @@ An $n \times n$ table such that every row and column contains every number in $[
 
 To describe a table of elements formally, we use ordered triples $(r,c,s)$ to represent the fact that the cell in row $r$ and column $c$ contains the symbol $s$. For that we use the following notation. Let
 \begin{itemize}
-	\item $R = \{r_1,\dots,r_{|R|}\}$ denote the set of rows,
-	\item $C = \{c_1,\dots,c_{|C|}\}$ denote the set of columns and
-	\item $S = \{s_1,\dots,s_{|S|}\}$ denote the set of symbols.
+	\item $R = \{r_0,\dots,r_{|R|-1}\}$ denote the set of rows,
+	\item $C = \{c_0,\dots,c_{|C|-1}\}$ denote the set of columns and
+	\item $S = \{s_0,\dots,s_{|S|-1}\}$ denote the set of symbols.
 \end{itemize}
-\todo{@} We consider only the finite case. As an example, a latin square is formally a subset of $R \times C \times S$ with $R = C = S = [n]$. We shall see this in more detail in a moment.
+We consider only the case when $R$, $C$, and $S$ are finite. As an example, a latin square is formally a subset of $R \times C \times S$ with $R = C = S = [n]$. We shall see this in more detail in a moment.
 
-In this chapter we define only the necessary notions for our purposes. For a more comprehensive introduction to latin bitrades we refer the reader to a survey by Cavenagh \cite{Cavenagh08}.
-
-@
+In this chapter we define only necessary notions for our purposes. For a more comprehensive introduction to latin bitrades we refer the reader to a survey by Cavenagh \cite{Cavenagh08}.
 
 %%%
 %%%
@@ -20,24 +18,22 @@ In this chapter we define only the necessary notions for our purposes. For a mor
 \section{Partial latin squares}
 
 \begin{defn}
-\emph{A partial latin square} L is a subset of ordered triples from $R \times C \times S$, such that if we know any two coordinates of $(r,c,s)\in L$, then the third one is determined uniquely.
+\emph{A partial latin square} L is a subset of ordered triples from $R \times C \times S$, such that for any two given coordinates of $(r,c,s)\in L$ the third one is determined uniquely.
 \end{defn}
 
 A partial latin square is usually interpreted as a partially filled $|R| \times |C|$ table. The uniqueness condition implies that the table is well defined (there is at most one symbol in every cell), and that no symbol repeats itself within a column or a row.
 
 \begin{defn}
-A partial latin square $L$ is \emph{a latin square} if $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are $r,c,s \in R$ such that
+\emph{A latin square $L$} is a partial latin square such that $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are $r,c,s \in R$ such that
 \begin{cosyeqnarray}
 	(a_1, a_2, s), (a_1, c, a_2), (r, a_1, a_2) \in L.
 \end{cosyeqnarray}
 \end{defn}
 
-\subsection{Operations on partial latin squares}
-
 There are two important maps from partial latin squares to partial latin squares: \emph{isotopy} and \emph{conjugacy}.
 
 \begin{defn}
-Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ are partial latin squares. \emph{A homotopy} is a triple of maps $h = (h_R, h_C, h_S)$ such that
+Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} is a triple of maps $h = (h_R, h_C, h_S)$ such that
 \begin{eqnarray}
 	h_R : R_A \rightarrow R_B, \nonumber \\
 	h_C : C_A \rightarrow R_C, \nonumber \\
@@ -59,7 +55,7 @@ is said to be \emph{conjugated} with $A$.
 Note that there are six conjugacies, each one corresponding to a permutation of $\{R,C,S\}$.
 
 \begin{defn}
-Two partial latin squares belong to the same \emph{class} if one can be obtained from another by composition of conjugacy and isotopy.
+Two partial latin squares belong to the same \emph{class} if one can be obtained from the other by composition of conjugacy and isotopy.
 \end{defn}
 
 
@@ -71,7 +67,7 @@ Two partial latin squares belong to the same \emph{class} if one can be obtained
 Now we can define latin bitrade.
 
 \begin{defn}
-\emph{A latin bitrade} is a tuple $(T, T')$ of partial latin squares on $R \times C \times S$ which are disjoint and for every $(r,c,s) \in T$ (respectively, $T'$) there exist unique $r', c', s'$ such that
+\emph{A latin bitrade} is a pair $(T, T')$ of partial latin squares on $R \times C \times S$ which are disjoint and for every $(r,c,s) \in T$ (respectively, $T'$) there exist unique $r', c', s'$ such that
 \begin{cosyeqnarray}
 	(r',c,s), (r,c',s), (r,c,s') \in T' \textrm{ (respectively, $T$)}.
 \end{cosyeqnarray}%
@@ -84,16 +80,54 @@ From the tabular point of view, a latin bitrade is a pair of partial latin squar
 
 Note that two latin squares $L$, $L'$ defined on the same set specify a latin bitrade $(L \setminus L', L' \setminus L)$.
 
-\subsection{Graph representation of a latin bitrade.}
-
-Let $(T, T')$ be a latin bitrade. Then we can associate it with a graph $G = (V, E)$ such that
-\begin{align}
+\begin{defn}[Graph representation of a latin bitrade]
+Let $(T, T')$ be a latin bitrade. We can associate it with a graph $G = (V, E)$ such that
+\cosyalign{
 	V &= T \cup T' \nonumber\\
 	E &= \{(t,t') \mid t \in T, t' \in T': \textrm{  $t$ and $t'$ differ at exactly one coordinate}\}.\nonumber
-\end{align}%
-We shall call it the \emph{graph of a latin bitrade $(T, T')$}. Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade.
+}
+We shall call it the \emph{graph of a latin bitrade $(T, T')$}.
+\end{defn}
 
-\todo{@ connected? planar? separated?}
+Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade.
+
+A latin bitrade $(T,T')$ is \emph{connected} if there do not exist two non-empty disjoint latin bitrades $(T_0,T_0')$, $(T_1,T_1')$ such that $T = T_0 \cup T_1$ and $T' = T_0' \cup T_1'$. Equivalently, a bitrade is connected if and only if its graph is connected.
+
+Let $\sigma_rR \sigma_C, \sigma_S : T \rightarrow T'$ be such that for $(r,c,s) \in T$
+\cosyalign{
+ 	\sigma_R(r,c,s) = (r',c,s) \in T', \\
+ 	\sigma_C(r,c,s) = (r,c',s) \in T', \\
+ 	\sigma_S(r,c,s) = (r,c,s') \in T'.
+}
+The definition of the latin bitrade implies that these are bijections.
+
+We can relate $\sigma_R, \sigma_C, \sigma_S$ to the graph of a latin bitrade. They correspond to the edges -- a vertex $t \in T$ is connected with $\sigma_R(t), \sigma_C(t)$ and $\sigma_S(t)$ and a vertex $t' \in T'$ is connected with $\sigma_R^{-1}(t'), \sigma_C^{-1}(t')$ and $\sigma_S^{-1}(t')$. Hence the edges of the graph are 3-colorable, let us denote the colors by $R,C,S$.
+
+
+For later use, we need the following two simple observations:
+
+\begin{lem}
+The bitrade is connected if for any two vertices $t_0,t_1$ it is possible to get one from the other by application of $\sigma_R, \sigma_C, \sigma_S$.
+\end{lem}
+
+Now, if we delete edges of one color, every vertex will become of degree two and the graph splits into cycles. Therefore the map which corresponds to traversal of the graph by alternating edges of two colors is a permutation:
+
+\begin{lem}
+Let $X,Y \in \{R,C,S\}$. Then the mapping $\tau_{XY} : T \cup T' \rightarrow T \cup T'$:
+\cosyalig{
+	\tau_{XY}(t) \mapsto
+	\begin{cases}
+		\sigma_Y(t) \mbox{ if } t \in T\\
+		\sigma_X^{-1}(t) \mbox{ if } t \in T'
+	\end{cases}
+}
+is a permutation.
+\end{lem}
+
+
+
+
+\todo{@ planar? separated?}
 
 \todo{@ planar graphs $<=>$ separated planar bitrades}
 
