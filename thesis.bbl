@@ -10,15 +10,15 @@ Nicholas~J. Cavenagh.
 \newblock The size of the smallest latin trade in a back circulant latin
   square, 2003.
 
+\bibitem{Cavenagh08}
+Nicholas~J. Cavenagh.
+\newblock The theory and application of latin bitrades: A survey.
+\newblock {\em Mathematica Slovaca}, 58:691--718, 2008.
+
 \bibitem{CavenaghWanless09}
 Nicholas~J. Cavenagh and Ian~M. Wanless.
 \newblock Latin trades in groups defined on planar triangulations.
 \newblock {\em Journal of Algebraic Combinatorics}, 30:323--347, 2009.
-
-\bibitem{Cavenagh08}
-NicholasJ. Cavenagh.
-\newblock The theory and application of latin bitrades: A survey.
-\newblock {\em Mathematica Slovaca}, 58:691--718, 2008.
 
 \bibitem{Conway64}
 J.~H. Conway.
@@ -41,6 +41,21 @@ Aleš Drápal and Tomáš Kepka.
 H.E. Dudeney.
 \newblock {\em Amusements in Mathematics}.
 \newblock Dover New York, 1917.
+
+\bibitem{OEIS}
+OEIS~Foundation Inc.
+\newblock Padovan sequence.
+\newblock \url{http://oeis.org/A000931}, 2011.
+
+\bibitem{Rosendorf04}
+D.~Rosendorf.
+\newblock Rozklady trojúhelníků a cyklické grupy.
+\newblock Master's thesis, Charles University in Prague, 2004.
+
+\bibitem{Stewart96}
+I.~Stewart.
+\newblock Mathematical recreations.
+\newblock {\em Scientific American}, June 1996.
 
 \bibitem{Trustrum65}
 G.~B. Trustrum.

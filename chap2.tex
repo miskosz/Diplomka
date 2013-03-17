@@ -168,24 +168,63 @@ For $\sigma_S$, consider a cycle by alternating maps $\sigma_C$ and $\sigma_S^{-
 
 \end{proof}
 
+\begin{cor}
+Let $T$ be a latin trade which uses every symbol in $X$. Then $|T| \geq |X|-2$.
+\end{cor}%
+
+
+%%%
+%%%
+%%%
+\section{Embedding latin trades into groups}
+
+A Cayley table of a group $G$ can be formally defined as a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r \cdot c = s$.
+
+\begin{defn}
+A latin trade $T$ \emph{can be embedded} in a group $G$ if there exists an injective homotopy from $T$ to the Cayley table of $G$.
+\end{defn}
+
+Equivalently, $T$ can be embedded in $G$ if there are injections $f_R,f_C,f_S : X \rightarrow G$ such that
+\cosyalign{
+	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) \cdot f_C(c) = f_S(s).
+}
+In the tabular view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$ (see \todo{Figure 1}).
+
+\begin{lem}
+A latin trade $T$ can be embedded in an abelian group $(G,+)$ if and only if there are injective maps $f_R,f_C,f_S : X \rightarrow G$ such that
+\cosyalign{
+	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) + f_C(c) + f_S(s) = 0.
+}
+\end{lem}
+\begin{proof}
+The equivalence follows easily by setting $g_R = f_R, g_C = f_C, g_S = -f_S$. \\
+\end{proof}
+
+\begin{lem}
+Let $T$ be a trade using all symbols in $X$ which can be embedded in $\Z_p$ and $M$ be any regular submatrix of $M_T$. Then $p \mid \det(M)$.
+\end{lem}
+\begin{proof}
+\todo{TODO}
+\end{proof}
+
+\begin{cor}
+$p \leq 3^{|T|/3}$ and therefore $3 \log_3(p) \leq |T|$.
+\end{cor}%
+
+
 %%%
 %%%
 %%%
 \section{Definition of gdist(n)}
 
-A Cayley table of a group $G$ can be formally defined as a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $rc = s$.% We shall use $G$ also to denote the  Cayley table of $G$.
-
 \begin{defn}
-A latin trade $T$ \emph{can be embedded} in a group $G$ if there exists an injective homotopy from $T$ to the Cayley talbe of $G$. Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
+Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
 \end{defn}
-
-We shall explain this definition in more detail. The latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$ (see Figure \todo{1}).
 
 Without loss of generality now assume that $(T,T')$ is a bitrade on $G \times G \times G$  (i.e. that the isotopy is the identity function). In that case we can change the symbols in the cells of $T$ with the corresponding symbols in $T'$ to get a latin square. This can be also reversed -- a latin square $L \subset G \times G \times G$ uniquely defines a latin bitrade $(C_G\setminus L, L\setminus C_G)$ such that $C_G\setminus L$ is embedded in G, where $C_G$ denotes the Cayley table of $G$.
 
 Therefore $\gdist(G)$ is the smallest number of cells we have to change in a Cayley table of $G$ to get another latin square.
 
-\bigskip
 
 Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. Hence from Cauchy's theorem:
 
@@ -193,3 +232,9 @@ Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. Hence from
 \label{lem:gdist-n-leq-gdist-p}
 If $p$ is a prime factor of $n$, then $\gdist(n) \leq \gdist(p)$.
 \end{lem}%
+
+\begin{lem}
+$3\log_3(p) \leq \gdist(p)$.
+\end{lem}%
+
+\todo{@ Viem urobit este odhad pre abelovske, pre ine neviem.}

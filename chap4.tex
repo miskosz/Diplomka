@@ -1,6 +1,65 @@
 \chapter{Refining the bounds}
 
-Blah.
+In previous chapters we have established that $\gdist(p)$ is asymptotically logarithmic, or, more precisely, that
+\begin{align}
+	2.73 \approx 3 \log_3(e) < \frac{\gdist(p)}{\log(p)} < 5 \log_2(e) \approx 7.21
+\end{align}
+for primes \todo{$p > ?$}. The obvious question is -- what are the best possible constants in these estimates?
 
+While the question is open, in this chapter we provide evidence which suggests that the following conjeture might be true:
 
+\begin{conj}
+\label{conj:lim-gdist}
+Let $P$ be a real such that $P^3=P+1$. Then for primes $p$:
+\begin{align}
+	\lim_{p \rightarrow \infty} \frac{\gdist(p)}{\log(p)} = \frac{1}{\log(P)}.
+\end{align}
+\end{conj}%
 
+Our argument is based on the connection of $\gdist(p)$ to dissections of triangles. Let us recall that Theorem \ref{thm:gdist-leq-tn} states that $\gdist(p) \leq t(p)$ and it is conjectured that $\gdist(p) = t(p)$ (Conjecture \ref{conj:gdistp-equals-tp}).
+
+In this chapter we present computational data of Rosendorf \cite{Rosendorf04} and of our own which support the following:
+
+\begin{conj}
+\label{conj:lim-hat-tn}
+Let $P$ be a real such that $P^3=P+1$. Then
+\begin{align}
+	\lim_{n \rightarrow \infty} \frac{\hat t(n)}{\log(n)} = \frac{1}{\log(P)}.
+\end{align}
+\end{conj}%
+
+Note that Conjectures \ref{conj:lim-hat-tn} and \ref{conj:gdistp-equals-tp} imply Conjecture \ref{conj:lim-gdist}.
+
+In some sense, as we will see, it is easier to approach Conjecture \ref{conj:lim-hat-tn}. One of the reasons is that we do not have to restrict ourselves to primes only, but can handle all numbers equally.
+
+%%%
+%%%
+%%%
+\section{Padovan sequence}
+
+\begin{defn}
+\emph{Padovan sequence} is a linear recurring sequence $(a_k)_{k \geq 1}$ defined by
+\cosyalign{
+	a_1 = a_2 = a_3 = 1, \quad a_{k+3} = a_{k+1}+a_k \ \ \mbox{ for } n \geq 1.
+}%
+The first few terms are $1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16,\dots$
+\end{defn}
+
+For more information about the sequence see e.g. \cite{OEIS}.
+
+Let $P, \lambda_1, \lambda_2$ be roots of the polynomial $x^3-x-1$, where $P$ is the only real root. Then we can write explicitely
+\cosyalign{
+	a_k = c_0P^k + c_1\lambda_1^k + c_2 \lambda_2^k
+}%
+for some complex constants $c_0,c_1,c_2$. Computing the values, we get $|\lambda_1|, |\lambda_2| < 1$ and $c_0 \approx 0.545$ is a real. Therefore $a_k \sim c_0P^k$, or $\log_P(a_k) \sim k$.
+
+The number $P \approx 1.325$ is called \emph{plastic constant}. As a side note, along with its mathematical properties, it has also application in architecture \cite{Stewart96}.
+
+\begin{defn}
+Let $n$ be a positive integer. By $\spb(n)$ we denote an integer such that
+\cosyalign{
+	a_{\spb(n)-1} < n \leq a_{\spb(n)}.
+}
+\end{defn}
+
+Note that $a_{\spb(n)}$ is the nearest term in Padovan sequence which is larger or equals to $n$. Also $\spb(n) \sim \log_P(n)$.
