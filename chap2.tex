@@ -55,7 +55,7 @@ The proof is by induction on $c_0$.
 \end{enumerate}
 \end{proof}
 
-\todo{@ Technical lemma}
+For our final result we need the following technical lemma:
 
 \begin{lem}
 \label{lem:technical}
@@ -100,9 +100,9 @@ Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the 
 \section{Trade matrices}
 Recall that
 \begin{itemize}
-	\item $R = \{r_0,\dots,r_{|R|-1}\}$ is the set of rows,
-	\item $C = \{c_0,\dots,c_{|C|-1}\}$ is the set of columns and
-	\item $S = \{s_0,\dots,s_{|S|-1}\}$ is the set of symbols.
+	\item $R = \{r_0,\dots,r_{|R|-1}\}$ denotes the set of rows,
+	\item $C = \{c_0,\dots,c_{|C|-1}\}$ denotes the set of columns and
+	\item $S = \{s_0,\dots,s_{|S|-1}\}$ denotes the set of symbols.
 \end{itemize}
 Without loss of generality assume that these sets are disjoint and let $X = R \cup C \cup S$.
 
@@ -191,6 +191,7 @@ Equivalently, $T$ can be embedded in $G$ if there are injections $f_R,f_C,f_S : 
 In the tabular view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$ (see \todo{Figure 1}).
 
 \begin{lem}
+\label{lem:abelian-embedding}
 A latin trade $T$ can be embedded in an abelian group $(G,+)$ if and only if there are injective maps $f_R,f_C,f_S : X \rightarrow G$ such that
 \cosyalign{
 	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) + f_C(c) + f_S(s) = 0.

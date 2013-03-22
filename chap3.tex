@@ -47,11 +47,13 @@ Note that in a triangle dissection only 2,3,4 or 6 triangles can share a common 
 
 Let us describe an algorithm to dissect an $n \times (n+3)$ rectangle for $n \geq 2$. Fix the orientation of the rectangle with the shorter side on the left. For convenience, we say that a dissection is \emph{padded} if it has a square of side at least 2 in the upper left corner. Then the algorithm is as follows:
 
+\begin{alg} \ 
 \begin{enumerate}
-	\item[(A1)] For $n=2,3,4,5,6,7,8,9,10$ dissect into $4,2,5,5,3,6,6,4,7$ squares respectively such that the dissection is $\oplus$-free and padded;
-	\item[(A2)] for $n$ of form $4k+z$ with $k \geq 2, z \in \{3,4,5,6\}$, depending on $z$ dissect into $3$ or $5$ squares and a rectangle of size $2k \times 2(k+3)$. Then dissect this rectangle with two times larger tiles recursively. Figure \ref{fig:kk3} illustrates the method.
-\end{enumerate}
-
+		\item[(A1)] For $n=2,3,4,5,6,7,8,9,10$ dissect into $4,2,5,5,3,6,6,4,7$ squares respectively such that the dissection is $\oplus$-free and padded;
+		\item[(A2)] for $n$ of form $4k+z$ with $k \geq 2, z \in \{3,4,5,6\}$, depending on $z$ dissect into $3$ or $5$ squares and a rectangle of size $2k \times 2(k+3)$. Then dissect this rectangle with two times larger tiles recursively. Figure \ref{fig:kk3} illustrates the method.
+	\end{enumerate}
+\end{alg}%
+	
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.9\textwidth]{img/kk3.pdf}
@@ -153,55 +155,96 @@ which holds every time at least one of $p,q$ is nonzero.
 %%%
 %%%
 %%%
-\section{Upper bound for gdist(n)}
+\section{Triangle dissections and latin bitrades}
 
-The following lemma by Drápal \cite{Drapal91} reveals the interesting connection between triangle dissections and embeddings of latin bitrades into groups:
+There is an interesting connection between triangle dissections and latin bitrades, first noted by Drápal \cite{Drapal91}. Let us begin with parametrization of a triangle dissection.
 
-\begin{thm}
-\label{thm:gdist-leq-tn}
-$\gdist(n) \leq t(n)$.
-\end{thm}
-\begin{proof}
-Set $G = \Z_n$ and take a triangle of side $n$ with its $\circledast$-free dissection into $t(n)$ triangles. All the boundary lines of the triangles can be divided into three groups $s_1,s_2,s_3$ depending on which side of the original triangle they are parallel to. Let us label the lines in each group consecutively by $0,1,\dots,n-1$ such that the sides of the original triangle are labeled by $0$, as illustrated on Figure \ref{fig:arrows}.
+Consider a plane $\rho$ defined by $x+y+z=0$ in 3-dimensional Euclidean space. The planes with one fixed integer coordinate $x=k$, $y=k$, $z=k$ intersect with $\rho$, and lines of the intersections form a triangular grid.
 
+We identify vector $(x_0, y_0, z_0)$ with the triangle bounded by lines $x=x_0$, $y=y_0$ and $z=z_0$. The number $|x_0+y_0+z_0|$ is the size (or side) of the triangle. Degenerate triangles of size 0 are points in the plane $\rho$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[height=14em]{img/trigrid.pdf}
+\caption{Triangular grid in plane $x+y+z=0$.}
+\label{fig:trigrid}
+\end{figure}
+
+Now, we can embed a triangle dissection into the grid by choosing its position and orientation.
+
+\begin{defn}
+For a dissection of a triangle $\tau$ embedded in the plane $x+y+z=0$ define sets of vectors $T^*$, $T^\Delta$ such that
+\begin{cosyitemize}
+	\item $T^*$ is the set of vertices of the triangles in the dissection, with the vertices of $\tau$ excluded and $\tau$ itself included;
+	\item $T^\Delta$ is the set of triangles in the dissection.
+\end{cosyitemize}%
+\end{defn}
+
+\begin{exmp} See Figure \ref{fig:arrows}.
 \begin{figure}[htb]
 	\centering
 	\begin{minipage}{.43\linewidth}
 		\centering
 		\includegraphics[width=0.9\textwidth]{img/arrows.pdf}
 	\end{minipage}
-	\hspace{.04\linewidth}
-	\begin{minipage}{.43\linewidth}
-		\begin{center}
-		\begin{tabular}{| c | c c c c c c c |}
-			\hline
-			$\vartriangle$ & 0 & 1 & 2 & 3 & 4 & 5 & 6 \\
-			\hline
-			0 & \M3 & 1 & 2 & \M0 & 4 & 5 & 6 \\
-			1 & 1 & 2 & 3 & 4 & 5 & 6 & 0 \\
-			2 & 2 & 3 & 4 & 5 & 6 & 0 & 1 \\
-			3 & \M5 & 4 & \M6 & \M3 & 0 & 1 & 2 \\
-			4 & 4 & 5 & \M0 & \M6 & 1 & 2 & 3 \\
-			5 & \M0 & 6 & \M5 & 1 & 2 & 3 & 4 \\
-			6 & 6 & 0 & 1 & 2 & 3 & 4 & 5 \\
-			\hline
-		\end{tabular}
-		\end{center}
+	\hspace{.1\linewidth}
+	\begin{minipage}{.16\linewidth}
+		\begin{align*}
+			\begin{array}{c}
+				T^* \\ \hline
+				(0,0,-7) \\
+				(4,0,-4) \\
+				(1,3,-4) \\
+				(0,4,-4) \\
+				(1,4,-5) \\
+				(2,3,-5) \\
+				(0,5,-5) \\
+				(4,3,-7) \\
+				(2,5,-7)
+			\end{array}
+		\end{align*}
 	\end{minipage}
-	\caption{Construction of $(G,\vartriangle)$ from a triangulation for $n=7$}
+	\hspace{.04\linewidth}
+	\begin{minipage}{.16\linewidth}
+		\begin{align*}
+			\begin{array}{c}
+				T^\Delta \\ \hline
+				(0,0,-4) \\
+				(4,0,-7) \\
+				(1,3,-5) \\
+				(0,4,-5) \\
+				(1,4,-4) \\
+				(2,3,-7) \\
+				(0,5,-7) \\
+				(4,3,-4) \\
+				(2,5,-5)
+			\end{array}
+		\end{align*}
+	\end{minipage}
+	\caption{Construction of $T^*$ and $T^\Delta$ from a triangulation.}
 	\label{fig:arrows}
 \end{figure}
+\end{exmp}%
 
-Consider triples of lines $(p,q,r)$ such that they belong to groups $s_1,s_2,s_3$ respectively. Then $p, q$ and $r$ meet at one point if and only if $p+q+r=n$, in the other case they determine a triangle bounded by these three lines. For our purposes, let us consider $(0,0,0)$ as a special case and not as a triple determining a triangle.
+\begin{lem}
+Let $D$ be a $\circledast$-free triangle dissection. Then $(T^*, T^\Delta)$ is a latin bitrade for any embedding of $D$ into the plane. All such latin bitrades are from the same class.
+\end{lem}
+\begin{proof}
+ $(T^*, T^\Delta)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation to conjugacy, therefore the bitrades are from the same class.
+\end{proof}
 
-Computing modulo $n$, define a new operation $\vartriangle$ on $G$ by
-\begin{itemize}
-	\item $p \vartriangle q = -r$ if $(p,q,r)$ determines a triangle in our tiling,
-	\item $p \vartriangle q = p + q$ otherwise.
-\end{itemize}
-Since the tiling is $\circledast$-free, for every $p,q$ there exists at most one $r$ such that $(p,q,r)$ forms a triangle. Therefore the operation is well defined and differs from $+$ on exactly $t(n)$ inputs.
+\begin{lem}
+\label{lem:gdist-leq-tn}
+$\gdist(n) \leq t(n)$.
+\end{lem}
+\begin{proof}
+Let $D$ be a $\circledast$-free dissection of a triangle $\tau$ of size $n$ into $t(n)$ triangles. We claim that the homotopy
+\cosyalign{
+	f:(x,y,z) \mapsto \big((x \bmod n), (y \bmod n), (z \bmod n)\big)
+}%
+is embedding of $T^*$ into $\Z_n$, which would prove the statement.
 
-If we show that the Cayley table of $(G,\vartriangle)$ is a latin square, we are finished. \todo{That follows almost immediately from the $\circledast$-freeness, a more detailed proof can be found in \cite{Drapal91}, Theorem 2.5.}
+Since the size of the triangle is $n$, it follows easily that $f$ is injective. Since $|x+y+z| \in \{0,n\}$ for $(x,y,z)\in T^*$, also $x+y+z \equiv 0 \pmod n$ holds and we are done by Lemma \ref{lem:abelian-embedding}.
 \end{proof}
 
 \todo{@ The following corollary states Conjecture \ref{conj:main}.}
@@ -214,7 +257,7 @@ Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
 }
 \end{cor}%
 \begin{proof}
-The lower bound is \todo{Theorem}. For the upper bound, combine Lemma \ref{lem:gdist-n-leq-gdist-p}, Theorem \ref{thm:gdist-leq-tn} and Theorem \ref{thm:t-log-bound} to get
+The lower bound is \todo{Theorem}. For the upper bound, combine Lemma \ref{lem:gdist-n-leq-gdist-p}, Lemma \ref{lem:gdist-leq-tn} and Theorem \ref{thm:t-log-bound} to get
 \cosyalign{
 	\gdist(n) \leq \gdist(p) \leq t(p) = \hat t(p) < 5 \log_2(n).
 }
@@ -359,7 +402,7 @@ It would be desirable to construct a chain of better and better dissections that
 Let $H = (a_0, \alpha, \beta, \gamma)$ be a core of perimeter $d\gamma$ and $a_0 \ne 0 \ne a_5$. Then $t(H) \geq d$.
 \end{lem}
 \begin{proof}
-The distance between the pair of parallel lines $a_1, a_4$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_1$ and $a_4$ we have to use at least $(a_1+a_4)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
+Distance between the pair of parallel lines $a_1, a_4$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_1$ and $a_4$ we have to use at least $(a_1+a_4)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
 
 Since $a_0 \ne 0 \ne a_5$, we have to use one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_4$ and $a_1$, hence $t(H) \geq d$.
 

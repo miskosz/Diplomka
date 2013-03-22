@@ -1,5 +1,11 @@
 \begin{thebibliography}{10}
 
+\bibitem{BrinkmannMcKay99}
+G.~Brinkmann and B.D. McKay.
+\newblock Fast generation of some classes of planar graphs.
+\newblock {\em Electronic Notes in Discrete Mathematics}, 3(0):28 -- 31, 1999.
+\newblock 6th Twente Workshop on Graphs and Combinatorial Optimization.
+
 \bibitem{BrooksSmithStoneTutte40}
 R.~L. Brooks, C.~A.~B. Smith, A.~H. Stone, and W.~T. Tutte.
 \newblock The dissection of rectangles into squares.
@@ -30,6 +36,11 @@ J.~H. Conway.
 Ale{\v{s}} Dr{\'a}pal.
 \newblock On a planar construction of quasigroups.
 \newblock {\em Czechoslovak Math. J.}, 41(116):538--548, 1991.
+
+\bibitem{DrapalHamalainen10}
+Ales Dr{\'a}pal and Carlo H{\"a}m{\"a}l{\"a}inen.
+\newblock An enumeration of equilateral triangle dissections.
+\newblock {\em Discrete Applied Mathematics}, 158(14):1479--1495, 2010.
 
 \bibitem{DrapalKepka89}
 Aleš Drápal and Tomáš Kepka.
