@@ -41,6 +41,9 @@
 \usepackage{enumitem} % compact lists
 %\usepackage{MnSymbol} % \cupdot
 %\usepackage{natbib}
+\usepackage[toc,page]{appendix}
+\usepackage{tikz}
+\usetikzlibrary{svg.path}
 
 %% Balíček hyperref, kterým jdou vyrábět klikací odkazy v PDF,
 %% ale hlavně ho používáme k uložení metadat do PDF (včetně obsahu).
@@ -183,52 +186,52 @@ signature of the author
 \setlength\parindent{0mm}
 \setlength\parskip{5mm}
 
-Název práce:
-Dissections of triangles and distances of groups
+\textit{Název práce:}
+Delenia trojuholníkov a vzdialenosti grúp
 % přesně dle zadání
 
-Autor:
+\textit{Autor:}
 Michal Szabados
 
-Katedra:  % Případně Ústav:
+\textit{Katedra:}  % Případně Ústav:
 Katedra algebry
 % dle Organizační struktury MFF UK
 
-Vedoucí diplomové práce:
+\textit{Vedoucí diplomové práce:}
 prof. RNDr. Aleš Drápal, CSc., DSc.
 % dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF UK
 
-Abstrakt:
+\textit{Abstrakt:}
 % abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání diplomové práce
 
-Klíčová slova:
+\textit{Klíčová slova:}
 % 3 až 5 klíčových slov
 
 \vss}\nobreak\vbox to 0.49\vsize{
 \setlength\parindent{0mm}
 \setlength\parskip{5mm}
 
-Title:
+\textit{Title:}
 Dissections of triangles and distances of groups
 % přesný překlad názvu práce v angličtině
 
-Author:
+\textit{Author:}
 Michal Szabados
 
-Department:
+\textit{Department:}
 Department of Algebra
 % dle Organizační struktury MFF UK v angličtině
 
-Supervisor:
+\textit{Supervisor:}
 prof. RNDr. Aleš Drápal, CSc., DSc.
 % dle Organizační struktury MFF UK, případně plný název pracoviště
 % mimo MFF UK v angličtině
 
-Abstract:
+\textit{Abstract:}
 % abstrakt v rozsahu 80-200 slov v angličtině; nejedná se však o překlad
 % zadání diplomové práce
 
-Keywords:
+\textit{Keywords:}
 % 3 až 5 klíčových slov v angličtině
 
 \vss}
@@ -252,25 +255,17 @@ Keywords:
 \include{chap2}
 \include{chap3}
 \include{chap4}
+\include{conclusion}
 
-% Ukázka použití některých konstrukcí LateXu (odkomentujte, chcete-li)
-% \include{example}
-
-\include{epilog}
+%%% Appendices
+\renewcommand\thetable{\Alph{chapter}.\arabic{table}}
+\renewcommand\thefigure{\Alph{chapter}.\arabic{table}}
+\include{appendixA}
+\include{appendixB}
+\include{appendixC}
 
 %%% Seznam použité literatury
 \include{bibliography}
-
-%%% Tabulky v diplomové práci, existují-li.
-\chapwithtoc{List of Tables}
-
-%%% Použité zkratky v diplomové práci, existují-li, včetně jejich vysvětlení.
-\chapwithtoc{List of Abbreviations}
-
-%%% Přílohy k diplomové práci, existují-li (různé dodatky jako výpisy programů,
-%%% diagramy apod.). Každá příloha musí být alespoň jednou odkazována z vlastního
-%%% textu práce. Přílohy se číslují.
-\chapwithtoc{Attachments}
 
 \openright
 \end{document}
