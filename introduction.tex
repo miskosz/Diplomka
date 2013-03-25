@@ -1,7 +1,7 @@
 \chapter*{Introduction}
 \addcontentsline{toc}{chapter}{Introduction}
 
-Let us begin with introducing two combinatorial problems:
+Let us introduce two combinatorial problems:
 
 \begin{prob-intro}
 \label{prob:table}
@@ -45,10 +45,15 @@ Consider a table of addition modulo $n$; it is a latin square $n \times n$. What
 
 \begin{prob-intro}
 \label{prob:triangle}
-Let $\Delta$ be an equilateral triangle of side $n$. What is the smallest number of integer-sided equilateral triangles, into which $\Delta$ can be dissected, such that no six of them share a common point?
+Let $\Delta_n$ be an equilateral triangle of side $n$. What is the smallest number of integer-sided equilateral triangles, into which $\Delta_n$ can be dissected, such that no six of them share a common point?
 \end{prob-intro}
 
-\todo{Figure}
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.35\textwidth]{img/dissection7.pdf}
+\caption{Dissection of a triangle of size 7 into nine triangles.}
+\label{fig:dissection7}
+\end{figure}
 
 Though it is not obvious at first glance, these two problems are fundamentally related. Both triangle dissections and pairs of latin squares describe a combinatorial structure called \emph{latin bitrade}. This structure will be of central interest throughout this work.
 
@@ -67,19 +72,17 @@ In other words, the conjecture states that $\gdist(n)$ is asymptotically logarit
 
 The lower bound in (\ref{eq:conj1}) was already established before. In 1989 Drápal and Kepka~\cite{DrapalKepka89} proved the inequality for $c_1 = e$, and later Cavenagh~\cite{Cavenagh03} found an alternative proof of the same estimate. Yet another proof was given in a paper~\cite{CavenaghWanless09} by Cavenagh and Wanless, but with a slightly smaller constant.
 
-All of these proofs are dealing with another structure which defines a latin bitrade -- certain kind of 0-1 matrices. The lower bound is then determined by establishing an upper bound for determinant of such a matrix. In \todo{Chapter 1} we present a modified proof which leads to $c_1 = 3 \log_3(e)$, the best estimate known so far.
+All of these proofs are dealing with another structure which defines a latin bitrade -- certain kind of 0-1 matrices. The lower bound is then determined by establishing upper bound for determinant of such a matrix. In Chapter \ref{chap:lower-bound} we present modified proof which leads to $c_1 = 3 \log_3(e)$, the best estimate known so far.
 
 \bigskip
 
-The previously known best upper bound is due to Drápal~\cite{Drapal91} and states that $\gdist(p) = O(\log^2(p))$. He discovered the connection between latin bitrades and dissections of equilateral triangles, and proved that $\gdist(n) \leq t(n)$. However, he was only able to construct triangle dissections with $O(\log^2(n))$ triangles.
+The previously known best upper bound $\gdist(p) = O(\log^2(p))$ is due to Drápal~\cite{Drapal91}. He discovered the connection between latin bitrades and dissections of equilateral triangles, and proved that $\gdist(n) \leq t(n)$. However, he was only able to construct triangle dissections with $O(\log^2(n))$ triangles.
 
-In \todo{Chapter 2} we prove Conjecture~\ref{conj:main} by constructing dissections into logarithmically many triangles. The method used is inspired by Trustrum's method \cite{Trustrum65} to  dissect a square of side $n$ into logarithmically many integer-sided squares. To be more precise, we show how to dissect an $n \times (n+3)$ rectangle into $5 \log_4(n) + \frac{3}{2}$ squares and how to adapt the construction to get a dissection of an equilateral triangle of side $n$ into $5 \log_2(n)$ triangles.
-
-\side{In fact, our construction belongs to a wider class of logarithmic dissections of triangles. In \todo{Section 2.2}}
+In Chapter \ref{chap:dissections} we prove Conjecture~\ref{conj:main} by constructing dissections into logarithmically many triangles. The method used is inspired by Trustrum's method \cite{Trustrum65} to  dissect a square of side $n$ into logarithmically many integer-sided squares. To be more precise, we show how to dissect an $n \times (n+3)$ rectangle into $5 \log_4(n) + \frac{3}{2}$ squares and how to adapt the construction to get a dissection of an equilateral triangle of side $n$ into $5 \log_2(n)$ triangles. We also discuss possible generalizations of our dissection method in Section \ref{sec:other-log-dissections}.
 
 \bigskip
 
-Now that the asymptotic behavior of $\gdist(n)$ and $t(n)$ is known, it is natural to ask about the constants in the estimates. Putting our results together, we get
+Now, that the asymptotic behavior of $\gdist(n)$ and $t(n)$ is known, it is natural to ask about the constants in the estimates. Putting our results together, we get
 \begin{eqnarray}
 	2.73 \approx 3 \log_3(e) \leq \frac{\gdist(p)}{\log(p)} \leq \frac{t(p)}{\log(p)} \leq 5 \log_2(e) \approx 7.21.
 \end{eqnarray}
@@ -93,7 +96,7 @@ Let $P$ be a real such that $P^3 = P+1$. Then
 \end{eqnarray}
 \end{conj-intro}
 
-In \todo{Chapter 3} we gathered evidence which supports this claim. We expose a connection between certain triangle dissections and an integer sequence satisfying the recurrence relation $a_{n+3} = a_{n+1} + a_n$. We also describe a computer algorithm with which we generated the exact values of $t(n)$ for $n \leq 416$. The data, together with corresponding triangulations, are listed in \todo{Appendix A}.
+In Chapter \ref{chap:bounds} we gathered evidence which supports this claim. We expose a connection between certain triangle dissections and an integer sequence satisfying the recurrence relation $a_{n+3} = a_{n+1} + a_n$. We also describe a computer algorithm with which we generated the exact values of $t(n)$ for $n \leq 416$. The data, together with corresponding triangulations, are listed in appendices.
 
 
 

@@ -1,4 +1,5 @@
 \chapter{Latin bitrades}
+\label{chap:bitrades}
 
 An $n \times n$ table such that every row and column contains every number in $[n]$ exactly once is a well-known combinatorial object called \emph{latin square}. In this chapter we define \emph{latin bitrade}, which can be thought of as an object of differences between two latin squares.
 
@@ -18,13 +19,13 @@ In this chapter we define only necessary notions for our purposes. For a more co
 \section{Partial latin squares}
 
 \begin{defn}
-\emph{A partial latin square} L is a subset of ordered triples from $R \times C \times S$, such that for any two given coordinates of $(r,c,s)\in L$ the third one is determined uniquely.
+\emph{A partial latin square $L$} is a subset of ordered triples from $R \times C \times S$, such that for any two given coordinates of $(r,c,s)\in L$ the third one is determined uniquely.
 \end{defn}
 
 A partial latin square is usually interpreted as a partially filled $|R| \times |C|$ table. The uniqueness condition implies that the table is well defined (there is at most one symbol in every cell), and that no symbol repeats itself within a column or a row.
 
 \begin{defn}
-\emph{A latin square $L$} is a partial latin square such that $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are $r,c,s \in R$ such that
+\emph{A latin square $L$} is a partial latin square such that $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are unique $r,c,s \in R$ such that
 \begin{cosyeqnarray}
 	(a_1, a_2, s), (a_1, c, a_2), (r, a_1, a_2) \in L.
 \end{cosyeqnarray}
@@ -36,13 +37,55 @@ There are two important maps from partial latin squares to partial latin squares
 Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} is a triple of maps $h = (h_R, h_C, h_S)$ such that
 \begin{eqnarray}
 	h_R : R_A \rightarrow R_B, \nonumber \\
-	h_C : C_A \rightarrow R_C, \nonumber \\
-	h_S : S_A \rightarrow R_S\phantom{..} \nonumber
+	h_C : C_A \rightarrow C_B, \nonumber \\
+	h_S : S_A \rightarrow S_B\phantom{..} \nonumber
 \end{eqnarray}
 and $(r,c,s) \in A \Rightarrow \big(h_R(r), h_C(c), h_S(s)\big) \in B$. \emph{An isotopy} is a homotopy with homotopic inverse.
 \end{defn}
 
-\todo{Figure isotopic PLSs.}
+\begin{exmp}
+Partial latin squares on Figure \ref{fig:isotopic-pls} are isotopic. The set of rows, columns and symbols is the same for both. The isotopy is given by
+\begin{cosyitemize}
+	\item $h_R$ is identity,
+	\item $h_C$ rotates middle three columns,
+	\item $h_S(0) = 0,\ h_S(1) = 2,\ h_S(2) = 4,\ h_S(3) = 1,\ h_S(4) = 3$.
+\end{cosyitemize}%
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c c |}
+			\hline
+1 & 3 &   & 2 &   \\
+4 &   &   & 1 & 3 \\
+  & 4 &   & 0 &   \\
+  & 0 & 1 &   & 4 \\
+			\hline
+		\end{tabular} \\
+		\bigskip
+		$A$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c c |}
+			\hline
+2 &   & 4 & 1 &   \\
+3 &   & 2 &   & 1 \\
+  &   & 0 & 3 &   \\
+  & 2 &   & 0 & 3 \\
+			\hline
+		\end{tabular} \\
+		\bigskip
+		$B$
+		\end{center}
+	\end{minipage}
+	\label{fig:isotopic-pls}
+	\caption{Isotopic partial latin squares.}
+\end{figure}
+
+\end{exmp}%
 
 \begin{defn}
 Let $A \subset R \times C \times S$ be a partial latin square and $\sigma$ be a permutation of the 3-element set $\{R,C,S\}$. Then the partial latin square
@@ -55,7 +98,7 @@ is said to be \emph{conjugated} with $A$.
 Note that there are six conjugacies, each one corresponding to a permutation of $\{R,C,S\}$.
 
 \begin{defn}
-Two partial latin squares belong to the same \emph{class} if one can be obtained from the other by composition of conjugacy and isotopy.
+Two partial latin squares are from the same \emph{class} if one can be obtained from the other by composition of conjugacy and isotopy.
 \end{defn}
 
 
@@ -74,60 +117,143 @@ Now we can define latin bitrade.
 Let us call $T$ and $T'$ \emph{latin trades}. Elements in $T$ and $T'$ can be paired with respect to the first two coordinates. Therefore $|T| = |T'|$ and we shall call this number the \emph{size} of the bitrade (or a trade).
 \end{defn}
 
-From the tabular point of view, a latin bitrade is a pair of partial latin squares such that they occupy the same cells, but the symbols in corresponding rows and columns are permuted. Moreover no symbol is at the same position in both of the tables.
+From the tabular point of view, a latin bitrade is a pair of partial latin squares such that they occupy the same cells, but the symbols in corresponding rows and columns are permuted. Moreover, no symbol is at the same position in both of the tables.
 
-\todo{Figure of a latin bitrade of size X.}
+\begin{exmp}
+See Figure \ref{fig:latin-bitrade}. The example is adapted from \cite{Cavenagh08}.
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c |}
+			\hline
+  & 1 & 2 & 3 \\
+1 & 0 & 3 &   \\
+2 &   & 0 & 1 \\
+3 & 2 &   & 0 \\
+			\hline
+		\end{tabular} \\
+		\bigskip
+		$T$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c |}
+			\hline
+  & 2 & 3 & 1 \\
+3 & 1 & 0 &   \\
+1 &   & 2 & 0 \\
+2 & 0 &   & 3 \\
+			\hline
+		\end{tabular} \\
+		\bigskip
+		$T'$
+		\end{center}
+	\end{minipage}
+	\label{fig:latin-bitrade}
+	\caption{A latin bitrade on $[4] \times [4] \times [4]$ of size 12.}
+\end{figure}
+
+\end{exmp}%
 
 Note that two latin squares $L$, $L'$ defined on the same set specify a latin bitrade $(L \setminus L', L' \setminus L)$.
 
 \begin{defn}[Graph representation of a latin bitrade]
-Let $(T, T')$ be a latin bitrade. We can associate it with a graph $G = (V, E)$ such that
+A latin bitrade $(T, T')$ is associated it with a graph $G = (V, E)$ such that
 \cosyalign{
 	V &= T \cup T' \nonumber\\
 	E &= \{(t,t') \mid t \in T, t' \in T': \textrm{  $t$ and $t'$ differ at exactly one coordinate}\}.\nonumber
 }
-We shall call it the \emph{graph of a latin bitrade $(T, T')$}.
+We call it the \emph{graph of latin bitrade $(T, T')$}.
 \end{defn}
 
-Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade.
+Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade. Moreover, it is edge 3-colorable, the edges can be colored depending on the coordinate that $t$ and $t'$ differ at.
 
-A latin bitrade $(T,T')$ is \emph{connected} if there do not exist two non-empty disjoint latin bitrades $(T_0,T_0')$, $(T_1,T_1')$ such that $T = T_0 \cup T_1$ and $T' = T_0' \cup T_1'$. Equivalently, a bitrade is connected if and only if its graph is connected.
+With the graph representation it is easier to understand meaning of the following definitions.
 
-Let $\sigma_rR \sigma_C, \sigma_S : T \rightarrow T'$ be such that for $(r,c,s) \in T$
+\begin{defn}
+A latin bitrade $(T,T')$ is \emph{connected} if there do not exist two non-empty disjoint latin bitrades $(T_0,T_0')$, $(T_1,T_1')$ such that $T = T_0 \cup T_1$ and $T' = T_0' \cup T_1'$.
+
+Equivalently, a bitrade is connected if and only if its graph is connected.
+\end{defn}
+
+\begin{defn}
+A latin trade is called \emph{spherical} or \emph{planar}, if its graph is planar.
+\end{defn}
+
+\begin{exmp}
+\label{exmp:graph-bitrade}
+Figure \ref{fig:graph-bitrade} shows a graph of a connected spherical latin bitrade $(T,T')$ of size 6. To distinguish the elements of $T$ and $T'$, the latter are typed in brackets. Solid, dashed and dotted edges join elements which differ on $R$-, $C$- and $S$-coordinate respectively.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/graph_example.pdf}
+\caption{Graph of a latin bitrade of size 6 on $[2] \times [3] \times [3]$.}
+\label{fig:graph-bitrade}
+\end{figure}
+\end{exmp}%
+
+\noindent
+For later use, let us define maps $\sigma_R, \sigma_C, \sigma_S : T \rightarrow T'$ such that for $(r,c,s) \in T$
 \cosyalign{
  	\sigma_R(r,c,s) = (r',c,s) \in T', \\
  	\sigma_C(r,c,s) = (r,c',s) \in T', \\
  	\sigma_S(r,c,s) = (r,c,s') \in T'.
 }
-The definition of the latin bitrade implies that these are bijections.
-
-We can relate $\sigma_R, \sigma_C, \sigma_S$ to the graph of a latin bitrade. They correspond to the edges -- a vertex $t \in T$ is connected with $\sigma_R(t), \sigma_C(t)$ and $\sigma_S(t)$ and a vertex $t' \in T'$ is connected with $\sigma_R^{-1}(t'), \sigma_C^{-1}(t')$ and $\sigma_S^{-1}(t')$. Hence the edges of the graph are 3-colorable, let us denote the colors by $R,C,S$.
-
-
-For later use, we need the following two simple observations:
+The definition of the latin bitrade implies that these maps are bijections. They correspond to edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted arrows respectively.
 
 \begin{lem}
-The bitrade is connected if for any two vertices $t_0,t_1$ it is possible to get one from the other by application of $\sigma_R, \sigma_C, \sigma_S$.
+A latin bitrade $(T,T')$ is connected if and only if for any $t_0,t_1 \in T \cup T'$ it is possible to get $t_1$ from $t_0$ by consequent application of $\sigma_R, \sigma_C, \sigma_S$, or their inverses.
 \end{lem}
-
-Now, if we delete edges of one color, every vertex will become of degree two and the graph splits into cycles. Therefore the map which corresponds to traversal of the graph by alternating edges of two colors is a permutation:
+\begin{proof}
+Simple, see the comment above.
+\end{proof}
 
 \begin{lem}
-Let $X,Y \in \{R,C,S\}$. Then the mapping $\tau_{XY} : T \cup T' \rightarrow T \cup T'$:
-\cosyalig{
-	\tau_{XY}(t) \mapsto
-	\begin{cases}
-		\sigma_Y(t) \mbox{ if } t \in T\\
-		\sigma_X^{-1}(t) \mbox{ if } t \in T'
-	\end{cases}
-}
-is a permutation.
+Let $\{X,Y\} \subset \{R,C,S\}$. Then the mapping $\sigma_Y^{-1}\sigma_X : T \rightarrow T$ is a permutation without a fixed point.
 \end{lem}
+\begin{proof}
+The mapping is a bijection with inverse $\sigma_X^{-1}\sigma_Y$ on a finite set, thus it is a permutation. It changes two coordinates of its argument, and therefore has no fixed points.
+\end{proof}
+
+We conclude this section with discussion, when it is possible to reconstruct a latin bitrade from its graph. Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
+
+The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into (undirected) cycles, in which all elements have the same $R$-coordinate. If the coordinates are in different cycles different, the bitrade is called \emph{$R$-separated}, analogously for $C$ and $S$.
+
+\begin{defn}
+ A latin bitrade is \emph{separated} if it is $R$-, $C$- and $S$-separated.
+\end{defn}
+
+Every latin bitrade can be transformed into a separated one -- for a symbol spanning multiple cycles, it suffices to introduce a new symbol for each of them and relabel accordingly. Clearly, this new bitrade yields the same graph as the original one.
+
+\begin{exmp}
+The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:separated-graph} illustrates the cycles after deletion of edges corresponding to $S$.
+
+\begin{figure}[htb]
+\centering
+\includegraphics[width=0.9\textwidth]{img/separated.pdf}
+\caption{2-color cycles in a separated latin bitrade.}
+\label{fig:separated-graph}
+\end{figure}
+\end{exmp}%
+
+\begin{lem}
+\label{lem:3-coloring}
+Let $G$ be a planar cubic bipartite graph. Then there exists unique face 3-coloring of $G$.
+\end{lem}
+\begin{proof}
+This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
+\end{proof}
+
+\begin{thm}
+A connected separated spherical latin bitrade $(T,T')$ can be reconstructed from its graph $G$ up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
+\end{thm}%
+\begin{proof}
+$G$ is planar cubic bipartite and therefore has unique face 3-coloring (Lemma \ref{lem:3-coloring}).
+\end{proof}
 
 
 
-
-\todo{@ planar? separated?}
-
-\todo{@ planar graphs $<=>$ separated planar bitrades}
 
