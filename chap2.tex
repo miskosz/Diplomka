@@ -14,9 +14,11 @@
 A matrix is \emph{sparse} if its elements are from $\{0,1\}$ and there is at most one occurrence of 1 in every row.
 \end{defn}
 
+We denote by $\overbar{M}_r^c$ the matrix obtained from $M$ by excluding row $r$ and column~$c$.
+
 \begin{lem}
 \label{lem:sparse2}
-Let $M_0,M_1$ be sparse matrices of the same number of rows such that $M = (M_0,M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
+Let $M_0,M_1$ be sparse matrices with the same number of rows such that $M = (M_0,M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
 \end{lem}
 \begin{proof}
 Let $c_0,c_1$ be the number of columns in $M_0$ and $M_1$ respectively. The proof is by induction on $n := c_0+c_1$. The case with $n=1$ is trivial. Therefore assume $n>1$.
@@ -45,12 +47,12 @@ Let $M_0,M_1,M_2$ be sparse matrices of sizes $n \times c_0, n \times c_1, n \ti
 \end{cosyeqnarray}%
 \end{lem}
 \begin{proof}
-The proof is by induction on $c_0$.
+The proof is by induction on $c_0$. Denote $M = (m_{i,j})_{i,j \in[n]}$.
 \begin{enumerate}
 	\item If $c_0 = 0$, then $|\det(M)| \leq \prod_{i=0}^{0} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
 	\item Otherwise expand by the first column:
 	\begin{cosyeqnarray}
-		|\det(M)| \leq \sum_{i\in[n]} M_{i,0}\,|\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
+		|\det(M)| \leq \sum_{i\in[n]} m_{i,0}\,|\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
 	\end{cosyeqnarray}%
 	The last inequality holds since there are $k_0$ nonzero summands and the product majorizes each subdeterminant from induction.
 \end{enumerate}
@@ -108,12 +110,12 @@ Recall that
 Without loss of generality assume that these sets are disjoint and let $X = R \cup C \cup S$.
 
 \begin{defn}
-Let $T$ be a latin trade. We define a matrix $M$ of size $|T| \times |X|$ such that if we index the rows by elements of $T$ and columns by elements of $X$, then
+Let $T$ be a latin trade. We define a matrix $M = (m_{i,j})$ of size $|T| \times |X|$ such that if we index the rows by elements of $T$ and columns by elements of $X$, then
 \begin{cosyeqnarray}
 	t = (r,c,s) \in T \Rightarrow
 	\begin{cases}
-		M_{t,r} = M_{t,c} = M_{t,s} = 1, & \\
-		M_{t,x} = 0 & \textrm{ for } x \in X \setminus \{r,c,s\}.
+		m_{t,r} = m_{t,c} = m_{t,s} = 1, & \\
+		m_{t,x} = 0 & \textrm{ for } x \in X \setminus \{r,c,s\}.
 	\end{cases}
 \end{cosyeqnarray}%
 \end{defn}
@@ -123,26 +125,39 @@ We call it the \emph{trade matrix} and denote by $M_T$.
 Suppose that all elements of $X$ are used in a connected latin trade $T$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
 \end{lem}
 \begin{proof}
-\todo{@ Prepisat dokaz! (x,y,z)}
+The proof is divided into two steps.
+
+%
+%
+\item \textbf{Step 1.}
 
 The vector
 \cosyalign{
-	v = (\underbrace{a, \dots, a}_{|R|}, \underbrace{b, \dots, b}_{|C|}, \underbrace{c, \dots, c}_{|S|})
-}
-is surely a solution for $M_Tv^T = 0$ if $a+b+c=0$. It suffices to show that these are the only solutions.
-
-Let $v$ be any solution and $f:X \rightarrow \Q$ is defined by
-\cosyalign{
+	v = (\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|})
+}%
+is surely a solution for $M_Tv^T = 0$ if $x+y+z=0$. It suffices to show that these are the only solutions. Let $v$ be any solution and $f:X \rightarrow \Q$ be defined by
+\begin{align}
 	v = (f(r_0), \dots, f(c_0), \dots, f(s_0), \dots).
-}
-Let $\bar s \in S$ be such that $v_{\bar s}$ is maximal. $\bar  s$ is surely a coordinate of a triple $(\bar r,\bar c,\bar s) \in T$. Without loss of generality assume that $(\bar r,\bar c,\bar s) = (0,0,0)$, otherwise we can shift the coordinates. Now we want to prove that $a = b = c = 0$.
+\end{align}
+Choose $(x_0, y_0, z_0) \in T$ such that $f(z_0)$ is maximal. By resetting
+\begin{align}
+	v := v+(-f(x_0), \dots, -f(y_0), \dots,f(x_0)+f(y_0), \dots)
+\end{align}
+we obtain a solution in which $f(x_0) = f(y_0) = f(z_0) = 0$. Now it suffices to prove that $f(x) = 0$ for any $x \in X$. To shorten notation, we denote $f(x,y,z) = f((x,y,z)) = (f(x),f(y),f(z))$.
 
-Since $0$ is the largest element of $f(s)$ and $T'$ occupies the same cells as $T$, then for any $(r,c,s) \in T \cup T'$
-\cosyalign{
-	f(r) + f(c) \geq 0.
-}
+%
+%
+\item \textbf{Step 2.}
 
-We prove that for $(r,c,s) \in T\cup T'$ such that $f(t) = (0,0,0)$ holds that $f(\sigma_Y(r,c,s)) = (0,0,0)$ and $f(\sigma_Y^{-1}(r,c,s)) = (0,0,0)$ for $Y \in \{R, C, S\}$.
+For all $(x,y,z) \in T$ holds $f(x)+f(y)+f(z)=0$. Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$
+\begin{align}
+	f(x) + f(y) \geq 0.
+\end{align}
+We prove that if $t \in T\cup T'$ and $f(t) = (0,0,0)$, then
+\begin{align}
+	f(\sigma_Y(t)) = (0,0,0)
+\end{align}
+for $Y \in \{R, C, S\}$. Since the bitrade is connected, Lemma \ref{lem:connected-sigma} implies that $f(t) = ()$
 
 Let $(r,c,s) \in T'$ such that $f(r,c,s) = (0,0,0)$. Then $\sigma_R^{-1}(r,c,s) = (r',c,s) \in T$ and $0=f(r')+f(c')+f(s')=f(r')$. Therefore $f(\sigma_R^{-1}(r,c,s)) = (0,0,0)$. For $\sigma_C$ and $\sigma_S$ analogously.
 

@@ -27,7 +27,7 @@ A partial latin square is usually interpreted as a partially filled $|R| \times 
 \begin{defn}
 \emph{A latin square $L$} is a partial latin square such that $R=C=S$ and every cell in the table is filled. Equivalently, for every $a_1, a_2 \in R$ there are unique $r,c,s \in R$ such that
 \begin{cosyeqnarray}
-	(a_1, a_2, s), (a_1, c, a_2), (r, a_1, a_2) \in L.
+	(r, a_1, a_2), (a_1, c, a_2), (a_1, a_2, s) \in L.
 \end{cosyeqnarray}
 \end{defn}
 
@@ -171,7 +171,7 @@ We call it the \emph{graph of latin bitrade $(T, T')$}.
 
 Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade. Moreover, it is edge 3-colorable, the edges can be colored depending on the coordinate that $t$ and $t'$ differ at.
 
-With the graph representation it is easier to understand meaning of the following definitions.
+With the graph representation it is easier to understand the purpose of definitions in the rest of this section.
 
 \begin{defn}
 A latin bitrade $(T,T')$ is \emph{connected} if there do not exist two non-empty disjoint latin bitrades $(T_0,T_0')$, $(T_1,T_1')$ such that $T = T_0 \cup T_1$ and $T' = T_0' \cup T_1'$.
@@ -205,6 +205,7 @@ For later use, let us define maps $\sigma_R, \sigma_C, \sigma_S : T \rightarrow 
 The definition of the latin bitrade implies that these maps are bijections. They correspond to edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted arrows respectively.
 
 \begin{lem}
+\label{lem:connected-sigma}
 A latin bitrade $(T,T')$ is connected if and only if for any $t_0,t_1 \in T \cup T'$ it is possible to get $t_1$ from $t_0$ by consequent application of $\sigma_R, \sigma_C, \sigma_S$, or their inverses.
 \end{lem}
 \begin{proof}
@@ -212,13 +213,14 @@ Simple, see the comment above.
 \end{proof}
 
 \begin{lem}
+\label{lem:sigma-cycles}
 Let $\{X,Y\} \subset \{R,C,S\}$. Then the mapping $\sigma_Y^{-1}\sigma_X : T \rightarrow T$ is a permutation without a fixed point.
 \end{lem}
 \begin{proof}
 The mapping is a bijection with inverse $\sigma_X^{-1}\sigma_Y$ on a finite set, thus it is a permutation. It changes two coordinates of its argument, and therefore has no fixed points.
 \end{proof}
 
-We conclude this section with discussion, when it is possible to reconstruct a latin bitrade from its graph. Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
+As a motivation for our last definition, consider this question: When is it possible to reconstruct a latin bitrade from its graph? Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
 
 The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into (undirected) cycles, in which all elements have the same $R$-coordinate. If the coordinates are in different cycles different, the bitrade is called \emph{$R$-separated}, analogously for $C$ and $S$.
 
@@ -239,19 +241,19 @@ The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:
 \end{figure}
 \end{exmp}%
 
-\begin{lem}
-\label{lem:3-coloring}
-Let $G$ be a planar cubic bipartite graph. Then there exists unique face 3-coloring of $G$.
-\end{lem}
-\begin{proof}
-This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
-\end{proof}
+%\begin{lem}
+%\label{lem:3-coloring}
+%Let $G$ be a planar cubic bipartite graph. Then there exists unique face 3-coloring of $G$.
+%\end{lem}
+%\begin{proof}
+%This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
+%\end{proof}
 
 \begin{thm}
 A connected separated spherical latin bitrade $(T,T')$ can be reconstructed from its graph $G$ up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
 \end{thm}%
 \begin{proof}
-$G$ is planar cubic bipartite and therefore has unique face 3-coloring (Lemma \ref{lem:3-coloring}).
+See Cavenagh and Lisoněk \cite{CavenaghLisonek08}.
 \end{proof}
 
 
