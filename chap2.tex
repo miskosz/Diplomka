@@ -223,43 +223,34 @@ $|T| \geq |X|-2$.
 \emph{A Cayley table} of a group $G$ is a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r \cdot c = s$. We denote it by $G$ when no confusion can arise.
 \end{defn}
 
+For abelian groups, we will use different definition:
+
+\begin{defn}
+\emph{A Cayley table} of an abelian group $(G,+)$ is a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r + c + s = 0$.
+\end{defn}
+
+It easily follows that the Cayley tables by first and second definition are isotopic. Because we will be interested in existence of homotopies into Cayley tables, it does not matter which definition we use.
+
 \begin{defn}
 Let $z(G)$ denote the size of the smallest trade $T$ such that there exist a non-trivial homotopy from $T$ to $G$. Let \emph{$z(n)$} be the minimum across all groups of order $n$.
 \end{defn}
-
-\begin{lem}
-\label{lem:abelian-embedding}
-Let $T$ be a partial latin square, $(G,+)$ an abelian group and $h: T \rightarrow G$ a homotopy. Then there exist maps
-\cosyalig{
-	f_R : R \rightarrow G, \quad
-	f_C : C \rightarrow G,\quad
-	f_S : S \rightarrow G
-}%
-such that
-\cosyalign{
-	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) + f_C(c) + f_S(s) = 0.
-}
-\end{lem}
-\begin{proof}
-The homotopy $h$ is defined by maps $h_R,h_C,h_S$ from Definition \ref{defn:homotopy}. We can choose $f_R = h_R, f_C = h_C, f_S = -h_S$.
-\end{proof}
 
 \begin{lem}
 \label{lem:p-leq-det}
 Let $p$ be a prime, $T$ a connected latin trade using all symbols in $X$, $h: T \rightarrow \Z_p$ a non-trivial homotopy and $M$ any submatrix of $M_T$ of rank $|X-2|$. Then $p \leq \det(M)$.
 \end{lem}
 \begin{proof}
-Let $f_R,f_C,f_S$ be defined as in Lemma \ref{lem:abelian-embedding}. Then
+Let $h = (h_R,h_C,h_S)$. Then
 \begin{align*}
-	v = \big(\underbrace{f_R(r_0), \dots, f_R(r_{|R|-1})}_{|R|},\underbrace{f_C(c_0), \dots, f_C(c_{|C|-1})}_{|C|}, \underbrace{f_S(s_0), \dots, f_S(s_{|S|-1})}_{|S|}\big)
+	v = \big(\underbrace{h_R(r_0), \dots, h_R(r_{|R|-1})}_{|R|},\underbrace{h_C(c_0), \dots, h_C(c_{|C|-1})}_{|C|}, \underbrace{h_S(s_0), \dots, h_S(s_{|S|-1})}_{|S|}\big)
 \end{align*}
-is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_0$, $c_0$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $f_R(r_0) = 0 = f_C(c_0)$, otherwise we can set
+is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_0$, $c_0$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $h_R(r_0) = 0 = h_C(c_0)$, otherwise we can set
 \cosyalig{
-	f_R' := f_R - f_R(r_0), \quad f_C' := f_C - f_C(c_0), \quad	f_S' := f_S + f_R(r_0) + f_C(c_0).
+	h_R' := h_R - h_R(r_0), \quad h_C' := h_C - h_C(c_0), \quad	h_S' := h_S + h_R(r_0) + h_C(c_0).
 }%
 Then
 \begin{align*}
-	w = \big(\underbrace{f_R(r_1), \dots, f_R(r_{|R|-1})}_{|R|-1},\underbrace{f_C(c_1), \dots, f_C(c_{|C|-1})}_{|C|-1}, \underbrace{f_S(s_0), \dots, f_S(s_{|S|-1})}_{|S|}\big)
+	w = \big(\underbrace{h_R(r_1), \dots, h_R(r_{|R|-1})}_{|R|-1},\underbrace{h_C(c_1), \dots, h_C(c_{|C|-1})}_{|C|-1}, \underbrace{h_S(s_0), \dots, h_S(s_{|S|-1})}_{|S|}\big)
 \end{align*}
 is a solution of $Mw^T = 0$ over $\Z_p$ which is non-trivial, since $h$ is non-trivial.
 
@@ -271,15 +262,16 @@ Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$.
 $3 \log_3(p) \leq z(p)$.
 \end{lem}%
 \begin{proof}
-Let $T$ be a latin trade such that $|T| = z(p)$ such that there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix of $M_T$ of rank $|X|-2$.
+Let $T$ be a latin trade such that $|T| = z(p)$ and there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix of $M_T$ of rank $|X|-2$.
 
-We can write $M_T = (M_0, M_1, M_2)$ for sparse matrices $M_0$, $M_1$, $M_2$, and therefore any submatrix $M$ of $M_T$ is of the same type. Therefore from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
+We can write $M_T = (M_0, M_1, M_2)$ for sparse matrices $M_0$, $M_1$, $M_2$, and therefore any submatrix $M$ of $M_T$ is of the same type. Thus from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
 \cosyalign{
 	p \leq \det(M) \leq 3^{(|X|-2)/3} \leq 3^{z(p)/3}.
 }%
 \end{proof}
 
 \begin{lem}
+\label{lem:nontrivial-homotopy-normal-subgroup}
 Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ is a non-trivial homotopy. Then there exists a non-trivial homotopy $h_0: T \rightarrow H$ or $h_1: T \rightarrow G/H$.
 \end{lem}
 \begin{proof}
@@ -294,7 +286,7 @@ Let $G$ be a group of odd order. Then
 }%
 \end{lem}
 \begin{proof}
-\todo{@ TODO}
+Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the "$\geq$" inequality. The other one is implied by Cauchy's theorem.
 \end{proof}
 
 %%%
@@ -387,18 +379,17 @@ See Figure \ref{fig:z5-embedded-trade}.
 	\label{fig:z5-embedded-trade}
 \end{figure}
 
-\todo{$p = 2$!!!}
-
-\begin{lem}
+\begin{thm}
+\label{thm:lower-bound}
 Let be the smallest prime factor of $n$. Then
 \cosyalign{
 	3\log_3(p) \leq \gdist(n).
 }%
-\end{lem}%
+\end{thm}%
 \begin{proof}
-Observe that for some prime factor $p_0$ of $|G|$ holds
+If $n$ is even, then $p=2$, $\gdist(n) = 4$ and the inequality holds. Otherwise by Lemmas \ref{lem:lower-bound-zp} and \ref{lem:zG-is-zp} there is a prime factor $p_0$ of $|G|$ such that
 \begin{align}
-	3 \log_3(p_0) \leq z(p_0) = z(G) \leq \gdist(G)
+	3 \log_3(p_0) \leq z(p_0) = z(G) \leq \gdist(G),
 \end{align}
-by Lemmas \ref{lem:lower-bound-zp} and \ref{lem:zG-is-zp}, the last inequality is trivial from definition. The fact that $p \leq p_0$ finishes the proof.
+where the last inequality is trivial from definition. The fact that $p \leq p_0$ finishes the proof.
 \end{proof}
