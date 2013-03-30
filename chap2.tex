@@ -84,6 +84,7 @@ Where the products are over $i \in [m]$. Each of them is less than or equal to $
 \end{proof}
 
 \begin{lem}
+\label{lem:3-block-sparse-det}
 Let $M_0,M_1,M_2$ be sparse matrices such that $M = (M_0,M_1,M_2)$ is a  square block $n \times n$ matrix. Then
 \begin{cosyeqnarray}
  	|\det(M)| \leq 3^{n/3}
@@ -100,7 +101,7 @@ Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the 
 %%%
 %%%
 %%%
-\section{Trade matrices}
+\section{Trade matrix}
 Recall that
 \begin{itemize}
 	\item $R = \{r_0,\dots,r_{|R|-1}\}$ denotes the set of rows,
@@ -122,20 +123,19 @@ Let $T$ be a latin trade. We define a matrix $M = (m_{i,j})$ of size $|T| \times
 We call it the \emph{trade matrix} and denote by $M_T$.
 
 \begin{lem}
-Suppose that all elements of $X$ are used in a connected latin trade $T$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
+Suppose that all elements of $X$ are used in a connected latin trade $T$. Then
+\cosyalign{
+	\Ker M_T = \{(\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|}) \mid x+y+z = 0\} \label{eq:KerMT}
+}%
+where $M_T$ is considered as a matrix over $\Q$.
 \end{lem}
 \begin{proof}
-The proof is divided into two steps.
+The proof is divided into several steps.
 
 %
 %
 \item \textbf{Step 1.}
-
-The vector
-\cosyalign{
-	v = (\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|})
-}%
-is surely a solution for $M_Tv^T = 0$ if $x+y+z=0$. It suffices to show that these are the only solutions. Let $v$ be any solution and $f:X \rightarrow \Q$ be defined by
+Denote the set in (\ref{eq:KerMT}) by $V$. Any vector $v \in V$ is surely a solution for $M_Tv^T = 0$. Let $f:X \rightarrow \Q$ be defined by
 \begin{align}
 	v = (f(r_0), \dots, f(c_0), \dots, f(s_0), \dots).
 \end{align}
@@ -148,110 +148,257 @@ we obtain a solution in which $f(x_0) = f(y_0) = f(z_0) = 0$. Now it suffices to
 %
 %
 \item \textbf{Step 2.}
-
 For all $(x,y,z) \in T$ holds $f(x)+f(y)+f(z)=0$. Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$
 \begin{align}
 	f(x) + f(y) \geq 0.
 \end{align}
-We prove that if $t \in T\cup T'$ and $f(t) = (0,0,0)$, then
+In steps 3 and 4 we prove that if $t \in T\cup T'$ and $f(t) = (0,0,0)$, then
 \begin{align}
 	f(\sigma_Y(t)) = (0,0,0)
 \end{align}
-for $Y \in \{R, C, S\}$. Since the bitrade is connected, Lemma \ref{lem:connected-sigma} implies that $f(t) = ()$
+for $Y \in \{R, C, S\}$. Since the bitrade is connected, Lemma \ref{lem:connected-sigma} implies that $f(t) = (0,0,0)$ for all $t \in T \cup T'$. Because all symbols are used in the bitrade, from that we have the desired $f(x) = 0$ for all $x \in X$.
 
-Let $(r,c,s) \in T'$ such that $f(r,c,s) = (0,0,0)$. Then $\sigma_R^{-1}(r,c,s) = (r',c,s) \in T$ and $0=f(r')+f(c')+f(s')=f(r')$. Therefore $f(\sigma_R^{-1}(r,c,s)) = (0,0,0)$. For $\sigma_C$ and $\sigma_S$ analogously.
+%
+%
+\item \textbf{Step 3.}
+Let $(x,y,z) \in T'$ such that $f(x,y,z) = (0,0,0)$. Then
+\begin{align}
+	f(\sigma_R(x,y,z)) = f(x',y,z) = (f(x'), 0, 0)
+\end{align}
+for some $x' \in R$ such that $(x',y,z) \in T$. Therefore $f(x') + 0 + 0 = 0$. Similarly for $\sigma_C$ and $\sigma_S$.
 
-Now let $(r,c,s) \in T$ such that $f(r,c,s)=(0,0,0)$. Consider a chain of elements in $T \cup T'$:
+%
+%
+\item \textbf{Step 4.}
+Now let $(x_0,y_0,z) \in T$ such that $f(x_0,y_0,z)=(0,0,0)$. Consider a chain of elements in $T \cup T'$:
 \begin{align*}
-	(r,c,s) &\in T &\xrightarrow{\sigma_C}& &(r,c^1,s) &\in T' & \xrightarrow{\sigma_R^{-1}} \\
-	(r^1,c^1,s) &\in T &\xrightarrow{\sigma_C}& &(r^1,c^2,s) &\in T' & \xrightarrow{\sigma_R^{-1}} \\
-	(r^2,c^2,s) &\in T &\xrightarrow{\sigma_C}& &(r^2,c^3,s) &\in T' & \dots
+	(x_0,y_0,z) &\in T &\xrightarrow{\sigma_C}& &(x_0,y_1,z) &\in T' & \xrightarrow{\sigma_R} \\
+	(x_1,y_1,z) &\in T &\xrightarrow{\sigma_C}& &(x_1,y_2,z) &\in T' & \xrightarrow{\sigma_R} \\
+	(x_2,y_2,z) &\in T &\xrightarrow{\sigma_C}& &(x_2,y_3,z) &\in T' & \dots
 \end{align*}
-
-The inequality gives us
+From the inequality we have
 \begin{align*}
-	f(r) + f(c) = 0, f(r) + f(c^1) \geq 0, \\
-	f(r^1) + f(c^1) = 0, f(r^1) + f(c^2) \geq 0, \dots 
+	f(x_0) + f(y_0) &= 0, \quad f(x_0) + f(y_1) \geq 0, \\
+	f(x_1) + f(y_1) &= 0, \quad f(x_1) + f(y_2) \geq 0, \\
+	f(x_2) + f(y_2) &= 0, \quad f(x_2) + f(y_3) \geq 0,\ \dots, 
 \end{align*}
 which yields
 \begin{align*}
-	0 = f(r) \geq f(r^1) \geq f(r^2) \geq \dots \\
-	0 = f(c) \leq f(c^1) \leq f(c^2) \leq \dots
+	0 &= f(x_0) \leq f(x_1) \leq f(x_2) \leq \dots \\
+	0 &= f(y_0) \geq f(y_1) \geq f(y_2) \geq \dots
 \end{align*}
-But it is a cycle, therefore all in the cycle are equal to zero. So $f(\sigma_C(r,c,s)) = (0,0,0)$. The result for $\sigma_R$ can be obtained by reversing the cycle.
+According to Lemma \ref{lem:sigma-cycles}, the chain is a non-trivial cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_0,y_0,z)) = (0,0,0)$.
 
-For $\sigma_S$, consider a cycle by alternating maps $\sigma_C$ and $\sigma_S^{-1}$. We already know that $f(\sigma_S^{-1}\sigma_C(r,c,s)) = \sigma_S^{-1}(0,0,0) = (0,0,0)$. Therefore all elements in the cycle are mappe to $(0,0,0)$. By reversing the cycle we get the result.
+The result for $\sigma_R$ can be obtained by changing the roles of $\sigma_R$ and $\sigma_C$.
+
+For $\sigma_S$, consider a cycle generated by alternating $\sigma_C$ and $\sigma_S$. We already know that $f(\sigma_S\sigma_C(x_0,y_0,z)) = \sigma_S(0,0,0) = (0,0,0)$. Therefore all elements in the cycle are mapped to $(0,0,0)$. By reversing the cycle we get the result.
 
 \end{proof}
 
 \begin{cor}
-Let $T$ be a latin trade which uses every symbol in $X$. Then $|T| \geq |X|-2$.
-\end{cor}%
+\label{cor:rank-mt}
+Suppose that all elements of $X$ are used in a connected latin trade $T$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
+\end{cor}
 
+\begin{note}
+Suppose that $M$ is a submatrix of $M_T$ of rank $|X|-2$. It must have been obtained from $M$ by deleting two columns and some rows. These two columns cannot be both from $R$. If they were, then
+\cosyalign{
+	(\underbrace{0, \dots, 0}_{|R|-2}, \underbrace{y, \dots, y}_{|C|}, \underbrace{-y, \dots, -y}_{|S|})
+}%
+would be solutions of $Mv^T = 0$, which contradicts the regularity of $M$. Therefore the deleted columns must be from two different sets from $R$, $C$, $S$.
+\end{note}
+
+
+\begin{cor}
+\label{cor:size-of-t}
+$|T| \geq |X|-2$.
+\end{cor}
 
 %%%
 %%%
 %%%
-\section{Embedding latin trades into groups}
-
-A Cayley table of a group $G$ can be formally defined as a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r \cdot c = s$.
+\section{Homotopies from latin trades to groups}
 
 \begin{defn}
-A latin trade $T$ \emph{can be embedded} in a group $G$ if there exists an injective homotopy from $T$ to the Cayley table of $G$.
+\emph{A Cayley table} of a group $G$ is a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r \cdot c = s$. We denote it by $G$ when no confusion can arise.
 \end{defn}
 
-Equivalently, $T$ can be embedded in $G$ if there are injections $f_R,f_C,f_S : X \rightarrow G$ such that
-\cosyalign{
-	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) \cdot f_C(c) = f_S(s).
-}
-In the tabular view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$ (see \todo{Figure 1}).
+\begin{defn}
+Let $z(G)$ denote the size of the smallest trade $T$ such that there exist a non-trivial homotopy from $T$ to $G$. Let \emph{$z(n)$} be the minimum across all groups of order $n$.
+\end{defn}
 
 \begin{lem}
 \label{lem:abelian-embedding}
-A latin trade $T$ can be embedded in an abelian group $(G,+)$ if and only if there are injective maps $f_R,f_C,f_S : X \rightarrow G$ such that
+Let $T$ be a partial latin square, $(G,+)$ an abelian group and $h: T \rightarrow G$ a homotopy. Then there exist maps
+\cosyalig{
+	f_R : R \rightarrow G, \quad
+	f_C : C \rightarrow G,\quad
+	f_S : S \rightarrow G
+}%
+such that
 \cosyalign{
 	(r,c,s) \in T \quad \Rightarrow \quad f_R(r) + f_C(c) + f_S(s) = 0.
 }
 \end{lem}
 \begin{proof}
-The equivalence follows easily by setting $g_R = f_R, g_C = f_C, g_S = -f_S$. \\
+The homotopy $h$ is defined by maps $h_R,h_C,h_S$ from Definition \ref{defn:homotopy}. We can choose $f_R = h_R, f_C = h_C, f_S = -h_S$.
 \end{proof}
 
 \begin{lem}
-Let $T$ be a trade using all symbols in $X$ which can be embedded in $\Z_p$ and $M$ be any regular submatrix of $M_T$. Then $p \mid \det(M)$.
+\label{lem:p-leq-det}
+Let $p$ be a prime, $T$ a connected latin trade using all symbols in $X$, $h: T \rightarrow \Z_p$ a non-trivial homotopy and $M$ any submatrix of $M_T$ of rank $|X-2|$. Then $p \leq \det(M)$.
 \end{lem}
 \begin{proof}
-\todo{TODO}
+Let $f_R,f_C,f_S$ be defined as in Lemma \ref{lem:abelian-embedding}. Then
+\begin{align*}
+	v = \big(\underbrace{f_R(r_0), \dots, f_R(r_{|R|-1})}_{|R|},\underbrace{f_C(c_0), \dots, f_C(c_{|C|-1})}_{|C|}, \underbrace{f_S(s_0), \dots, f_S(s_{|S|-1})}_{|S|}\big)
+\end{align*}
+is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_0$, $c_0$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $f_R(r_0) = 0 = f_C(c_0)$, otherwise we can set
+\cosyalig{
+	f_R' := f_R - f_R(r_0), \quad f_C' := f_C - f_C(c_0), \quad	f_S' := f_S + f_R(r_0) + f_C(c_0).
+}%
+Then
+\begin{align*}
+	w = \big(\underbrace{f_R(r_1), \dots, f_R(r_{|R|-1})}_{|R|-1},\underbrace{f_C(c_1), \dots, f_C(c_{|C|-1})}_{|C|-1}, \underbrace{f_S(s_0), \dots, f_S(s_{|S|-1})}_{|S|}\big)
+\end{align*}
+is a solution of $Mw^T = 0$ over $\Z_p$ which is non-trivial, since $h$ is non-trivial.
+
+Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$.
 \end{proof}
 
-\begin{cor}
-$p \leq 3^{|T|/3}$ and therefore $3 \log_3(p) \leq |T|$.
-\end{cor}%
+\begin{lem}
+\label{lem:lower-bound-zp}
+$3 \log_3(p) \leq z(p)$.
+\end{lem}%
+\begin{proof}
+Let $T$ be a latin trade such that $|T| = z(p)$ such that there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix of $M_T$ of rank $|X|-2$.
 
+We can write $M_T = (M_0, M_1, M_2)$ for sparse matrices $M_0$, $M_1$, $M_2$, and therefore any submatrix $M$ of $M_T$ is of the same type. Therefore from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
+\cosyalign{
+	p \leq \det(M) \leq 3^{(|X|-2)/3} \leq 3^{z(p)/3}.
+}%
+\end{proof}
+
+\begin{lem}
+Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ is a non-trivial homotopy. Then there exists a non-trivial homotopy $h_0: T \rightarrow H$ or $h_1: T \rightarrow G/H$.
+\end{lem}
+\begin{proof}
+Let $\pi: G \times G \times G \rightarrow G/H \times G/H \times G/H$ is the natural projection. If $h_1 := \pi h$ is non-trivial, we are done. Otherwise $\Img(h) \subset H \times H \times H$ and we can set $h_0 := h$.
+\end{proof}
+
+\begin{lem}
+\label{lem:zG-is-zp}
+Let $G$ be a group of odd order. Then
+\cosyalign{
+	z(G) = \min \{z(p) \mid \mbox{ prime $p$ divides $|G|$} \}.
+}%
+\end{lem}
+\begin{proof}
+\todo{@ TODO}
+\end{proof}
 
 %%%
 %%%
 %%%
-\section{Definition of gdist(n)}
+\section{Lower bound for gdist(n)}
 
 \begin{defn}
+A latin trade $T$ \emph{can be embedded} (or \emph{is embeddable}) in a group $G$ if there exists an injective homotopy from $T$ to $G$.
+
 Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
 \end{defn}
 
-Without loss of generality now assume that $(T,T')$ is a bitrade on $G \times G \times G$  (i.e. that the isotopy is the identity function). In that case we can change the symbols in the cells of $T$ with the corresponding symbols in $T'$ to get a latin square. This can be also reversed -- a latin square $L \subset G \times G \times G$ uniquely defines a latin bitrade $(C_G\setminus L, L\setminus C_G)$ such that $C_G\setminus L$ is embedded in G, where $C_G$ denotes the Cayley table of $G$.
-
-Therefore $\gdist(G)$ is the smallest number of cells we have to change in a Cayley table of $G$ to get another latin square.
-
-
-Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. Hence from Cauchy's theorem:
+From the tabular point of view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$. The next lemma states that $\gdist(G)$ is the smallest number of cells in the Cayley table of $G$ that have to be changed in order to get another latin square:
 
 \begin{lem}
-\label{lem:gdist-n-leq-gdist-p}
-If $p$ is a prime factor of $n$, then $\gdist(n) \leq \gdist(p)$.
-\end{lem}%
+Let $G$ be a group. Then
+\cosyalign{
+	\gdist(G) = \min \{|G \setminus L| : L \subset G \times G \times G \mbox{ is a latin square}, L \ne G \}.
+}%
+\end{lem}
+\begin{proof}
+$(G \setminus L, L \setminus G)$ is a latin bitrade, hence "$\leq$" holds. On the other hand, if $(T,T')$ is a latin bitrade embeddable in $G$ via injective homotopy $h$, then $G \setminus h(T) \cup h(T')$ is a latin square.
+\end{proof}
+
+\begin{exmp}
+See Figure \ref{fig:z5-embedded-trade}.
+\end{exmp}%
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}{.35\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c |}
+			\hline
+				0 &   & 3 & 4 \\
+				  & 3 & 4 & 0 \\
+				3 & 0 &   &   \\
+			\hline
+		\end{tabular} \\
+		\bigskip
+		$T$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{.35\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c |}
+			\hline
+				3 &   & 4 & 0 \\
+				  & 0 & 3 & 4 \\
+				0 & 3 &   &   \\
+			\hline
+		\end{tabular}\\
+		\bigskip
+		$T'$
+		\end{center}
+	\end{minipage}\\
+	\bigskip%
+	\begin{minipage}{.35\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c c |}
+			\hline
+				\M0 & 1 & 2   & \M3 & \M4 \\
+				1   & 2 & \M3 & \M4 & \M0 \\
+				2   & 3 & 4   & 0   & 1   \\
+				\M3 & 4 & \M0 & 1   & 2   \\
+				4   & 0 & 1   & 2   & 3   \\
+			\hline
+		\end{tabular}\\
+		\bigskip
+		$\Z_5$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{.35\linewidth}
+		\begin{center}
+		\begin{tabular}{| c c c c c |}
+			\hline
+				\M3 & 1 & 2   & \M4 & \M0 \\
+				1   & 2 & \M0 & \M3 & \M4 \\
+				2   & 3 & 4   & 0   & 1   \\
+				\M0 & 4 & \M3 & 1   & 2   \\
+				4   & 0 & 1   & 2   & 3   \\
+			\hline
+		\end{tabular}\\
+		\bigskip
+		$L$
+		\end{center}
+	\end{minipage}
+	\caption{Latin trade $T$ embedded in $\Z_5$ and the corresponding latin square $L$.}
+	\label{fig:z5-embedded-trade}
+\end{figure}
+
+\todo{$p = 2$!!!}
 
 \begin{lem}
-$3\log_3(p) \leq \gdist(p)$.
+Let be the smallest prime factor of $n$. Then
+\cosyalign{
+	3\log_3(p) \leq \gdist(n).
+}%
 \end{lem}%
-
-\todo{@ Viem urobit este odhad pre abelovske, pre ine neviem.}
+\begin{proof}
+Observe that for some prime factor $p_0$ of $|G|$ holds
+\begin{align}
+	3 \log_3(p_0) \leq z(p_0) = z(G) \leq \gdist(G)
+\end{align}
+by Lemmas \ref{lem:lower-bound-zp} and \ref{lem:zG-is-zp}, the last inequality is trivial from definition. The fact that $p \leq p_0$ finishes the proof.
+\end{proof}

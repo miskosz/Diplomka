@@ -19,7 +19,7 @@ In this chapter we define only necessary notions for our purposes. For a more co
 \section{Partial latin squares}
 
 \begin{defn}
-\emph{A partial latin square $L$} is a subset of ordered triples from $R \times C \times S$, such that for any two given coordinates of $(r,c,s)\in L$ the third one is determined uniquely.
+\emph{A partial latin square $L$} is a subset of ordered triples from $R \times C \times S$, such that for any two given coordinates of $(r,c,s)\in L$ the third one is determined uniquely. We say that $L$ is \emph{on} $R \times C \times S$.
 \end{defn}
 
 A partial latin square is usually interpreted as a partially filled $|R| \times |C|$ table. The uniqueness condition implies that the table is well defined (there is at most one symbol in every cell), and that no symbol repeats itself within a column or a row.
@@ -34,13 +34,19 @@ A partial latin square is usually interpreted as a partially filled $|R| \times 
 There are two important maps from partial latin squares to partial latin squares: \emph{isotopy} and \emph{conjugacy}.
 
 \begin{defn}
-Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} is a triple of maps $h = (h_R, h_C, h_S)$ such that
-\begin{eqnarray}
-	h_R : R_A \rightarrow R_B, \nonumber \\
-	h_C : C_A \rightarrow C_B, \nonumber \\
-	h_S : S_A \rightarrow S_B\phantom{..} \nonumber
-\end{eqnarray}
-and $(r,c,s) \in A \Rightarrow \big(h_R(r), h_C(c), h_S(s)\big) \in B$. \emph{An isotopy} is a homotopy with homotopic inverse.
+\label{defn:homotopy}
+Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} $h$ is defined by triple of maps
+\cosyalig{
+	h_R : R_A \rightarrow R_B, \quad
+	h_C : C_A \rightarrow C_B,\quad
+	h_S : S_A \rightarrow S_B
+}%
+such that 
+$$\begin{array}{ c c c c }
+h: &	A & \rightarrow & B \\
+	&	(r,c,s) & \mapsto & \big(h_R(r), h_C(c), h_S(s)\big).
+\end{array}$$
+A homotopy is \emph{trivial} if there is only one point in its image. \emph{An isotopy} is a homotopy with homotopic inverse.
 \end{defn}
 
 \begin{exmp}
@@ -81,8 +87,8 @@ Partial latin squares on Figure \ref{fig:isotopic-pls} are isotopic. The set of 
 		$B$
 		\end{center}
 	\end{minipage}
-	\label{fig:isotopic-pls}
 	\caption{Isotopic partial latin squares.}
+	\label{fig:isotopic-pls}
 \end{figure}
 
 \end{exmp}%
@@ -152,8 +158,8 @@ See Figure \ref{fig:latin-bitrade}. The example is adapted from \cite{Cavenagh08
 		$T'$
 		\end{center}
 	\end{minipage}
-	\label{fig:latin-bitrade}
 	\caption{A latin bitrade on $[4] \times [4] \times [4]$ of size 12.}
+	\label{fig:latin-bitrade}
 \end{figure}
 
 \end{exmp}%
@@ -196,17 +202,17 @@ Figure \ref{fig:graph-bitrade} shows a graph of a connected spherical latin bitr
 \end{exmp}%
 
 \noindent
-For later use, let us define maps $\sigma_R, \sigma_C, \sigma_S : T \rightarrow T'$ such that for $(r,c,s) \in T$
+For later use, let us define maps $\sigma_R, \sigma_C, \sigma_S : T \cup T' \rightarrow T \cup T'$ by
 \cosyalign{
- 	\sigma_R(r,c,s) = (r',c,s) \in T', \\
- 	\sigma_C(r,c,s) = (r,c',s) \in T', \\
- 	\sigma_S(r,c,s) = (r,c,s') \in T'.
-}
-The definition of the latin bitrade implies that these maps are bijections. They correspond to edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted arrows respectively.
+ 	\sigma_R(r,c,s) = (r',c,s) \mbox{ with } r \ne r',\\
+ 	\sigma_C(r,c,s) = (r,c',s) \mbox{ with } c \ne c', \\
+ 	\sigma_S(r,c,s) = (r,c,s') \mbox{ with } s \ne s'.
+}%
+The definition of the latin bitrade implies that these maps are involutions. They correspond to the edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted edges respectively.
 
 \begin{lem}
 \label{lem:connected-sigma}
-A latin bitrade $(T,T')$ is connected if and only if for any $t_0,t_1 \in T \cup T'$ it is possible to get $t_1$ from $t_0$ by consequent application of $\sigma_R, \sigma_C, \sigma_S$, or their inverses.
+A latin bitrade $(T,T')$ is connected if and only if for any $t_0,t_1 \in T \cup T'$ it is possible to get $t_1$ from $t_0$ by consequent application of $\sigma_R, \sigma_C, \sigma_S$.
 \end{lem}
 \begin{proof}
 Simple, see the comment above.
@@ -214,15 +220,15 @@ Simple, see the comment above.
 
 \begin{lem}
 \label{lem:sigma-cycles}
-Let $\{X,Y\} \subset \{R,C,S\}$. Then the mapping $\sigma_Y^{-1}\sigma_X : T \rightarrow T$ is a permutation without a fixed point.
+Let $\{X,Y\} \subset \{R,C,S\}$. Then the mapping $\sigma_Y\sigma_X : T \cup T' \rightarrow T \cup T'$ is a permutation without a fixed point.
 \end{lem}
 \begin{proof}
-The mapping is a bijection with inverse $\sigma_X^{-1}\sigma_Y$ on a finite set, thus it is a permutation. It changes two coordinates of its argument, and therefore has no fixed points.
+The mapping is a bijection with inverse $\sigma_X\sigma_Y$ on a finite set, thus it is a permutation. It changes two coordinates of its argument, and therefore has no fixed points.
 \end{proof}
 
 As a motivation for our last definition, consider this question: When is it possible to reconstruct a latin bitrade from its graph? Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
 
-The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into (undirected) cycles, in which all elements have the same $R$-coordinate. If the coordinates are in different cycles different, the bitrade is called \emph{$R$-separated}, analogously for $C$ and $S$.
+The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into cycles, in which all elements have the same $R$-coordinate. If the coordinates are in different cycles different, the bitrade is called \emph{$R$-separated}, analogously for $C$ and $S$.
 
 \begin{defn}
  A latin bitrade is \emph{separated} if it is $R$-, $C$- and $S$-separated.
