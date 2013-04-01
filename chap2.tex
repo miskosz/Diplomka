@@ -1,9 +1,11 @@
 \chapter{Embedding latin trades into groups}
 \label{chap:lower-bound}
 
-@ Only finite groups
+In this chapter we define $\gdist(n)$ and present a proof for the lower bound in Conjecture \ref{conj:main}. We proceed as Drápal and Kepka in \cite{DrapalKepka89} and \cite{DrapalKepka85}. Since their work is a bit older, they use old terminology and their proof seems to be difficult to understand. We attempted to redo the proof using modern terminology and make it more accessible.
 
-@ Credit to Drápal
+Moreover, we were able to improve the constant in the lower bound from $e \approx 2.718$ to $3 \log_3(e) \approx 2.731$, which is the best constant known so far. The key part in doing so is Lemma \ref{lem:technical}.
+
+There are other proofs of the lower bound available, but they are not as general as the one of Drápal and Kepka. The proof of Cavenagh and Wanless \cite{CavenaghWanless09} considers only planar latin bitrades and abelian groups. (On the other hand, it exhibits an interesting connection between determinants and permanents of certain matrices, which we omit.) Another proof by Cavenagh \cite{Cavenagh03} restricts itself to cyclic groups only.\footnote{The author suspects that the proof of Cavenagh is not complete -- he silently assumes that determinant of a certain matrix is nonzero, but the proof is missing.} The proof of Drápal and Kepka works with all latin bitrades and all finite groups.
 
 %%%
 %%%
@@ -381,7 +383,7 @@ See Figure \ref{fig:z5-embedded-trade}.
 
 \begin{thm}
 \label{thm:lower-bound}
-Let be the smallest prime factor of $n$. Then
+Let $p$ be the smallest prime factor of $n \geq 2$. Then
 \cosyalign{
 	3\log_3(p) \leq \gdist(n).
 }%

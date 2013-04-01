@@ -5,7 +5,7 @@ In previous chapters we have established that $\gdist(p)$ is asymptotically loga
 \begin{align}
 	2.73 \approx 3 \log_3(e) < \frac{\gdist(p)}{\log(p)} < 5 \log_2(e) \approx 7.21
 \end{align}
-for primes \todo{$p > ?$}. The obvious question is -- what are the best possible constants in these estimates?
+for all primes $p$. The obvious question is -- what are the best possible constants in these estimates?
 
 While the question is open, in this chapter we provide evidence which suggests that the following might be true:
 
@@ -13,19 +13,24 @@ While the question is open, in this chapter we provide evidence which suggests t
 \label{conj:lim-gdist}
 Let $P$ be a real such that $P^3=P+1$. Then for primes $p$:
 \begin{align}
-	\lim_{p \rightarrow \infty} \frac{\gdist(p)}{\log(p)} = \frac{1}{\log(P)} \approx 3.56.
+	\lim_{p \rightarrow \infty} \frac{\gdist(p)}{\log(p)} = 1/\log(P) \approx 3.56.
 \end{align}
 \end{conj}%
 
-Our argument is based on the connection of $\gdist(p)$ to dissections of triangles. Let us recall that Lemma \ref{lem:gdist-leq-tn} states that $\gdist(p) \leq t(p)$ and it is conjectured that $\gdist(p) = t(p)$ (Conjecture \ref{conj:gdistp-equals-tp}).
+Our argument is based on the connection of $\gdist(p)$ to dissections of triangles. Recall that the key to establish the upper bound was the fact that $\gdist(p) \leq t(p)$. However, it seems that the following conjecture might be true:
 
-In this chapter we present computational data of Rosendorf \cite{Rosendorf04} and of our own which support the following:
+\begin{conj}
+\label{conj:gdistp-equals-tp}
+Let $p$ be a prime. Then $\gdist(p) = t(p)$.
+\end{conj}%
+
+If that was the case, we could find bounds of $\gdist(n)$ by examining triangle dissections only. In this chapter we present computational data of Rosendorf \cite{Rosendorf04} and of our own which support the following:
 
 \begin{conj}
 \label{conj:lim-hat-tn}
 Let $P$ be a real such that $P^3=P+1$. Then
 \begin{align}
-	\lim_{n \rightarrow \infty} \frac{\hat t(n)}{\log(n)} = \frac{1}{\log(P)}.
+	\lim_{n \rightarrow \infty} \frac{\hat t(n)}{\log(n)} = 1/\log(P).
 \end{align}
 \end{conj}%
 
@@ -52,9 +57,9 @@ Let $P, \lambda_1, \lambda_2$ be roots of the polynomial $x^3-x-1$, where $P$ is
 \cosyalign{
 	a_k = c_0P^k + c_1\lambda_1^k + c_2 \lambda_2^k
 }%
-for some complex constants $c_0,c_1,c_2$. Computing the values, we get $|\lambda_1|, |\lambda_2| < 1$ and $c_0 \approx 0.545$ is a real. Therefore $a_k \sim c_0P^k$, or $\log_P(a_k) \sim k$.
+for some complex constants $c_0,c_1,c_2$. Enumerating the values, we get $|\lambda_1|, |\lambda_2| < 1$ and $c_0 \approx 0.545$ is a real. Therefore $a_k \sim c_0P^k$, or $\log_P(a_k) \sim k$.
 
-The number $P \approx 1.325$ is called \emph{plastic constant}. As a side note, along with its mathematical properties, it has also its application in architecture \cite{Stewart96}.
+The number $P \approx 1.325$ is called \emph{the plastic constant}. As a side note, along with its mathematical properties, it has also its application in architecture \cite{Stewart96}.
 
 \begin{defn}
 Let $n$ be a positive integer. By $\spb(n)$ we denote an integer such that
@@ -90,7 +95,7 @@ It is easy to derive that the sizes of the triangles are exactly the terms of Pa
 %%%
 %%%
 %%%
-\section{Rosendorf}
+\section{Computational results of Rosendorf}
 Based on Drápal's suggestion, Rosendorf studied in his master's thesis \cite{Rosendorf04} a modification of the spiral tiling, which can be applied to triangles of any size. Consider the following algorithm:
 
 \begin{alg} \ 
@@ -102,7 +107,7 @@ Based on Drápal's suggestion, Rosendorf studied in his master's thesis \cite{Ro
 
 The algorithm is nondeterministic -- if the current shape is not a pentagon, we can choose the placement and the size of the triangle to be cut off. Rosendorf proved that these dissections are exactly those which are $\circledast$-free and do not contain a subset of triangles forming a proper convex hexagon. Following his notation, let us denote such a dissection as \emph{(M6)}, standing for "missing hexagon".
 
-Rosendorf enumerated all minimal (M6) dissections of triangles of side less than 10252. The data shows that
+Rosendorf enumerated all minimal (M6) dissections of triangles of side less than 10252. The data show that
 \begin{align}
 	\hat{t}(n) \leq \spb(n)+2 \qquad\hbox{for $n < 10252$.}
 \end{align}
@@ -122,7 +127,7 @@ We use essentially the same algorithm as in \cite{DrapalHamalainen10}.\footnote{
 \todo{@ Potrbujem najprv odseparovat??}
 
 \begin{lem}
-Let $D$ be a dissection of $\Delta_n$ and $(T^*, T^\vartriangle)$ the corresponding bitrade. Then
+Let us have a dissection of $\Delta_n$ and $(T^*, T^\vartriangle)$ the corresponding bitrade. Then
 \cosyalign{
 	@M_{T^*}x^T = (n,0,\dots,0)^T
 }%
