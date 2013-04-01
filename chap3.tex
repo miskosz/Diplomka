@@ -261,7 +261,7 @@ Let us have a $\circledast$-free dissection of $\Delta_n$ into $t(n)$ triangles.
 }%
 is embedding of $T^*$ into $\Z_n$, which would prove the statement.
 
-Since the size of the triangle is $n$, it follows easily that $h$ is injective. Since $|x+y+z| \in \{0,n\}$ for $(x,y,z)\in T^*$, also $x+y+z \equiv 0 \pmod n$ holds and $h$ is a homotopy into $\Z_p$.
+Since the size of the triangle is $n$, it follows easily that $h$ is injective. Because $|x+y+z| \in \{0,n\}$ for $(x,y,z)\in T^*$, also $x+y+z \equiv 0 \pmod n$ holds and $h$ is a homotopy into $\Z_p$.
 \end{proof}
 
 \begin{lem}
@@ -302,7 +302,7 @@ Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
 \section{Families of logarithmic dissections}
 \label{sec:other-log-dissections}
 
-In previous sections we have seen how to use a logarithmic dissection into squares to get a logarithmic dissection into triangles. While the method presented gives the best results that we are aware of, in this section we show how it can be generalized as it can possibly lead to ideas, which might be helpful in improving the upper bound in Corollary \ref{cor:constants}.
+In previous sections we have seen how to use a logarithmic dissection into squares to get a logarithmic dissection into triangles. While the method presented gives the best results that we are aware of, in this section we show how it can be generalized, as it can possibly lead to ideas, which might be helpful in improving the upper bound in Corollary \ref{cor:constants}.
 
 Let us sketch the method first. A convex hexagon, which we call \emph{core}, defines a dissection of a parallelogram into the core, 6 triangles and a smaller parallelogram. The sizes of the parallelograms depend on the shape of the core, and if chosen appropriately, the smaller parallelogram can be dissected recursively.
 
@@ -311,18 +311,18 @@ In the following, all shapes considered are aligned in a grid formed by unit equ
 For this section we redefine $t(n)$ -- \textbf{we relax the $\circledast$-freeness condition} on the dissections. We also do not concern ourselves with prime dissections.
 
 \begin{defn}
-A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_0,\dots,a_5 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
+A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_1,\dots,a_6 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
 \cosyalign{
-	a_0 + a_1 &= a_3 + a_4 =: \alpha \\
-	a_1 + a_2 &= a_4 + a_5 =: \beta \\
-	a_2 + a_3 &= a_5 + a_0 =: \gamma
+	a_1 + a_2 &= a_4 + a_5 =: \alpha \\
+	a_2 + a_3 &= a_5 + a_6 =: \beta \\
+	a_3 + a_4 &= a_6 + a_1 =: \gamma
 }
-Therefore the hexagon is uniquely specified by a 4-tuple $(a_0, \alpha, \beta, \gamma)$. We will often identify $H = (a_0, \alpha, \beta, \gamma)$.
+Therefore the hexagon is uniquely specified by a 4-tuple $(a_1, \alpha, \beta, \gamma)$. We will often identify $H = (a_1, \alpha, \beta, \gamma)$.
 \end{defn}
 
 Note that not every 4-tuple specifies a valid hexagon. Also note that
 \cosyalign{
-	a_0 + \dots + a_5 = \alpha + \beta +\gamma
+	a_1 + \dots + a_6 = \alpha + \beta +\gamma
 }%
 is perimeter of a core.
 
@@ -330,11 +330,11 @@ is perimeter of a core.
 \emph{A shape S} is a union of finitely many unit triangles in the triangular grid. Let us denote by $t(S)$ the minimal number of triangles needed to dissect the shape $S$, and let $t_d(n)$ denote $t(S)$ for a parallelogram S of size $n \times (n+d)$.
 \end{defn}
 
-We kindly ask the reader to extrapolate the formal definition of a dissection from Definition \ref{defn:triangle-dissection}. As an example, $t(\Delta_n) = t(n)$.
+We kindly ask the reader to extrapolate the formal definition of a dissection from Definition \ref{defn:triangle-dissection}. As an example, \todo{$t(\Delta_n) = t(n)$}.
 
 \begin{lem}
 \label{lem:core-tiling}
-Let $H = (a_0, \alpha, \beta, \gamma)$ be a core and $k$ a positive integer. Set $n = 2k+a_0+\alpha+\beta$ and denote by $P_0$ and $P_1$ parallelograms of sizes $n\times(n+\gamma)$ and $k\times(k+\alpha+\beta+\gamma)$. Then there exists a dissection of $P_0$ into $H$, $P_1$ and six triangles. Therefore
+Let $H = (a_1, \alpha, \beta, \gamma)$ be a core and $k$ a positive integer. Set $n = 2k+a_1+\alpha+\beta$ and denote by $P$ and $P'$ parallelograms of sizes $n\times(n+\gamma)$ and $k\times(k+\alpha+\beta+\gamma)$. Then there exists a dissection of $P$ into $H$, $P'$ and six triangles. Therefore
 \cosyalign{
 	t_\gamma(n) \leq 6 + t(H) + t_{\alpha+\beta+\gamma}(k)
 }
@@ -350,38 +350,36 @@ See Figure \ref{fig:core-tiling1}.
 \label{fig:core-tiling1}
 \end{figure}
 
-Now, let us set the variables such that we can use the tiling recursively. First, fix $\gamma$ and $\alpha+\beta+\gamma$, so that $P_0$ and $P_1$ are always of sizes $n \times (n+\gamma)$ and $k \times (k+\alpha+\beta+\gamma)$.
-
-Next, we would like to tile $P_1$ with tiles of sides which are multiples of an integer $d$. Therefore reset $k := dk$ and set $\alpha+\beta+\gamma = d\gamma$. In this setting,
+Now, let us set the variables such that we can use the tiling recursively. First, fix $\gamma$ and $\alpha+\beta+\gamma$, so that $P$ and $P'$ are always of sizes $n \times (n+\gamma)$ and $k \times (k+\alpha+\beta+\gamma)$. Next, we would like to tile $P$ with tiles of sides which are multiples of an integer $d$. Therefore reset $k := dk$ and set $\alpha+\beta+\gamma = d\gamma$. In this setting,
 \cosyalig{
-	&P_0 \textrm{ is of size } n \times (n + \gamma)\textrm{, and} \\
-	&P_1 \textrm{ is of size } dk \times (dk + d\gamma)
+	&P \textrm{ is of size } n \times (n + \gamma)\textrm{, and} \\
+	&P' \textrm{ is of size } dk \times (dk + d\gamma)
 }
-with $n = 2dk + (d-1)\gamma + a_0$.
+with $n = 2dk + (d-1)\gamma + a_1$.
 
-Finally, if $n$ can be of any integer value (possibly for $n > n_0$ for some $n_0$), we can use the dissection recursively. Since $k$ can be any integer, it suffices for $(d-1)\gamma + a_0$ to go through all remainders modulo $2d$. The term $(d-1)\gamma$ is a constant, therefore $a_0$ must be such. Because $a_0$ is nonnegative and $a_0 \leq \gamma = a_0 + a_1$, this gives us the final requirement $2d-1 \leq \gamma$.
+Finally, if $n$ can be of any integer value (possibly for $n > n_0$ for some $n_0$), we can use the dissection recursively. Since $k$ can be any integer, it suffices for $(d-1)\gamma + a_1$ to go through all remainders modulo $2d$. The term $(d-1)\gamma$ is a constant, therefore $a_1$ must be such. Because $a_1$ is nonnegative and $a_1 \leq \gamma = a_1 + a_6$, this gives us the final requirement $2d-1 \leq \gamma$.
 
 \begin{lem}
 \label{lem:t-gamma-n}
 
-Let $d,\gamma \geq 2$ be positive integers such that $2d-1 \leq \gamma$. Then there exists $n_0$ and a constant $T$ such that
+Let $d,\gamma \geq 2$ be integers such that $2d-1 \leq \gamma$. Then there exists $n_0$ and a constant $T$ such that
 \cosyalign{
 	t_\gamma(n) \leq 6 + T + t_\gamma(k)
 }%
 for $n > n_0$ and some $k < n/(2d)$.
 \end{lem}
 \begin{proof}
-For $a \in [2d]$ denote
+For $a \in [0,2d)$ denote
 \cosyalig{
-	T_a = \min \{t(H) \mid\ &H=(a_0,\alpha,\beta,\gamma) \mbox{ is a core, } \\
+	T_a = \min \{t(H) \mid\ &H=(a_1,\alpha,\beta,\gamma) \mbox{ is a core, } \\
 	&\alpha+\beta+\gamma = d\gamma,  \\
-	&a_0 \equiv a \pmod{2d}\}
+	&a_1 \equiv a \pmod{2d}\}
 }%
-and define $T = \max \{T_a \mid a \in [2d]\}$. $T_a$ is well-defined for every $a$, since it can be easily seen that there always exists a core with required parameters.
+and define $T = \max \{T_a \mid a \in [0,2d)\}$. $T_a$ is well-defined for every $a$, since it can be easily seen that there always exists a core with required parameters.
 
-Set $n_0 = 2d+d\gamma$ and take $n > n_0$. Then there is $a \in [2d]$ such that $n \equiv (d-1)\gamma + a \pmod{2d}$ and a core $H=(a_0,\alpha,\beta,\gamma)$ which we have chosen such that $t(H) = T_a$.
+Set $n_0 = 2d+d\gamma$ and take $n > n_0$. Then there is $a \in [0,2d)$ such that $n \equiv (d-1)\gamma + a \pmod{2d}$ and a core $H=(a_1,\alpha,\beta,\gamma)$ which we have chosen such that $t(H) = T_a$.
 
-Now, $n$ can be written as $2dk + (d-1)\gamma + a_0$ for a positive integer $k$. Plugging into Lemma \ref{lem:core-tiling} we get
+Now, $n$ can be written as $2dk + (d-1)\gamma + a_1$ for a positive integer $k$. Plugging into Lemma \ref{lem:core-tiling} we get
 \cosyalign{
 	t_\gamma(n) \leq 6 + t(H) + t_{d\gamma}(dk) \leq 6 + T + t_\gamma(k).
 }%
@@ -399,7 +397,7 @@ Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then there exist constants $T
 \begin{exmp}
 Let us choose $d=2$ and $\gamma=3$, they meet the conditiion $2d-1 \leq \gamma$. Consider the cores on Figure \ref{fig:core-kk3}, they have to have perimeter $d\gamma = 6$.
 
-We chose $a_0 \in \{0,1,2,3\}$ as this is the only choice such that $a_0 \leq \gamma$ and $a_0$ runs through all remainders modulo $2d=4$. We can set $T=4$ and from Corollary \ref{cor:log-t-gamma-n} we have
+We chose $a_1 \in \{0,1,2,3\}$ as this is the only choice such that $a_1 \leq \gamma$ and $a_1$ runs through all remainders modulo $2d=4$. We can set $T=4$ and from Corollary \ref{cor:log-t-gamma-n} we have
 \cosyalign{
 	t_3(n) \leq 10 \log_{4}(n) + C = 5 \log_2(n) + C
 }%
@@ -408,7 +406,7 @@ for a constant $C$. The resulting tiling is in fact the tiling from Section \ref
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/example_core_kk3.pdf}
-\caption{Cores for $d=2$, $\gamma=3$. We denote the tiling of the corresponding core briefly by $t(a_0,\alpha,\beta,\gamma)$.}
+\caption{Cores for $d=2$, $\gamma=3$. We denote the tiling of the corresponding core briefly by $t(a_1,\alpha,\beta,\gamma)$.}
 \label{fig:core-kk3}
 \end{figure}
 \end{exmp}%
@@ -417,12 +415,12 @@ It would be desirable to construct a chain of better and better dissections that
 
 \begin{lem}
 \label{lem:core-dissection-bound}
-Let $H = (a_0, \alpha, \beta, \gamma)$ be a core of perimeter $d\gamma$ and $a_0 \ne 0 \ne a_5$. Then $t(H) \geq d$.
+Let $H = (a_1, \alpha, \beta, \gamma)$ be a core of perimeter $d\gamma$ and $a_1 \ne 0 \ne a_6$. Then $t(H) \geq d$.
 \end{lem}
 \begin{proof}
-Let us denote by $a_0, \dots, a_5$ the corresponding sides instead of their lengths. Distance between the pair of parallel lines $a_1, a_4$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_1$ and $a_4$ we have to use at least $(a_1+a_4)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
+Let us denote by $a_1, \dots, a_6$ the corresponding sides instead of their lengths. Distance between the pair of parallel lines $a_2, a_5$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_2$ and $a_5$ we have to use at least $(a_2+a_5)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
 
-Since $a_0 \ne 0 \ne a_5$, we have to use one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_4$ and $a_1$, hence $t(H) \geq d$.
+Since $a_1 \ne 0 \ne a_6$, we have to use one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_2$ and $a_5$, hence $t(H) \geq d$.
 
 \begin{figure}[htb]
 \centering

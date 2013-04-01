@@ -20,17 +20,17 @@ We denote by $\overbar{M}_r^c$ the matrix obtained from $M$ by excluding row $r$
 
 \begin{lem}
 \label{lem:sparse2}
-Let $M_0,M_1$ be sparse matrices with the same number of rows such that $M = (M_0,M_1)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
+Let $M_1,M_2$ be sparse matrices with the same number of rows such that $M = (M_1,M_2)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
 \end{lem}
 \begin{proof}
-Let $c_0,c_1$ be the number of columns in $M_0$ and $M_1$ respectively. The proof is by induction on $n := c_0+c_1$. The case with $n=1$ is trivial. Therefore assume $n>1$.
+Let $c_1,c_2$ be the number of columns in $M_1$ and $M_2$ respectively. The proof is by induction on $n := c_1+c_2$. The case with $n=1$ is trivial. Therefore assume $n>1$.
 
 There are at most two ones in every row of M.
 \begin{cosyitemize}
 	\item If there is a row with zeros only, then $\det(M) = 0$.
 	\item If every row contains exactly two ones, then
 		\begin{cosyeqnarray}
-			v := (\underbrace{1,\dots,1}_{c_0},\underbrace{-1,\dots,-1}_{c_1}) \nonumber
+			v := (\underbrace{1,\dots,1}_{c_1},\underbrace{-1,\dots,-1}_{c_2}) \nonumber
 		\end{cosyeqnarray}%
 		is such that $Mv^T = 0$. Thus $M$ is singular and $\det(M) = 0$.
 	\item Otherwise there is a row $r$ which contains only a single one in column $c$. Then expanding the determinant by row $r$ yields
@@ -43,20 +43,20 @@ There are at most two ones in every row of M.
 
 \begin{lem}
 \label{lem:sparse3}
-Let $M_0,M_1,M_2$ be sparse matrices of sizes $n \times c_0, n \times c_1, n \times c_2$ such that $M = (M_0,M_1,M_2)$ is a square block matrix. Let $k_i$ denote the number of ones in column $i$. Then
+Let $M_1,M_2,M_3$ be sparse matrices of sizes $n \times c_1, n \times c_2, n \times c_3$ such that $M = (M_1,M_2,M_3)$ is a square block matrix. Let $k_i$ denote the number of ones in column $i$. Then
 \begin{cosyeqnarray}
-	|\det(M)| \leq \prod_{i \in [c_0]} k_i.
+	|\det(M)| \leq \prod_{i \in [c_1]} k_i.
 \end{cosyeqnarray}%
 \end{lem}
 \begin{proof}
-The proof is by induction on $c_0$. Denote $M = (m_{i,j})_{i,j \in[n]}$.
+The proof is by induction on $c_1$. Denote $M = (m_{i,j})_{i,j \in[n]}$.
 \begin{enumerate}
-	\item If $c_0 = 0$, then $|\det(M)| \leq \prod_{i=0}^{0} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
+	\item If $c_1 = 0$, then $|\det(M)| \leq \prod_{i\in\emptyset} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
 	\item Otherwise expand by the first column:
 	\begin{cosyeqnarray}
-		|\det(M)| \leq \sum_{i\in[n]} m_{i,0}\,|\det(\overbar{M}_i^1)| \leq k_0 \prod_{i \in [1, c_0)} k_i.
+		|\det(M)| \leq \sum_{i\in[n]} m_{i,1}\,|\det(\overbar{M}_i^1)| \leq k_1 \prod_{i \in [2, c_1]} k_i.
 	\end{cosyeqnarray}%
-	The last inequality holds since there are $k_0$ nonzero summands and the product majorizes each subdeterminant from induction.
+	The last inequality holds since there are $k_1$ nonzero summands and the product majorizes each subdeterminant from induction.
 \end{enumerate}
 \end{proof}
 
@@ -64,13 +64,13 @@ For our final result we need the following technical lemma:
 
 \begin{lem}
 \label{lem:technical}
-Let $n$ be a positive integer and $k_0 + \dots + k_{m-1} = n$ for an integer $m$. Then
+Let $n$ be a positive integer and $k_1 + \dots + k_m = n$ for an integer $m$. Then
 \begin{cosyeqnarray}
 	\prod_{i \in [m]} k_i \leq 3^{n/3}.
 \end{cosyeqnarray}%
 \end{lem}
 \begin{proof}
-For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_0 \leq \dots \leq k_{m-1}$ be lexicographically smallest such that the maximum is attained. Observe:
+For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_1 \leq \dots \leq k_m$ be lexicographically smallest such that the maximum is attained. Observe:
 \begin{cosyitemize}
 	\item $2 \cdot (k-2) \geq k$ for $k \geq 4$, therefore $k_i \leq 3$;
 	\item $(1+k) > 1 \cdot k$, therefore $k_i > 1$;
@@ -78,25 +78,24 @@ For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_0 \leq \dots \leq k_
 \end{cosyitemize}%
 Thus there are 3 possibilities:
 \cosyalig{
-&n =3k &\Rightarrow&\ k_0 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 3^{n/3} \\
-&n =3k+2 &\Rightarrow&\ k_0 = 2, k_1 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-2)/3} \\
-&n =3k+4 &\Rightarrow&\ k_0 = k_1 = 2, k_2 = \dots = k_{m-1} = 3 &\Rightarrow& \prod k_i = 4\cdot3^{(n-4)/3} 
+&n =3k &\Rightarrow&\ k_1 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 3^{n/3} \\
+&n =3k+2 &\Rightarrow&\ k_1 = 2,\ k_2 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-2)/3} \\
+&n =3k+4 &\Rightarrow&\ k_1 = k_2 = 2,\ k_3 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 4\cdot3^{(n-4)/3} 
 }
 Where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$, thus we are done.
 \end{proof}
 
 \begin{lem}
 \label{lem:3-block-sparse-det}
-Let $M_0,M_1,M_2$ be sparse matrices such that $M = (M_0,M_1,M_2)$ is a  square block $n \times n$ matrix. Then
+Let $M_1,M_2,M_3$ be sparse matrices such that $M = (M_1,M_2,M_3)$ is a  square block $n \times n$ matrix. Then
 \begin{cosyeqnarray}
- 	|\det(M)| \leq 3^{n/3}
+ 	|\det(M)| \leq 3^{n/3}.
 \end{cosyeqnarray}% 
-and thus $3 \log_3(|\det(M)|) \leq n$.
 \end{lem}
 \begin{proof}
-Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the column $i$. Since $M_0$ is sparse, surely $\sum_{i \in [c_0]} k_i \leq n$. The proof is finished by combining Lemmas \ref{lem:sparse3} and \ref{lem:technical}:
+Let $c_1$ be the number of columns of $M_1$ and $k_i$ the number of ones in the column $i$. Since $M_1$ is sparse, surely $\sum_{i \in [c_1]} k_i \leq n$. The proof is finished by combining Lemmas \ref{lem:sparse3} and \ref{lem:technical}:
 \begin{cosyeqnarray}
-	|\det(M)| \leq \prod_{i \in [c_0]} k_i \leq 3^{n/3}.
+	|\det(M)| \leq \prod_{i \in [c_1]} k_i \leq 3^{n/3}.
 \end{cosyeqnarray}%
 \end{proof}
 
@@ -106,14 +105,19 @@ Let $c_0$ be the number of columns of $M_0$ and $k_i$ the number of ones in the 
 \section{Trade matrix}
 Recall that
 \begin{itemize}
-	\item $R = \{r_0,\dots,r_{|R|-1}\}$ denotes the set of rows,
-	\item $C = \{c_0,\dots,c_{|C|-1}\}$ denotes the set of columns and
-	\item $S = \{s_0,\dots,s_{|S|-1}\}$ denotes the set of symbols.
+	\item $R = \{r_1,\dots,r_{|R|}\}$ denotes the set of rows,
+	\item $C = \{c_1,\dots,c_{|C|}\}$ denotes the set of columns and
+	\item $S = \{s_1,\dots,s_{|S|}\}$ denotes the set of symbols.
 \end{itemize}
-Without loss of generality assume that these sets are disjoint and let $X = R \cup C \cup S$.
+Without loss of generality assume that these sets are disjoint and let
+\cosyalign{
+X = R \cup C \cup S = \{r_1,\dots,r_{|R|}, c_1,\dots,c_{|C|}, s_1,\dots,s_{|S|}\}.
+}%
 
 \begin{defn}
-Let $T$ be a latin trade. We define a matrix $M = (m_{i,j})$ of size $|T| \times |X|$ such that if we index the rows by elements of $T$ and columns by elements of $X$, then
+Let $T$ be a latin trade. Fix ordering of elements of $X$ as above and choose an ordering on $T$.
+
+We define a matrix $M = (m_{i,j})_{i \in T, j \in X}$ of size $|T| \times |X|$ such that
 \begin{cosyeqnarray}
 	t = (r,c,s) \in T \Rightarrow
 	\begin{cases}
@@ -139,7 +143,7 @@ The proof is divided into several steps.
 \item \textbf{Step 1.}
 Denote the set in (\ref{eq:KerMT}) by $V$. Any vector $v \in V$ is surely a solution for $M_Tv^T = 0$. Let $f:X \rightarrow \Q$ be defined by
 \begin{align}
-	v = (f(r_0), \dots, f(c_0), \dots, f(s_0), \dots).
+	v = (f(r_1), \dots, f(c_1), \dots, f(s_1), \dots).
 \end{align}
 Choose $(x_0, y_0, z_0) \in T$ such that $f(z_0)$ is maximal. By resetting
 \begin{align}
@@ -172,28 +176,28 @@ for some $x' \in R$ such that $(x',y,z) \in T$. Therefore $f(x') + 0 + 0 = 0$. S
 %
 %
 \item \textbf{Step 4.}
-Now let $(x_0,y_0,z) \in T$ such that $f(x_0,y_0,z)=(0,0,0)$. Consider a chain of elements in $T \cup T'$:
+Now let $(x_1,y_1,z) \in T$ such that $f(x_1,y_1,z)=(0,0,0)$. Consider a chain of elements in $T \cup T'$:
 \begin{align*}
-	(x_0,y_0,z) &\in T &\xrightarrow{\sigma_C}& &(x_0,y_1,z) &\in T' & \xrightarrow{\sigma_R} \\
 	(x_1,y_1,z) &\in T &\xrightarrow{\sigma_C}& &(x_1,y_2,z) &\in T' & \xrightarrow{\sigma_R} \\
-	(x_2,y_2,z) &\in T &\xrightarrow{\sigma_C}& &(x_2,y_3,z) &\in T' & \dots
+	(x_2,y_2,z) &\in T &\xrightarrow{\sigma_C}& &(x_2,y_3,z) &\in T' & \xrightarrow{\sigma_R} \\
+	(x_3,y_3,z) &\in T &\xrightarrow{\sigma_C}& &(x_3,y_4,z) &\in T' & \dots
 \end{align*}
-From the inequality we have
+From $f(x) + f(y) \geq 0$ we have
 \begin{align*}
-	f(x_0) + f(y_0) &= 0, \quad f(x_0) + f(y_1) \geq 0, \\
 	f(x_1) + f(y_1) &= 0, \quad f(x_1) + f(y_2) \geq 0, \\
-	f(x_2) + f(y_2) &= 0, \quad f(x_2) + f(y_3) \geq 0,\ \dots, 
+	f(x_2) + f(y_2) &= 0, \quad f(x_2) + f(y_3) \geq 0, \\
+	f(x_3) + f(y_3) &= 0, \quad f(x_3) + f(y_4) \geq 0,\ \dots, 
 \end{align*}
 which yields
 \begin{align*}
-	0 &= f(x_0) \leq f(x_1) \leq f(x_2) \leq \dots \\
-	0 &= f(y_0) \geq f(y_1) \geq f(y_2) \geq \dots
+	0 &= f(x_1) \geq f(x_2) \geq f(x_3) \geq \dots \\
+	0 &= f(y_1) \leq f(y_2) \leq f(y_3) \leq \dots
 \end{align*}
-According to Lemma \ref{lem:sigma-cycles}, the chain is a non-trivial cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_0,y_0,z)) = (0,0,0)$.
+According to Lemma \ref{lem:sigma-cycles}, the chain is a non-trivial cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_1,y_1,z)) = (0,0,0)$.
 
 The result for $\sigma_R$ can be obtained by changing the roles of $\sigma_R$ and $\sigma_C$.
 
-For $\sigma_S$, consider a cycle generated by alternating $\sigma_C$ and $\sigma_S$. We already know that $f(\sigma_S\sigma_C(x_0,y_0,z)) = \sigma_S(0,0,0) = (0,0,0)$. Therefore all elements in the cycle are mapped to $(0,0,0)$. By reversing the cycle we get the result.
+For $\sigma_S$, consider a cycle generated by alternating $\sigma_C$ and $\sigma_S$. We already know that $f(\sigma_S\sigma_C(x_1,y_1,z)) = \sigma_S(0,0,0) = (0,0,0)$. Therefore all elements in the cycle are mapped to $(0,0,0)$. By reversing the cycle we get the result.
 
 \end{proof}
 
@@ -203,7 +207,7 @@ Suppose that all elements of $X$ are used in a connected latin trade $T$. Then t
 \end{cor}
 
 \begin{note}
-Suppose that $M$ is a submatrix of $M_T$ of rank $|X|-2$. It must have been obtained from $M$ by deleting two columns and some rows. These two columns cannot be both from $R$. If they were, then
+Suppose that $M$ is a square submatrix of $M_T$ of rank $|X|-2$. It must have been obtained from $M$ by deleting two columns and some rows. These two columns cannot be both from $R$. If they were, then
 \cosyalign{
 	(\underbrace{0, \dots, 0}_{|R|-2}, \underbrace{y, \dots, y}_{|C|}, \underbrace{-y, \dots, -y}_{|S|})
 }%
@@ -239,24 +243,24 @@ Let $z(G)$ denote the size of the smallest trade $T$ such that there exist a non
 
 \begin{lem}
 \label{lem:p-leq-det}
-Let $p$ be a prime, $T$ a connected latin trade using all symbols in $X$, $h: T \rightarrow \Z_p$ a non-trivial homotopy and $M$ any submatrix of $M_T$ of rank $|X-2|$. Then $p \leq \det(M)$.
+Let $p$ be a prime, $T$ connected latin trade using all symbols in $X$, $h: T \rightarrow \Z_p$ non-trivial homotopy and $M$  square submatrix of $M_T$ of rank $|X-2|$. Then $p \leq \det(M)$.
 \end{lem}
 \begin{proof}
 Let $h = (h_R,h_C,h_S)$. Then
 \begin{align*}
-	v = \big(\underbrace{h_R(r_0), \dots, h_R(r_{|R|-1})}_{|R|},\underbrace{h_C(c_0), \dots, h_C(c_{|C|-1})}_{|C|}, \underbrace{h_S(s_0), \dots, h_S(s_{|S|-1})}_{|S|}\big)
+	v = \big(\underbrace{h_R(r_1), \dots, h_R(r_{|R|})}_{|R|},\underbrace{h_C(c_1), \dots, h_C(c_{|C|})}_{|C|}, \underbrace{h_S(s_1), \dots, h_S(s_{|S|})}_{|S|}\big)
 \end{align*}
-is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_0$, $c_0$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $h_R(r_0) = 0 = h_C(c_0)$, otherwise we can set
+is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_1$, $c_1$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $h_R(r_1) = 0 = h_C(c_1)$, otherwise we can set
 \cosyalig{
-	h_R' := h_R - h_R(r_0), \quad h_C' := h_C - h_C(c_0), \quad	h_S' := h_S + h_R(r_0) + h_C(c_0).
+	h_R' := h_R - h_R(r_1), \quad h_C' := h_C - h_C(c_1), \quad	h_S' := h_S + h_R(r_1) + h_C(c_1).
 }%
 Then
 \begin{align*}
-	w = \big(\underbrace{h_R(r_1), \dots, h_R(r_{|R|-1})}_{|R|-1},\underbrace{h_C(c_1), \dots, h_C(c_{|C|-1})}_{|C|-1}, \underbrace{h_S(s_0), \dots, h_S(s_{|S|-1})}_{|S|}\big)
+	w = \big(\underbrace{h_R(r_2), \dots, h_R(r_{|R|})}_{|R|-1},\underbrace{h_C(c_2), \dots, h_C(c_{|C|})}_{|C|-1}, \underbrace{h_S(s_1), \dots, h_S(s_{|S|})}_{|S|}\big)
 \end{align*}
 is a solution of $Mw^T = 0$ over $\Z_p$ which is non-trivial, since $h$ is non-trivial.
 
-Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$.
+Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$. Because $M$ is reqular, $\det(M) \ne 0$ and we are done.
 \end{proof}
 
 \begin{lem}
@@ -266,7 +270,7 @@ $3 \log_3(p) \leq z(p)$.
 \begin{proof}
 Let $T$ be a latin trade such that $|T| = z(p)$ and there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix of $M_T$ of rank $|X|-2$.
 
-We can write $M_T = (M_0, M_1, M_2)$ for sparse matrices $M_0$, $M_1$, $M_2$, and therefore any submatrix $M$ of $M_T$ is of the same type. Thus from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
+We can write $M_T = (M_1, M_2, M_3)$ for sparse matrices $M_1$, $M_2$, $M_3$, and therefore any submatrix $M$ of $M_T$ is of the same type. Thus from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
 \cosyalign{
 	p \leq \det(M) \leq 3^{(|X|-2)/3} \leq 3^{z(p)/3}.
 }%
@@ -274,10 +278,10 @@ We can write $M_T = (M_0, M_1, M_2)$ for sparse matrices $M_0$, $M_1$, $M_2$, an
 
 \begin{lem}
 \label{lem:nontrivial-homotopy-normal-subgroup}
-Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ is a non-trivial homotopy. Then there exists a non-trivial homotopy $h_0: T \rightarrow H$ or $h_1: T \rightarrow G/H$.
+Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ is a non-trivial homotopy. Then there exists a non-trivial homotopy $h_1: T \rightarrow H$ or $h_2: T \rightarrow G/H$.
 \end{lem}
 \begin{proof}
-Let $\pi: G \times G \times G \rightarrow G/H \times G/H \times G/H$ is the natural projection. If $h_1 := \pi h$ is non-trivial, we are done. Otherwise $\Img(h) \subset H \times H \times H$ and we can set $h_0 := h$.
+Let $\pi: G \times G \times G \rightarrow G/H \times G/H \times G/H$ be the natural projection. If $h_2 := \pi h$ is non-trivial, we are done. Otherwise $\Img(h) \subset H \times H \times H$ and we can set $h_1 := h$.
 \end{proof}
 
 \begin{lem}
@@ -288,7 +292,7 @@ Let $G$ be a group of odd order. Then
 }%
 \end{lem}
 \begin{proof}
-Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the "$\geq$" inequality. The other one is implied by Cauchy's theorem.
+Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the "$\geq$" inequality. The other one follows from Cauchy's theorem.
 \end{proof}
 
 %%%
@@ -302,7 +306,7 @@ A latin trade $T$ \emph{can be embedded} (or \emph{is embeddable}) in a group $G
 Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
 \end{defn}
 
-From the tabular point of view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$. The next lemma states that $\gdist(G)$ is the smallest number of cells in the Cayley table of $G$ that have to be changed in order to get another latin square:
+From the tabular point of view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$. The next lemma states that $\gdist(G)$ is the smallest number of cells in the Cayley table of $G$ that have to be changed in order to get another latin square. Therefore $\gdist(n)$ is the minimal "Hamming distance" between groups of order $n$ and latin squares.
 
 \begin{lem}
 Let $G$ be a group. Then
@@ -388,7 +392,7 @@ Let $p$ be the smallest prime factor of $n \geq 2$. Then
 	3\log_3(p) \leq \gdist(n).
 }%
 \end{thm}%
-\begin{proof}
+\begin{proof} \side{$\gdist(2k) = 4$}%
 If $n$ is even, then $p=2$, $\gdist(n) = 4$ and the inequality holds. Otherwise by Lemmas \ref{lem:lower-bound-zp} and \ref{lem:zG-is-zp} there is a prime factor $p_0$ of $|G|$ such that
 \begin{align}
 	3 \log_3(p_0) \leq z(p_0) = z(G) \leq \gdist(G),
