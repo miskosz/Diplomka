@@ -78,13 +78,13 @@ For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_1 \leq \dots \leq k_
 	\item $(1+k) > 1 \cdot k$, therefore $k_i > 1$;
 	\item $3 \cdot 3 > 2 \cdot 2 \cdot 2$, therefore there are at most two twos amongst $k_i$.
 \end{cosyitemize}%
-Thus there are 3 possibilities:
+Thus there are three possibilities:
 \cosyalig{
 &n =3k &\Rightarrow&\ k_1 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 3^{n/3} \\
 &n =3k+2 &\Rightarrow&\ k_1 = 2,\ k_2 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 2\cdot3^{(n-2)/3} \\
 &n =3k+4 &\Rightarrow&\ k_1 = k_2 = 2,\ k_3 = \dots = k_m = 3 &\Rightarrow& \prod k_i = 4\cdot3^{(n-4)/3} 
-}
-Where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$, thus we are done.
+}%
+where the products are over $i \in [m]$. Each of them is less than or equal to $3^{n/3}$, thus we are done.
 \end{proof}
 
 \begin{lem}
@@ -108,7 +108,7 @@ Let $c_1$ be the number of columns of $M_1$ and $k_i$ the number of ones in the 
 Recall that
 \begin{itemize}
 	\item $R = \{r_1,\dots,r_{|R|}\}$ denotes the set of rows,
-	\item $C = \{c_1,\dots,c_{|C|}\}$ denotes the set of columns and
+	\item $C = \{c_1,\dots,c_{|C|}\}$ denotes the set of columns, and
 	\item $S = \{s_1,\dots,s_{|S|}\}$ denotes the set of symbols.
 \end{itemize}
 Without loss of generality assume that these sets are disjoint and let
@@ -145,18 +145,18 @@ The proof is divided into several steps.
 \item \textbf{Step 1.}
 Denote the set in (\ref{eq:KerMT}) by $V$. Any vector $v \in V$ is surely a solution for $M_Tv^T = 0$. Let $f:X \rightarrow \Q$ be defined by
 \begin{align}
-	v = (f(r_1), \dots, f(c_1), \dots, f(s_1), \dots).
+	v = \big(\underbrace{f(r_1), \dots, f(r_{|R|})}_{|R|}, \underbrace{f(c_1), \dots, f(c_{|C|})}_{|C|}, \underbrace{f(s_1), \dots, f(s_{|S|})}_{|S|}\big).
 \end{align}
 Choose $(x_0, y_0, z_0) \in T$ such that $f(z_0)$ is maximal. By resetting
 \begin{align}
-	v := v+(-f(x_0), \dots, -f(y_0), \dots,f(x_0)+f(y_0), \dots)
+	v := v+\big(\underbrace{-f(x_0), \dots\ }_{|R|}, \underbrace{-f(y_0), \dots\ }_{|C|},\underbrace{f(x_0)+f(y_0), \dots\ }_{|S|}\big)
 \end{align}
 we obtain a solution in which $f(x_0) = f(y_0) = f(z_0) = 0$. Now it suffices to prove that $f(x) = 0$ for any $x \in X$. To shorten notation, we denote $f(x,y,z) = f((x,y,z)) = (f(x),f(y),f(z))$.
 
 %
 %
 \item \textbf{Step 2.}
-For all $(x,y,z) \in T$ holds $f(x)+f(y)+f(z)=0$. Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$
+For all $(x,y,z) \in T$ holds $f(x)+f(y)+f(z)=0$. Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$ we have
 \begin{align}
 	f(x) + f(y) \geq 0.
 \end{align}
@@ -195,7 +195,7 @@ which yields
 	0 &= f(x_1) \geq f(x_2) \geq f(x_3) \geq \dots \\
 	0 &= f(y_1) \leq f(y_2) \leq f(y_3) \leq \dots
 \end{align*}
-According to Lemma \ref{lem:sigma-cycles}, the chain is a non-trivial cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_1,y_1,z)) = (0,0,0)$.
+According to Lemma \ref{lem:sigma-cycles}, the chain is a cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_1,y_1,z)) = (0,0,0)$.
 
 The result for $\sigma_R$ can be obtained by changing the roles of $\sigma_R$ and $\sigma_C$.
 
@@ -237,7 +237,7 @@ For abelian groups, we will use different definition:
 \emph{A Cayley table} of an abelian group $(G,+)$ is a latin square $L \subset G \times G \times G$ such that $(r,c,s) \in L$ if and only if $r + c + s = 0$.
 \end{defn}
 
-It easily follows that the Cayley tables by first and second definition are isotopic. Because we will be interested in existence of homotopies into Cayley tables, it does not matter which definition we use.
+It easily follows that for abelian groups the Cayley tables by first and second definition are isotopic. Because we will be interested in existence of homotopies into Cayley tables, it does not matter which definition we use.
 
 \begin{defn}
 Let $z(G)$ denote the size of the smallest trade $T$ such that there exist a non-trivial homotopy from $T$ to $G$. Let \emph{$z(n)$} be the minimum across all groups of order $n$.
@@ -252,9 +252,9 @@ Let $h = (h_R,h_C,h_S)$. Then
 \begin{align*}
 	v = \big(\underbrace{h_R(r_1), \dots, h_R(r_{|R|})}_{|R|},\underbrace{h_C(c_1), \dots, h_C(c_{|C|})}_{|C|}, \underbrace{h_S(s_1), \dots, h_S(s_{|S|})}_{|S|}\big)
 \end{align*}
-is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_1$, $c_1$ were deleted from $M_T$ to obtain $M$ (see note after Corollary \ref{cor:rank-mt}). Also suppose that $h_R(r_1) = 0 = h_C(c_1)$, otherwise we can set
+is a solution of $M_Tv^T = 0$ over $\Z_p$. Without loss of generality assume that columns $r_1$, $c_1$ were deleted from $M_T$ to obtain $M$ (see the note after Corollary \ref{cor:rank-mt}). Also suppose that $h_R(r_1) = 0 = h_C(c_1)$, otherwise we can set $h := (h_R', h_C', h_S')$ with
 \cosyalig{
-	h_R' := h_R - h_R(r_1), \quad h_C' := h_C - h_C(c_1), \quad	h_S' := h_S + h_R(r_1) + h_C(c_1).
+	h_R' = h_R - h_R(r_1), \quad h_C' = h_C - h_C(c_1), \quad h_S' = h_S + h_R(r_1) + h_C(c_1).
 }%
 Then
 \begin{align*}

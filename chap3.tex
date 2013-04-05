@@ -3,7 +3,7 @@
 
 The study of dissections was initiated by the paper \emph{The dissection of rectangles into squares} by Brooks, Smith, Stone and Tutte \cite{BrooksSmithStoneTutte40}. They answered the question whether it is possible to dissect a square into some number of unequal squares (yes, it is), and developed methods to study such dissections.\footnote{They showed, for example, that dissections into squares are related to electrical circuits obeying Kirchhoff's laws.}
 
-Inspired by a puzzle called \emph{Mrs Perkins's quilt} by Dudeney~\cite{Dudeney17}, Conway~\cite{Conway64} considered the case where the dissecting squares can be equally large. He proposed a question about the minimal number of integer-sided squares needed to dissect a square of side $n$. It is easy to observe that when $n$ is divisible by $d$, then it is possible to use a scaled up dissection of a square of side $d$. Therefore he considered only dissections where the dissecting squares do not have a common factor.
+Inspired by a puzzle called \emph{Mrs Perkins's quilt} by Dudeney~\cite{Dudeney17}, Conway~\cite{Conway64} considered the case where the dissecting squares can be equally large. He proposed a question about the minimal number of integer-sided squares needed to dissect a square of side $n$. It is easy to observe that when $n$ is divisible by an integer $d \geq 2$, then it is possible to use a scaled up dissection of a square of side $d$. Therefore he considered only dissections where the dissecting squares do not have a common factor.
 
 Conway proved that at least $c \log(n)$ squares are needed. A year later Trustrum \cite{Trustrum65} proved that $O(\log(n))$ is sufficient, and thus established that the answer is asymptotically logarithmic. However, the best constants in the estimates do not appear to be known.
 
@@ -13,6 +13,7 @@ In this chapter we prove that it is possible to dissect an equilateral triangle 
 
 \bigskip
 
+\noindent\hspace{1em}
 Note that the first one to study dissections of equilateral triangles was Tutte~\cite{Tutte48}. 
 
 
@@ -21,7 +22,7 @@ Note that the first one to study dissections of equilateral triangles was Tutte~
 %%%
 \section{Definitions}
 
-Unless specified otherwise, in the rest of this chapter we use \emph{triangle} instead of \emph{equilateral triangle} for brevity.
+Unless specified otherwise, from now on we use \emph{triangle} instead of \emph{equilateral triangle} for brevity.
 
 \begin{defn}
 \emph{A dissection of size $m$ of a rectangle} is a set of $m$ squares of integral side which cover the rectangle and overlap at most on their boundaries. Such a dissection is \emph{$\oplus$-free} if no four squares share a common point, it is \emph{prime} if their sides do not have a common factor.
@@ -38,7 +39,7 @@ We denote by $t(n)$ (respectively, $\hat t(n)$) the minimal size of a non-trivia
 
 We use terms \emph{dissection} and \emph{tiling} interchangeably. Also by \emph{rectangle} or \emph{triangle dissection} we mean \emph{dissection of a rectangle} or \emph{triangle} respectively. Moreover, for squares and triangles we mean the same by \emph{side} and \emph{size}.
 
-Note that in a triangle dissection only 2, 3, 4 or 6 triangles can share a common point. Therefore $\circledast$-freeness implies that actually no more than 4 triangles meet.
+Note that only 2, 3, 4 or 6 triangles can share a common point in a triangle dissection. Therefore $\circledast$-freeness implies that actually no more than 4 triangles meet at one point.
 
 \begin{lem}
 For a positive integer $n$ and a prime $p$ holds $t(n) \leq \hat t(n)$ and $t(p) = \hat t(p)$.
@@ -123,7 +124,7 @@ Let $n > 1$ be an odd integer not divisible by 3. Then $\hat t(n) < 5\log_2(n)$.
 \begin{proof}
 The conditions imply $n \geq 5$. Now by plugging $k = \frac{n-3}{2}$ into Lemma~\ref{lem:r3n}:
 \cosyalign{
-	2r_3(\tfrac{n-3}{2})+2 \leq 10 \log_4(\tfrac{n-3}{2}) + 5 = 5 \log_2(n-3) < 5 \log_2(n).
+	\hat t(n) \leq 2r_3(\tfrac{n-3}{2})+2 \leq 10 \log_4(\tfrac{n-3}{2}) + 5 = 5 \log_2(n-3) < 5 \log_2(n).
 }
 \end{proof}
 
@@ -151,16 +152,16 @@ Set $n = 2^p3^qr$, where $p,q,r$ are nonnegative integers such that $\gcd(r,6) =
 
 Steps (B1) and (B2) are illustrated on Figure \ref{fig:triangle23}. In (B3) we always use a prime dissection, therefore the resulting dissection is also prime. Clearly it is also $\circledast$-free.
 
-Let us count the number of used triangles. If $r > 1$, then
+Let us count the number of triangles used. If $r > 1$, then
 \cosyalig{
 	\hat t(n)
 		&< 3p + 5q + 5\log_2(r) \\
 		&< 5p \log_2(2) + 5q \log_2(3) + 5 \log_2(r) \\
-		&= 5 \log_2(2^p3^qr).
+		&= 5 \log_2(2^p3^qr) = 5 \log_2(n).
 }
 If $r=1$, then $\hat t(n) \leq 3p + 5q + 1$ and
 \cosyalig{
-	3p + 5q + 1 &< 5 \log_2(2^p3^q) \qquad \Leftrightarrow \\
+	3p + 5q + 1 &< 5 \log_2(2^p3^q) = 5\log_2(n) \qquad \Leftrightarrow \\
 	5q + 1 &< 2p + 5q \log_2(3) \qquad \Leftrightarrow \\
 	1 &< 2p + (5\log_2(3)-5)q,
 }
@@ -182,7 +183,7 @@ We identify vector $(x_0, y_0, z_0)$ with the triangle bounded by lines $x=x_0$,
 \begin{figure}[htb]
 \centering
 \includegraphics[height=14em]{img/trigrid.pdf}
-\caption{Triangular grid in plane $x+y+z=0$.}
+\caption{Triangular grid in the plane $x+y+z=0$.}
 \label{fig:trigrid}
 \end{figure}
 
@@ -248,7 +249,7 @@ We call $(T^*, T^\vartriangle)$ \emph{an embedding of the dissection $\D$.}
 Let $\D$ be a $\circledast$-free triangle dissection. Then any embedding $(T^*, T^\vartriangle)$ of the dissection $\D$ is a latin bitrade. All such latin bitrades are from the same main class.
 \end{lem}
 \begin{proof}
- $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation to conjugacy, therefore the bitrades are from the same main class.
+ $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation by multiples of $\pi/3$ to conjugacy, therefore the bitrades are from the same main class.
 \end{proof}
 
 Let us point out that we use two different notions of embedding -- embedding of a latin bitrade in a group is a homotopy, whereas embedding of a $\circledast$-free dissection (in the plane $x+y+z=0$) is a latin bitrade. 
@@ -283,11 +284,11 @@ Finally, we have proved everything needed for our main result -- the proof of Co
 \label{cor:conj-proof}
 Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
 \cosyalign{
-	3 \log_3(p) \leq \gdist(n) < 5 log_2(p).
+	3 \log_3(p) \leq \gdist(n) < 5 \log_2(p).
 }
 \end{thm}%
 \begin{proof}
-The lower bound is Theorem \ref{thm:lower-bound}. For the upper bound, combine Lemma \ref{lem:gdist-n-leq-gdist-p}, Lemma \ref{lem:gdist-leq-tn} and Theorem \ref{thm:t-log-bound} to get
+The lower bound is Theorem \ref{thm:lower-bound}. For the upper bound, combine Lemmas \ref{lem:gdist-n-leq-gdist-p}, \ref{lem:gdist-leq-tn} and Theorem \ref{thm:t-log-bound} to get
 \cosyalign{
 	\gdist(n) \leq \gdist(p) \leq t(p) = \hat t(p) < 5 \log_2(n).
 }
