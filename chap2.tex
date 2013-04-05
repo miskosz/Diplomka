@@ -1,11 +1,13 @@
 \chapter{Embedding latin trades into groups}
 \label{chap:lower-bound}
 
-In this chapter we define $\gdist(n)$ and present a proof for the lower bound in Conjecture \ref{conj:main}. We proceed as Drápal and Kepka in \cite{DrapalKepka89} and \cite{DrapalKepka85}. Since their work is a bit older, they use old terminology and their proof seems to be difficult to understand. We attempted to redo the proof using modern terminology and make it more accessible.
+In this chapter, we define $\gdist(n)$ and present a proof for the lower bound in Conjecture \ref{conj:main}. We proceed as Drápal and Kepka in \cite{DrapalKepka89} and \cite{DrapalKepka85}. Since their work is a bit older, they use old terminology and their proof seems to be difficult to understand. We attempt to redo the proof using modern terminology and make it more accessible.
 
 Moreover, we were able to improve the constant in the lower bound from $e \approx 2.718$ to $3 \log_3(e) \approx 2.731$, which is the best constant known so far. The key part in doing so is Lemma \ref{lem:technical}.
 
-There are other proofs of the lower bound available, but they are not as general as the one of Drápal and Kepka. The proof of Cavenagh and Wanless \cite{CavenaghWanless09} considers only planar latin bitrades and abelian groups. (On the other hand, it exhibits an interesting connection between determinants and permanents of certain matrices, which we omit.) Another proof by Cavenagh \cite{Cavenagh03} restricts itself to cyclic groups only.\footnote{The author suspects that the proof of Cavenagh is not complete -- he silently assumes that determinant of a certain matrix is nonzero, but the proof is missing.} The proof of Drápal and Kepka works with all latin bitrades and all finite groups.
+There are other proofs of the lower bound available, but they are not as general as the one of Drápal and Kepka. The proof of Cavenagh and Wanless \cite{CavenaghWanless09} considers only planar latin bitrades and abelian groups. (On the other hand, it exhibits an interesting connection between determinants and permanents of certain matrices, which we omit.) Another proof by Cavenagh \cite{Cavenagh03} restricts itself to cyclic groups only. %
+%\footnote{The author suspects that the proof of Cavenagh is not complete -- he silently assumes that determinant of a certain matrix is nonzero, but the proof is missing.}
+The proof of Drápal and Kepka works with all latin bitrades and all finite groups.
 
 %%%
 %%%
@@ -30,14 +32,14 @@ There are at most two ones in every row of M.
 	\item If there is a row with zeros only, then $\det(M) = 0$.
 	\item If every row contains exactly two ones, then
 		\begin{cosyeqnarray}
-			v := (\underbrace{1,\dots,1}_{c_1},\underbrace{-1,\dots,-1}_{c_2}) \nonumber
+			v = (\underbrace{1,\dots,1}_{c_1},\underbrace{-1,\dots,-1}_{c_2}) \nonumber
 		\end{cosyeqnarray}%
 		is such that $Mv^T = 0$. Thus $M$ is singular and $\det(M) = 0$.
 	\item Otherwise there is a row $r$ which contains only a single one in column $c$. Then expanding the determinant by row $r$ yields
 	 \begin{cosyeqnarray}
 	 	\det(M) = \pm \det(\overbar{M}_r^c).
 	 \end{cosyeqnarray}%
-	The matrix $\overbar{M}_r^c$ consists also from two sparse matrices, thus the result follows by induction.
+	The matrix $\overbar{M}_r^c$ consists also of two sparse matrices, thus the result follows by induction.
 \end{cosyitemize}
 \end{proof}
 
@@ -102,7 +104,7 @@ Let $c_1$ be the number of columns of $M_1$ and $k_i$ the number of ones in the 
 %%%
 %%%
 %%%
-\section{Trade matrix}
+\section{The trade matrix}
 Recall that
 \begin{itemize}
 	\item $R = \{r_1,\dots,r_{|R|}\}$ denotes the set of rows,

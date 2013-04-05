@@ -6,7 +6,7 @@ An $n \times n$ table such that every row and column contains every number in $[
 To describe a table of elements formally, we use ordered triples $(r,c,s)$ to represent the fact that the cell in row $r$ and column $c$ contains the symbol $s$. For that we use the following notation. Let
 \begin{itemize}
 	\item $R = \{r_1,\dots,r_{|R|}\}$ denote the set of rows,
-	\item $C = \{c_1,\dots,c_{|C|}\}$ denote the set of columns and
+	\item $C = \{c_1,\dots,c_{|C|}\}$ denote the set of columns, and
 	\item $S = \{s_1,\dots,s_{|S|}\}$ denote the set of symbols.
 \end{itemize}
 We consider only the case when $R$, $C$, and $S$ are finite. As an example, a latin square is formally a subset of $R \times C \times S$ with $R = C = S = [n]$. We shall see this in more detail in a moment.
@@ -19,7 +19,7 @@ In this chapter we define only necessary notions for our purposes. For a more co
 \section{Partial latin squares}
 
 \begin{defn}
-\emph{A partial latin square $L$} is a subset of ordered triples from $R \times C \times S$, such that if $(r,c,s),(r',c',s')\in L$ agree on two coordinates, then $(r,c,s) = (r',c',s')$. We say that $L$ is \emph{on} $R \times C \times S$, or that $R \times C \times S$ is \emph{support} of $L$.
+\emph{A partial latin square $L$} is a subset of ordered triples from $R \times C \times S$, such that if $(r,c,s),(r',c',s')\in L$ agree on two coordinates, then $(r,c,s) = (r',c',s')$. We say that $L$ is \emph{on} $R \times C \times S$, or that $R \times C \times S$ is \emph{the support} of $L$.
 \end{defn}
 
 A partial latin square is usually interpreted as a partially filled $|R| \times |C|$ table. The condition implies that the table is well defined (there is at most one symbol in every cell), and that no symbol repeats itself within a column or a row.
@@ -35,7 +35,7 @@ There are two important maps from partial latin squares to partial latin squares
 
 \begin{defn}
 \label{defn:homotopy}
-Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} $h$ is defined by triple of maps
+Let $A \subset R_A \times C_A \times S_A$ and $B \subset R_B \times C_B \times S_B$ be partial latin squares. \emph{A homotopy} $h$ is defined by a triple of maps
 \cosyalig{
 	h_R : R_A \rightarrow R_B, \quad
 	h_C : C_A \rightarrow C_B,\quad
@@ -104,7 +104,7 @@ is said to be \emph{conjugated} with $A$.
 Note that there are six conjugacies, each one corresponding to a permutation of $\{R,C,S\}$.
 
 \begin{defn}
-Two partial latin squares are from the same \emph{class} if one can be obtained from the other by composition of conjugacy and isotopy.
+Two partial latin squares are from the same \emph{main class} if one can be obtained from the other by composition of conjugacy and isotopy.
 \end{defn}
 
 
@@ -114,7 +114,7 @@ Two partial latin squares are from the same \emph{class} if one can be obtained 
 \section{Latin bitrades}
 \label{sec:latin-bitrades}
 
-Now we can define latin bitrade.
+Now we can define a latin bitrade.
 
 \begin{defn}
 \emph{A latin bitrade} is a pair $(T, T')$ of partial latin squares on $R \times C \times S$ which are disjoint and for every $(r,c,s) \in T$ (respectively, $T'$) there exist unique $r', c', s'$ such that
@@ -127,7 +127,7 @@ Let us call $T$ and $T'$ \emph{latin trades}. Elements of $T$ and $T'$ can be pa
 From the tabular point of view, a latin bitrade is a pair of partial latin squares such that they occupy the same cells, but the symbols in corresponding rows and columns are permuted. Moreover, no symbol is at the same position in both of the tables.
 
 \begin{exmp}
-See Figure \ref{fig:latin-bitrade}. The example is adapted from \cite{Cavenagh08}.
+The two partial latin squares $(T, T')$ on Figure \ref{fig:latin-bitrade} form a latin bitrade. The example is adapted from \cite{Cavenagh08}.
 
 \begin{figure}[htb]
 	\centering
@@ -165,10 +165,10 @@ See Figure \ref{fig:latin-bitrade}. The example is adapted from \cite{Cavenagh08
 
 \end{exmp}%
 
-Note that two latin squares $L$, $L'$ defined on the same set specify a latin bitrade $(L \setminus L', L' \setminus L)$.
+Note that two latin squares $L$, $L'$ defined on the same set specify a latin bitrade $(L \setminus L', L' \setminus L)$. The partial latin squares in this bitrade are "differences" of the two latin squares -- $L\setminus L'$ are cells of $L$ which are different from $L'$, and vice versa.
 
-\begin{defn}[Graph representation of a latin bitrade]
-A latin bitrade $(T, T')$ is associated it with a graph $G = (V, E)$ such that
+\begin{defn}
+A latin bitrade $(T, T')$ is associated with a graph $G = (V, E)$ such that
 \cosyalign{
 	V &= T \cup T' \nonumber\\
 	E &= \{(t,t') \mid t \in T, t' \in T': \textrm{  $t$ and $t'$ differ at exactly one coordinate}\}.\nonumber
@@ -176,7 +176,7 @@ A latin bitrade $(T, T')$ is associated it with a graph $G = (V, E)$ such that
 We call it the \emph{graph of latin bitrade $(T, T')$}.
 \end{defn}
 
-Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade. Moreover, it is edge 3-colorable, the edges can be colored depending on the coordinate that $t$ and $t'$ differ at.
+Clearly, the graph is bipartite with partitions $T$ and $T'$. It is also 3-regular from the definition of latin bitrade. Moreover, it is edge 3-colorable, since the edges can be colored depending on the coordinate that $t$ and $t'$ differ at.
 
 With the graph representation it is easier to understand the purpose of definitions in the rest of this section.
 
@@ -186,7 +186,7 @@ A latin bitrade is \emph{connected} if its graph is connected. It is \emph{spher
 
 \begin{exmp}
 \label{exmp:graph-bitrade}
-Figure \ref{fig:graph-bitrade} shows a graph of a connected spherical latin bitrade $(T,T')$ of size 6. To distinguish the elements of $T$ and $T'$, the latter are typed in brackets. Solid, dashed and dotted edges join elements which differ on $R$-, $C$- and $S$-coordinate respectively.
+Figure \ref{fig:graph-bitrade} shows a graph of a connected spherical latin bitrade $(T,T')$ of size 6. To distinguish the elements of $T$ and $T'$, the latter are typed in brackets. Solid, dashed and dotted edges join elements which differ at $R$-, $C$- and $S$-coordinate respectively.
 
 \begin{figure}[htb]
 \centering
@@ -221,9 +221,9 @@ Let $\{X,Y\} \subset \{R,C,S\}$. Then the mapping $\sigma_Y\sigma_X : T \cup T' 
 The mapping is a bijection with inverse $\sigma_X\sigma_Y$ on a finite set, thus it is a permutation. It changes two coordinates of its argument, and therefore has no fixed points.
 \end{proof}
 
-As a motivation for our last definition, consider this question: When is it possible to reconstruct a latin bitrade from its graph? Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
+Consider the following question: When is it possible to reconstruct a latin bitrade from its graph? Clearly we can do that only up to isotopy and conjugacy, as the graph representation forgets any orderings. Also, in every component of the graph we might switch roles of $T$ and $T'$.
 
-The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into cycles, in which all elements have the same $R$-coordinate. If the coordinates are in different cycles different, the bitrade is called \emph{$R$-separated}, analogously for $C$ and $S$.
+The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say corresponding to  R, the graph splits into cycles, in which all the elements have the same $R$-coordinate. If the $R$-coordinates in different cycles are different, the bitrade is called \emph{$R$-separated}. Analogously for $C$ and $S$.
 
 \begin{defn}
  A latin bitrade is \emph{separated} if it is $R$-, $C$- and $S$-separated.
@@ -250,14 +250,23 @@ The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:
 %This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
 %\end{proof}
 
+\todo{@ Usadit}
+
+\begin{defn}
+A graph is \emph{Eulerian} if each vertex is of even degree. \emph{A triangulation} of a plane is an embedding of a graph into the plane such that every face is a triangle.
+\end{defn}
+
+The following results are due to Cavenagh and Lisoněk \cite{CavenaghLisonek08} and we state them without a proof.
+
 \begin{thm}
 \label{thm:connected-spherical-separated}
-A connected separated spherical latin bitrade $(T,T')$ can be reconstructed from its graph $G$ up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
+There is a bijection between the main classes of connected separated spherical Latin bitrades of size $v-2$ and the isomorphism classes of planar Eulerian triangulations on $v$ vertices.
 \end{thm}%
-\begin{proof}
-See Cavenagh and Lisoněk \cite{CavenaghLisonek08}.
-\end{proof}
 
+\begin{cor}
+\label{cor:connected-spherical-separated}
+A connected separated spherical latin bitrade $(T,T')$ can be reconstructed from its graph up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
+\end{cor}%
 
 
 

@@ -27,6 +27,9 @@
 
 %% Použité kódování znaků: obvykle latin2, cp1250 nebo utf8:
 \usepackage[utf8]{inputenc}
+%\usepackage[T1]{fontenc}
+%\usepackage[czech]{babel}
+
 
 %%%
 %%%
@@ -173,7 +176,7 @@ work as a school work pursuant to Section 60 paragraph 1 of the Copyright Act.
 \vspace{10mm}
 
 \hbox{\hbox to 0.5\hsize{%
-In ........ date ............
+In ................. date .................
 \hss}\hbox to 0.5\hsize{%
 signature of the author
 \hss}}
@@ -187,7 +190,7 @@ signature of the author
 \setlength\parindent{0mm}
 \setlength\parskip{5mm}
 
-\textit{Název práce:}
+\textit{Názov práce:}
 Delenia trojuholníkov a vzdialenosti grúp
 % přesně dle zadání
 
@@ -198,15 +201,15 @@ Michal Szabados
 Katedra algebry
 % dle Organizační struktury MFF UK
 
-\textit{Vedoucí diplomové práce:}
+\textit{Vedúci diplomovej práce:}
 prof. RNDr. Aleš Drápal, CSc., DSc.
 % dle Organizační struktury MFF UK, případně plný název pracoviště mimo MFF UK
 
 \textit{Abstrakt:}
-% abstrakt v rozsahu 80-200 slov; nejedná se však o opis zadání diplomové práce
+Označme $\gdist(p)$ najmenší možný počet políčok, ktorý je nutné zmeniť v tabuľke sčítania modulo $p$, aby vznikol latinský štvorec. Drápal, Cavenagh a Wanless formulovali hypotézu, podľa ktorej existuje $c>0$ také, že $\gdist(p) \leq c\log(p)$. V tejto práci je táto hypotéza dokázaná pre $c \approx 7.21$, a to pomocou konštrukcie delenia rovnostranného trojuholníka so stranou $n$ na $O(\log(n))$ rovnostranných trojuholníkov. Práca tiež obsahuje výpočetné dáta, ktoré naznačujú, že pre veľké hodnoty $p$ platí $\gdist(p)/\log(p) \approx 3.56$.
 
-\textit{Klíčová slova:}
-% 3 až 5 klíčových slov
+\textit{Kľúčové slová:}
+Cayleyho tabuľka, delenie, rovnostranný trojuholník, latinská zá\-mena, dláždenie
 
 \vss}\nobreak\vbox to 0.49\vsize{
 \setlength\parindent{0mm}
@@ -229,11 +232,10 @@ prof. RNDr. Aleš Drápal, CSc., DSc.
 % mimo MFF UK v angličtině
 
 \textit{Abstract:}
-% abstrakt v rozsahu 80-200 slov v angličtině; nejedná se však o překlad
-% zadání diplomové práce
+Denote by $\gdist(p)$ the least number of cells that have to be changed to get a latin square from the table of addition modulo $p$. A conjecture of Drápal, Cavenagh and Wanless states that there exists $c>0$ such that $\gdist(p) \leq c\log(p)$. In this work we prove the conjecture for $c \approx 7.21$, and the proof is done by constructing a dissection of an equilateral triangle of side $n$ into $O(\log(n))$ equilateral triangles. The work also includes computational data which suggest that $\gdist(p)/\log(p) \approx 3.56$ for large values of $p$.
 
 \textit{Keywords:}
-% 3 až 5 klíčových slov v angličtině
+Cayley table, dissection, equilateral triangle, latin bitrade, tiling
 
 \vss}
 
@@ -259,11 +261,13 @@ prof. RNDr. Aleš Drápal, CSc., DSc.
 \include{conclusion}
 
 %%% Appendices
+%\begin{appendices}
 \renewcommand\thetable{\Alph{chapter}.\arabic{table}}
 \renewcommand\thefigure{\Alph{chapter}.\arabic{table}}
 \include{appendixA}
 \include{appendixB}
 \include{appendixC}
+%\end{appendices}
 
 %%% Seznam použité literatury
 \include{bibliography}

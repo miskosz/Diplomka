@@ -31,9 +31,9 @@ We denote by $r_d(n)$ the minimal size of a dissection of an $n \times (n+d)$ re
 
 \begin{defn}
 \label{defn:triangle-dissection}
-\emph{A dissection of size $m$ of a triangle} is a set of $m$ triangles of integral side which cover the original triangle and overlap at most on their boundaries. Such a dissection is \emph{$\circledast$-free} if no six triangles share a common point, it is \emph{prime} if their sides do not have a common factor.
+\emph{A dissection of size $m$ of a triangle} is a set of $m$ triangles of integral side which cover the original triangle and overlap at most on their boundaries. Such a dissection is \emph{$\circledast$-free} if no six triangles share a common point, \emph{prime} if their sides do not have a common factor, and \emph{trivial} if $m=1$.
 
-We denote by $t(n)$ (respectively, $\hat t(n)$) the minimal size of a dissection (respectively, prime dissection) of a triangle of side $n$. $\Delta_n$ denotes a triangle of side~$n$.
+We denote by $t(n)$ (respectively, $\hat t(n)$) the minimal size of a non-trivial dissection (respectively, prime dissection) of a triangle of side $n$.
 \end{defn}
 
 We use terms \emph{dissection} and \emph{tiling} interchangeably. Also by \emph{rectangle} or \emph{triangle dissection} we mean \emph{dissection of a rectangle} or \emph{triangle} respectively. Moreover, for squares and triangles we mean the same by \emph{side} and \emph{size}.
@@ -189,11 +189,12 @@ We identify vector $(x_0, y_0, z_0)$ with the triangle bounded by lines $x=x_0$,
 Now, we can embed a triangle dissection into the grid by choosing its position and orientation.
 
 \begin{defn}
-For a dissection of a triangle $\Delta$ embedded in the plane $x+y+z=0$ define sets of vectors $T^*$, $T^\vartriangle$ such that
+For a dissection $\D$ of a triangle $\Delta$ embedded in the plane $x+y+z=0$ define sets of vectors $T^*$, $T^\vartriangle$ such that
 \begin{cosyitemize}
 	\item $T^*$ is the set of vertices of the triangles in the dissection, with the vertices of $\Delta$ excluded and $\Delta$ itself included;
 	\item $T^\vartriangle$ is the set of triangles in the dissection.
 \end{cosyitemize}%
+We call $(T^*, T^\vartriangle)$ \emph{an embedding of the dissection $\D$.}
 \end{defn}
 
 \begin{exmp} See Figure \ref{fig:arrows}.
@@ -243,13 +244,16 @@ For a dissection of a triangle $\Delta$ embedded in the plane $x+y+z=0$ define s
 \end{exmp}%
 
 \begin{lem}
-Let us have a $\circledast$-free dissection of a triangle $\Delta$. Then $(T^*, T^\vartriangle)$ is a latin bitrade for any embedding of $\Delta$ into the plane. All such latin bitrades are from the same class.
+\label{lem:embedding-bitrade-main-class}
+Let $\D$ be a $\circledast$-free triangle dissection. Then any embedding $(T^*, T^\vartriangle)$ of the dissection $\D$ is a latin bitrade. All such latin bitrades are from the same main class.
 \end{lem}
 \begin{proof}
- $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation to conjugacy, therefore the bitrades are from the same class.
+ $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation to conjugacy, therefore the bitrades are from the same main class.
 \end{proof}
 
-Recall that $\Delta_n$ denotes a triangle of side~$n$.
+Let us point out that we use two different notions of embedding -- embedding of a latin bitrade in a group is a homotopy, whereas embedding of a $\circledast$-free dissection (in the plane $x+y+z=0$) is a latin bitrade. 
+
+Let $\Delta_n$ denote a triangle of side~$n$.
 
 \begin{lem}
 \label{lem:gdist-leq-tn}
@@ -260,9 +264,9 @@ Let us have a $\circledast$-free dissection of $\Delta_n$ into $t(n)$ triangles.
 \cosyalign{
 	h:(x,y,z) \mapsto \big((x \bmod n), (y \bmod n), (z \bmod n)\big)
 }%
-is embedding of $T^*$ into $\Z_n$, which would prove the statement.
+is an embedding of $T^*$ into $\Z_n$, which would prove the statement.
 
-Since the size of the triangle is $n$, it follows easily that $h$ is injective. Because $|x+y+z| \in \{0,n\}$ for $(x,y,z)\in T^*$, also $x+y+z \equiv 0 \pmod n$ holds and $h$ is a homotopy into $\Z_p$.
+Since the size of the triangle is $n$, it follows easily that $h$ is injective. Because $|x+y+z| \in \{0,n\}$ for $(x,y,z)\in T^*$, also $x+y+z \equiv 0 \pmod n$ holds and $h$ is a homotopy into $\Z_n$.
 \end{proof}
 
 \begin{lem}
@@ -309,7 +313,8 @@ Let us sketch the method first. A convex hexagon, which we call \emph{core}, def
 
 In the following, all shapes considered are aligned in a grid formed by unit equilateral triangles, i.e. all lengths are integer and all angles are multiples of $\pi/3$.
 
-For this section we redefine $t(n)$ -- \textbf{we relax the $\circledast$-freeness condition} on the dissections. We also do not concern ourselves with prime dissections.
+\todo{@}
+In this section we relax the $\circledast$-freeness condition on the dissections.  We also do not concern ourselves with prime dissections.
 
 \begin{defn}
 A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_1,\dots,a_6 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
@@ -331,7 +336,7 @@ is perimeter of a core.
 \emph{A shape S} is a union of finitely many unit triangles in the triangular grid. Let us denote by $t(S)$ the minimal number of triangles needed to dissect the shape $S$, and let $t_d(n)$ denote $t(S)$ for a parallelogram S of size $n \times (n+d)$.
 \end{defn}
 
-We kindly ask the reader to extrapolate the formal definition of a dissection from Definition \ref{defn:triangle-dissection}. As an example, \todo{$t(\Delta_n) = t(n)$}.
+We kindly ask the reader to extrapolate the formal definition of a dissection from Definition \ref{defn:triangle-dissection}.
 
 \begin{lem}
 \label{lem:core-tiling}
