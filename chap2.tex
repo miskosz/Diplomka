@@ -296,7 +296,7 @@ Let $G$ be a group of odd order. Then
 }%
 \end{lem}
 \begin{proof}
-Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the "$\geq$" inequality. The other one follows from Cauchy's theorem.
+Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the ``$\geq$'' inequality. The other one follows from Cauchy's theorem.
 \end{proof}
 
 %%%
@@ -310,7 +310,7 @@ A latin trade $T$ \emph{can be embedded} (or \emph{is embeddable}) in a group $G
 Let \emph{$\gdist(G)$} denote the size of the smallest trade embeddable in $G$ and let \emph{$\gdist(n)$} be the minimum across all groups of order $n$.
 \end{defn}
 
-From the tabular point of view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$. The next lemma states that $\gdist(G)$ is the smallest number of cells in the Cayley table of $G$ that have to be changed in order to get another latin square. Therefore $\gdist(n)$ is the minimal "Hamming distance" between groups of order $n$ and latin squares.
+From the tabular point of view, a latin trade $T$ can be embedded in a group $G$ if we can find an isotopic copy of the partial latin square $T$ inside of the Cayley table of $G$. The next lemma states that $\gdist(G)$ is the smallest number of cells in the Cayley table of $G$ that have to be changed in order to get another latin square. Therefore $\gdist(n)$ is the minimal ``Hamming distance'' between groups of order $n$ and latin squares.
 
 \begin{lem}
 Let $G$ be a group. Then
@@ -319,7 +319,7 @@ Let $G$ be a group. Then
 }%
 \end{lem}
 \begin{proof}
-$(G \setminus L, L \setminus G)$ is a latin bitrade, hence "$\leq$" holds. On the other hand, if $(T,T')$ is a latin bitrade embeddable in $G$ via injective homotopy $h$, then $G \setminus h(T) \cup h(T')$ is a latin square.
+$(G \setminus L, L \setminus G)$ is a latin bitrade, hence ``$\leq$'' holds. On the other hand, if $(T,T')$ is a latin bitrade embeddable in $G$ via injective homotopy $h$, then $G \setminus h(T) \cup h(T')$ is a latin square.
 \end{proof}
 
 \begin{exmp}
@@ -389,6 +389,50 @@ See Figure \ref{fig:z5-embedded-trade}.
 	\label{fig:z5-embedded-trade}
 \end{figure}
 
+\begin{lem}
+Let $n$ be a positive even integer. Then $\gdist(n) = 4$.
+\end{lem}
+\begin{proof}
+It is an easy exercise that there is up to isotopy one latin bitrade of size $4$, and no smaller latin bitrade exists. Its embedding into $\Z_n = \Z_{2k}$ is depicted on Figure \ref{fig:intercalates}.
+
+\begin{figure}[htb]
+	\centering
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+\begin{tabular}{ c | c c |}
+\multicolumn{1}{c}{}
+ &  \multicolumn{1}{c}{0}
+ & \multicolumn{1}{c}{k} \\
+\cline{2-3}
+0 & 0 & k \\
+k & k & 0 \\
+\cline{2-3}
+\end{tabular} \\
+		\bigskip
+		$T$
+		\end{center}
+	\end{minipage}
+	\begin{minipage}{.30\linewidth}
+		\begin{center}
+\begin{tabular}{ c | c c |}
+\multicolumn{1}{c}{}
+ &  \multicolumn{1}{c}{0}
+ & \multicolumn{1}{c}{k} \\
+\cline{2-3}
+0 & k & 0 \\
+k & 0 & k \\
+\cline{2-3}
+\end{tabular} \\
+		\bigskip
+		$T'$
+		\end{center}
+	\end{minipage}
+	\caption{A latin bitrade $(T, T')$ of size 4. $T$ can be embedded in $\Z_{2k}$ using identity homotopy.}
+	\label{fig:intercalates}
+\end{figure}
+\end{proof}
+
+
 \begin{thm}
 \label{thm:lower-bound}
 Let $p$ be the smallest prime factor of $n \geq 2$. Then
@@ -396,7 +440,7 @@ Let $p$ be the smallest prime factor of $n \geq 2$. Then
 	3\log_3(p) \leq \gdist(n).
 }%
 \end{thm}%
-\begin{proof} \side{$\gdist(2k) = 4$}%
+\begin{proof}
 If $n$ is even, then $p=2$, $\gdist(n) = 4$ and the inequality holds. Otherwise by Lemmas \ref{lem:lower-bound-zp} and \ref{lem:zG-is-zp} there is a prime factor $p_0$ of $|G|$ such that
 \begin{align}
 	3 \log_3(p_0) \leq z(p_0) = z(G) \leq \gdist(G),

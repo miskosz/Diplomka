@@ -94,6 +94,7 @@ Finally,
 %%%
 %%%
 \section{Logarithmic dissection of a triangle}
+\label{sec:log-dissection-triangle}
 
 \begin{lem}
 \label{lem:triangles-to-squares}
@@ -310,12 +311,15 @@ Let $n \geq 2$ and $p$ be the smallest prime factor of $n$. Then
 
 In previous sections we have seen how to use a logarithmic dissection into squares to get a logarithmic dissection into triangles. While the method presented gives the best results that we are aware of, in this section we show how it can be generalized, as it can possibly lead to ideas, which might be helpful in improving the upper bound in Corollary \ref{cor:constants}.
 
+It seems that the main difficulty in doing so is to get a dissection of any shape of ``size $n$'' into $c \log(n)$ triangles for a good constant $c$. The additional requirements on $\circledast$-freeness, primality and modification of the dissection into a dissection of a triangle seem to be more of a technical detail. Indeed, in our earlier approach in this chapter, we ensured $\circledast$-freeness by introducing padded rectangle dissections; primality by taking an extra step in dissecting triangles of size $2k$ and $3k$; and a triangle dissection by adding two triangles to a dissection of a parallelogram.
+
+For these reasons, and for simplicity of the argument, in this section we relax the $\circledast$-freeness and primality conditions on the dissections.
+
+\bigskip
+
 Let us sketch the method first. A convex hexagon, which we call \emph{core}, defines a dissection of a parallelogram into the core, 6 triangles and a smaller parallelogram. The sizes of the parallelograms depend on the shape of the core, and if chosen appropriately, the smaller parallelogram can be dissected recursively.
 
 In the following, all shapes considered are aligned in a grid formed by unit equilateral triangles, i.e. all lengths are integer and all angles are multiples of $\pi/3$.
-
-\todo{@}
-In this section we relax the $\circledast$-freeness condition on the dissections.  We also do not concern ourselves with prime dissections.
 
 \begin{defn}
 A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_1,\dots,a_6 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
@@ -401,6 +405,10 @@ Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then there exist constants $T
 }%
 \end{cor}%
 
+\begin{defn}
+Let us call the dissection constructed in the proof of Lemma \ref{lem:t-gamma-n} \emph{a core dissection} of a parallelogram $n \times (n+\gamma)$. Denote the number of triangles used by $\bar t_\gamma(n)$.
+\end{defn}
+
 \begin{exmp}
 Let us choose $d=2$ and $\gamma=3$, they meet the conditiion $2d-1 \leq \gamma$. Consider the cores on Figure \ref{fig:core-kk3}, they have to have perimeter $d\gamma = 6$.
 
@@ -418,7 +426,7 @@ for a constant $C$. The resulting tiling is in fact the tiling from Section \ref
 \end{figure}
 \end{exmp}%
 
-It would be desirable to construct a chain of better and better dissections that converge to the expected bound proposed in Chapter \ref{chap:bounds}. However, the following lemmas show that using this method, this is not possible.
+It would be desirable to construct a chain of better and better dissections that converge to the expected bound proposed in Chapter \ref{chap:bounds}. However, the following lemmas show that using core dissections, this is not possible.
 
 \begin{lem}
 \label{lem:core-dissection-bound}
@@ -436,7 +444,9 @@ Since $a_1 \ne 0 \ne a_6$, we have to use at least one more triangle to cover ea
 \label{fig:core-tiling-lower-bound}
 \end{figure}\end{proof}
 
-\begin{lem} Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n} and $\bar t_\gamma(n)$ denote the size of the dissection constructed in the same lemma. Then
+\begin{lem}
+\label{lem:core-disection-lower-bound}
+Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then
 \cosyalign{
 	\bar t_\gamma(n) \geq (6+d) \log_{2d}(n).
 }
@@ -445,15 +455,16 @@ Since $a_1 \ne 0 \ne a_6$, we have to use at least one more triangle to cover ea
 Let us have $T$, $d$ as in the proof of Lemma \ref{lem:t-gamma-n}. By Lemma \ref{lem:core-dissection-bound}, $T \geq d$. The result now follows by plugging into Corollary \ref{cor:log-t-gamma-n}.
 \end{proof}
 
-Let us compare with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Therefore the necessary condition for the tiling to be better is
+Let us compare core dissections with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Therefore the necessary condition for a core dissection into $\hat t_\gamma(n)$ triangles to be better is
 \begin{align}
 	& &\frac{\bar t_\gamma(n)}{\log (n)} &< \frac{5 \log_2(n)}{\log(n)} \hspace{8em} \\
-	&\Rightarrow & \frac{6+d}{\log(2d)} &< \frac{5}{\log(2)} \\
-	&\Leftrightarrow &  2 ^ {d+1} &< d^5.
+	(Lemma\ \ref{lem:core-disection-lower-bound})&\Rightarrow & \frac{6+d}{\log(2d)} &< \frac{5}{\log(2)} \\
+	&\Leftrightarrow & 2^{6+d} &< (2d)^5 \\
+	&\Leftrightarrow &  2 ^ {1+d} &< d^5.
 \end{align}
-The last inequality has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better dissections, as for fixed $d$ the constant in the dissection depends on the value of $T$, which is a positive integer.
+The last inequality has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better core dissections (for fixed $d$ there are finitely many, the only significant variable is the positive integer $T$ in the estimate $(6+T)\log_{2d}(n) + C$).
 
-It was not our primary goal to establish that the dissection into $5 \log(n)$ triangles is the best in any sense. However, we conjecture that it actually is among all "$\bar t_\gamma$" dissections.
+It was not our primary goal to establish that the dissection into $5 \log(n)$ triangles is the best in any sense. However, we conjecture that it actually is among all core dissections.
 
 
 
