@@ -133,7 +133,7 @@ We call it the \emph{trade matrix} and denote by $M_T$.
 \begin{lem}
 Suppose that all elements of $X$ are used in a connected latin trade $T$. Then
 \cosyalign{
-	\Ker M_T = \{(\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|}) \mid x+y+z = 0\} \label{eq:KerMT}
+	\Ker(M_T) = \{(\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|}) \mid x+y+z = 0\} \label{eq:KerMT}
 }%
 where $M_T$ is considered as a matrix over $\Q$.
 \end{lem}
@@ -143,15 +143,17 @@ The proof is divided into several steps.
 %
 %
 \item \textbf{Step 1.}
-Denote the set in (\ref{eq:KerMT}) by $V$. Any vector $v \in V$ is surely a solution for $M_Tv^T = 0$. Let $f:X \rightarrow \Q$ be defined by
+Denote the set in (\ref{eq:KerMT}) by $V$, obviously $V \subset \Ker(M_T)$. Take a vector $v \in M_T$, from definition it is a solution of $M_Tv^T = 0$. Let us denote coordinates of $v$ by defining $f_v:X \rightarrow \Q$ such that
 \begin{align}
-	v = \big(\underbrace{f(r_1), \dots, f(r_{|R|})}_{|R|}, \underbrace{f(c_1), \dots, f(c_{|C|})}_{|C|}, \underbrace{f(s_1), \dots, f(s_{|S|})}_{|S|}\big).
+	v = \big(\underbrace{f_v(r_1), \dots, f_v(r_{|R|})}_{|R|}, \underbrace{f_v(c_1), \dots, f_v(c_{|C|})}_{|C|}, \underbrace{f_v(s_1), \dots, f_v(s_{|S|})}_{|S|}\big).
 \end{align}
-Choose $(x_0, y_0, z_0) \in T$ such that $f(z_0)$ is maximal. By resetting
+Choose $(x_0, y_0, z_0) \in T$ such that $f_v(z_0)$ is maximal. By setting
 \begin{align}
-	v := v+\big(\underbrace{-f(x_0), \dots\ }_{|R|}, \underbrace{-f(y_0), \dots\ }_{|C|},\underbrace{f(x_0)+f(y_0), \dots\ }_{|S|}\big)
+	w = v+\big(\underbrace{-f_v(x_0), \dots\ }_{|R|}, \underbrace{-f_v(y_0), \dots\ }_{|C|},\underbrace{f_v(x_0)+f_v(y_0), \dots\ }_{|S|}\big)
 \end{align}
-we obtain a solution in which $f(x_0) = f(y_0) = f(z_0) = 0$. Now it suffices to prove that $f(x) = 0$ for any $x \in X$. To shorten notation, we denote $f(x,y,z) = f((x,y,z)) = (f(x),f(y),f(z))$.
+we obtain a solution in which $f_w(x_0) = f_w(y_0) = f_w(z_0) = 0$, and moreover $\max \{f_w(z) \mid z\in S\} = 0$. Now, for the other inclusion $\Ker(M_T) \subset V$ it suffices to prove that $w$ must be the zero vector.
+
+Set $f=f_w$. Our goal is thus to prove $f(x) = 0$ for all $x \in X$. To shorten notation, we denote $f(x,y,z) = f((x,y,z)) = (f(x),f(y),f(z))$.
 
 %
 %
