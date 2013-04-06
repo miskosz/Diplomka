@@ -382,7 +382,7 @@ For $a \in [0,2d)$ denote
 	&\alpha+\beta+\gamma = d\gamma,  \\
 	&a_1 \equiv a \pmod{2d}\}
 }%
-and define $T = \max \{T_a \mid a \in [0,2d)\}$. $T_a$ is well-defined for every $a$, since it can be easily seen that there always exists a core with required parameters.
+and define $T = \max \{T_a \mid a \in [0,2d)\}$. $T_a$ is well-defined for every $a$ -- it can be easily seen that there always exists a core with required parameters.
 
 Set $n_0 = 2d+d\gamma$ and take $n > n_0$. Then there is $a \in [0,2d)$ such that $n \equiv (d-1)\gamma + a \pmod{2d}$ and a core $H=(a_1,\alpha,\beta,\gamma)$ which we have chosen such that $t(H) = T_a$.
 
@@ -413,7 +413,7 @@ for a constant $C$. The resulting tiling is in fact the tiling from Section \ref
 \begin{figure}[htb]
 \centering
 \includegraphics[width=0.8\textwidth]{img/example_core_kk3.pdf}
-\caption{Cores for $d=2$, $\gamma=3$. We denote the tiling of the corresponding core briefly by $t(a_1,\alpha,\beta,\gamma)$.}
+\caption{Cores for $d=2$, $\gamma=3$. We denote the size of tiling of the corresponding core briefly by $t(a_1,\alpha,\beta,\gamma)$.}
 \label{fig:core-kk3}
 \end{figure}
 \end{exmp}%
@@ -427,7 +427,7 @@ Let $H = (a_1, \alpha, \beta, \gamma)$ be a core of perimeter $d\gamma$ and $a_1
 \begin{proof}
 Let us denote by $a_1, \dots, a_6$ the corresponding sides instead of their lengths. Distance between the pair of parallel lines $a_2, a_5$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_2$ and $a_5$ we have to use at least $(a_2+a_5)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
 
-Since $a_1 \ne 0 \ne a_6$, we have to use one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_2$ and $a_5$, hence $t(H) \geq d$.
+Since $a_1 \ne 0 \ne a_6$, we have to use at least one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_2$ and $a_5$, hence $t(H) \geq d$.
 
 \begin{figure}[htb]
 \centering
@@ -445,7 +445,7 @@ Since $a_1 \ne 0 \ne a_6$, we have to use one more triangle to cover each of the
 Let us have $T$, $d$ as in the proof of Lemma \ref{lem:t-gamma-n}. By Lemma \ref{lem:core-dissection-bound}, $T \geq d$. The result now follows by plugging into Corollary \ref{cor:log-t-gamma-n}.
 \end{proof}
 
-Let us compare with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Therefore the necessary condition for the method to be better is
+Let us compare with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Therefore the necessary condition for the tiling to be better is
 \begin{align}
 	& &\frac{\bar t_\gamma(n)}{\log (n)} &< \frac{5 \log_2(n)}{\log(n)} \hspace{8em} \\
 	&\Rightarrow & \frac{6+d}{\log(2d)} &< \frac{5}{\log(2)} \\

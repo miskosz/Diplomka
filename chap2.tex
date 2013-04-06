@@ -66,13 +66,13 @@ For our final result we need the following technical lemma:
 
 \begin{lem}
 \label{lem:technical}
-Let $n$ be a positive integer and $k_1 + \dots + k_m = n$ for an integer $m$. Then
+Let $n$ be a positive integer and $k_1 + \dots + k_m = n$ for positive integers $m$ and $k_i$, $i \in [m]$. Then
 \begin{cosyeqnarray}
-	\prod_{i \in [m]} k_i \leq 3^{n/3}.
+	\prod_{i \in [m]} k_i \leq 3^{n/3}.\label{eq:prod-ki}
 \end{cosyeqnarray}%
 \end{lem}
 \begin{proof}
-For $n=1$ it holds trivially, let us assume $n > 1$. Let $k_1 \leq \dots \leq k_m$ be lexicographically smallest such that the maximum is attained. Observe:
+For $n=1$ it holds trivially, let us assume $n > 1$. Let $m$ be the greatest such that the maximum in (\ref{eq:prod-ki}) is attained, and $(k_1, \dots, k_m)$ be the lexicographically smallest $m$-tuple for which this happens. Observe the following inequalities, in which both sides have the same sum:
 \begin{cosyitemize}
 	\item $2 \cdot (k-2) \geq k$ for $k \geq 4$, therefore $k_i \leq 3$;
 	\item $(1+k) > 1 \cdot k$, therefore $k_i > 1$;
