@@ -229,7 +229,7 @@ The graph of a bitrade is edge 3-colorable. By excluding edges of one color, say
  A latin bitrade is \emph{separated} if it is $R$-, $C$- and $S$-separated.
 \end{defn}
 
-Every latin bitrade can be transformed into a separated one -- for a symbol spanning multiple cycles, it suffices to introduce a new symbol for each of them and relabel accordingly. Clearly, this new bitrade yields the same graph as the original one.
+Every latin bitrade can be transformed into a separated one -- for a symbol $x$ spanning multiple cycles, it suffices to introduce new symbols $x', x'', \dots$, one for each cycle, and relabel accordingly. Clearly, this new bitrade yields the same graph as the original one.
 
 \begin{exmp}
 The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:separated-graph} illustrates the cycles after deletion of edges corresponding to $S$.
@@ -250,13 +250,18 @@ The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:
 %This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
 %\end{proof}
 
-\todo{@ Usadit}
+The following results regarding the relation of a latin bitrade and its graph in the planar case are due to Cavenagh and Lisoněk \cite{CavenaghLisonek08}. We state them without a proof.
 
 \begin{defn}
 A graph is \emph{Eulerian} if each vertex is of even degree. \emph{A triangulation} of a plane is an embedding of a graph into the plane such that every face is a triangle.
 \end{defn}
 
-The following results are due to Cavenagh and Lisoněk \cite{CavenaghLisonek08} and we state them without a proof.
+\begin{lem}
+Dual of the graph of a connected spherical latin bitrade is an Eulerian triangulation.
+\end{lem}
+\begin{proof}
+Trivial.
+\end{proof}
 
 \begin{thm}
 \label{thm:connected-spherical-separated}
@@ -265,7 +270,7 @@ There is a bijection between the main classes of connected separated spherical L
 
 \begin{cor}
 \label{cor:connected-spherical-separated}
-A connected separated spherical latin bitrade $(T,T')$ can be reconstructed from its graph up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
+There is an algorithm to reconstruct a connected separated spherical latin bitrade $(T,T')$ from its graph up to isotopy, conjugacy, and switch of the roles of $T$ and $T'$.
 \end{cor}%
 
 

@@ -11,7 +11,7 @@ While the question is open, in this chapter we provide evidence which suggests t
 
 \begin{conj}
 \label{conj:lim-gdist}
-Let $P$ be a real such that $P^3=P+1$. Then for primes $p$:
+Let $P$ be a real such that $P^3=P+1$. Then for primes $p$
 \begin{align}
 	\lim_{p \rightarrow \infty} \frac{\gdist(p)}{\log(p)} = 1/\log(P) \approx 3.56.
 \end{align}
@@ -24,7 +24,7 @@ Our argument is based on the connection of $\gdist(p)$ to dissections of triangl
 Let $p$ be a prime. Then $\gdist(p) = t(p)$.
 \end{conj}%
 
-If that was the case, we could find bounds for $\gdist(n)$ by examining triangle dissections only. In this chapter we present computational data of Rosendorf \cite{Rosendorf04} and of our own which support the following:
+If that was the case, we would be able to establish bounds for $\gdist(n)$ by examining triangle dissections only. In particular, the following would imply Conjecture \ref{conj:lim-gdist}:
 
 \begin{conj}
 \label{conj:lim-hat-tn}
@@ -34,9 +34,10 @@ Let $P$ be a real such that $P^3=P+1$. Then
 \end{align}
 \end{conj}%
 
-Note that Conjectures \ref{conj:lim-hat-tn} and \ref{conj:gdistp-equals-tp} imply Conjecture \ref{conj:lim-gdist}.
+The reason to consider triangle dissections is that we are able to generate them using a computer algorithm. Moreover, because it means no extra work for us, we consider prime dissections. By doing so we get the advantage that we do not have to restrict to prime sizes only.
 
-The advantage of the formulation of Conjecture \ref{conj:lim-hat-tn} over Conjecture \ref{conj:lim-gdist} is that we can work with all positive integers $n$ and do not have to restrict to primes only.
+In this chapter we present computational data of Rosendorf \cite{Rosendorf04} and of our own which support Conjecture \ref{conj:lim-hat-tn}. We begin by clarifying the role of the constant $P$.
+
 
 %%%
 %%%
@@ -154,7 +155,7 @@ It suffices to show that the graph of $(T^*, T^\vartriangle)$ is connected and p
 \end{figure}
 \end{proof}
 
-Let $(T,T')$ denote the separated latin bitrade obtained from $(T^*, T^\vartriangle)$ by the procedure described in Section \ref{sec:latin-bitrades}. Further denote $|T|$ and the support of $T$ such that:
+Let $(T,T')$ denote the separated latin bitrade obtained from $(T^*, T^\vartriangle)$ by the procedure described in Section \ref{sec:latin-bitrades}. Further denote $T$ and the support of $T$ such that:
 \begin{itemize}
 	\item $T = \{t_1, \dots, t_{|T|}\} \subset R \times C \times S$,
 	\item $R = \{r_1,\dots,r_{|R|}\},\ 
