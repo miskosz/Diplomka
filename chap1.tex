@@ -199,11 +199,11 @@ Figure \ref{fig:graph-bitrade} shows a graph of a connected spherical latin bitr
 \noindent
 For later use, let us define maps $\sigma_R, \sigma_C, \sigma_S : T \cup T' \rightarrow T \cup T'$ by
 \cosyalign{
- 	\sigma_R(r,c,s) = (r',c,s) \mbox{ with } r \ne r',\\
- 	\sigma_C(r,c,s) = (r,c',s) \mbox{ with } c \ne c', \\
- 	\sigma_S(r,c,s) = (r,c,s') \mbox{ with } s \ne s'.
+ 	\sigma_R(r,c,s) = (r',c,s) \mbox{ such that } r \ne r',\\
+ 	\sigma_C(r,c,s) = (r,c',s) \mbox{ such that } c \ne c', \\
+ 	\sigma_S(r,c,s) = (r,c,s') \mbox{ such that } s \ne s'.
 }%
-The definition of the latin bitrade implies that these maps are involutions. They correspond to the edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted edges respectively.
+The definition of latin bitrade implies that these maps are involutions. They correspond to the edges of the graph -- on Figure \ref{fig:graph-bitrade},  $\sigma_R, \sigma_C, \sigma_S$ are represented by solid, dashed and dotted edges respectively.
 
 \begin{lem}
 \label{lem:connected-sigma}
@@ -250,7 +250,7 @@ The bitrade from Example \ref{exmp:graph-bitrade} is separated. Figure \ref{fig:
 %This result was already known to Heawood. A proof of it can be found in \cite{Tutte48}.
 %\end{proof}
 
-The following results regarding the relation of a latin bitrade and its graph in the planar case are due to Cavenagh and Lisoněk \cite{CavenaghLisonek08}. We state them without a proof. They considered unordered latin squares $\{T,T'\}$. 
+The following results regarding the relation of a latin bitrade and its graph in the planar case are due to Cavenagh and Lisoněk \cite{CavenaghLisonek08}. We state them without a proof. Unlike us, they considered latin bitrades to be unordered pairs of partial latin squares. We call them \emph{unordered latin bitrades}.
 
 \begin{defn}
 A graph is \emph{Eulerian} if each vertex is of even degree. \emph{A triangulation} of a plane is an embedding of a graph into the plane such that every face is a triangle.
@@ -260,7 +260,7 @@ A graph is \emph{Eulerian} if each vertex is of even degree. \emph{A triangulati
 Dual of the graph of a connected spherical latin bitrade is an Eulerian triangulation.
 \end{lem}
 \begin{proof}
-Trivial.
+Simple.
 \end{proof}
 
 \begin{thm}

@@ -3,7 +3,7 @@
 
 The study of dissections was initiated by the paper \emph{The dissection of rectangles into squares} by Brooks, Smith, Stone and Tutte \cite{BrooksSmithStoneTutte40}. They answered the question whether it is possible to dissect a square into some number of unequal squares (yes, it is), and developed methods to study such dissections.\footnote{They showed, for example, that dissections into squares are related to electrical circuits obeying Kirchhoff's laws.}
 
-Inspired by a puzzle called \emph{Mrs Perkins's quilt} by Dudeney~\cite{Dudeney17}, Conway~\cite{Conway64} considered the case where the dissecting squares can be equally large. He proposed a question about the minimal number of integer-sided squares needed to dissect a square of side $n$. It is easy to observe that when $n$ is divisible by an integer $d \geq 2$, then it is possible to use a scaled up dissection of a square of side $d$. Therefore he considered only dissections where the dissecting squares do not have a common factor.
+Inspired by a puzzle called \emph{Mrs Perkins's quilt} by Dudeney~\cite{Dudeney17}, Conway~\cite{Conway64} considered the case where the dissecting squares can be equally large. He proposed a question about the minimal number of integer-sided squares needed to dissect a square of side $n$. It is easy to observe that when $n$ is divisible by an integer $d \geq 2$, then it is possible to use a scaled up dissection of a square of side $d$. Therefore he considered only dissections where sides of the dissecting squares do not have a common factor.
 
 Conway proved that at least $c \log(n)$ squares are needed. A year later Trustrum \cite{Trustrum65} proved that $O(\log(n))$ is sufficient, and thus established that the answer is asymptotically logarithmic. However, the best constants in the estimates do not appear to be known.
 
@@ -25,14 +25,14 @@ Note that the first one to study dissections of equilateral triangles was Tutte~
 Unless specified otherwise, from now on we use \emph{triangle} instead of \emph{equilateral triangle} for brevity.
 
 \begin{defn}
-\emph{A dissection of size $m$ of a rectangle} is a set of $m$ squares of integral side which cover the rectangle and overlap at most on their boundaries. Such a dissection is \emph{$\oplus$-free} if no four squares share a common point, it is \emph{prime} if their sides do not have a common factor.
+\emph{A dissection of size $m$ of a rectangle} is a set of $m$ squares of integral side which cover the rectangle and overlap at most on their boundaries. Such a dissection is \emph{$\oplus$-free} if no four squares share a common point, it is \emph{prime} if their side lengths do not have a common factor.
 
 We denote by $r_d(n)$ the minimal size of a dissection of an $n \times (n+d)$ rectangle.
 \end{defn}
 
 \begin{defn}
 \label{defn:triangle-dissection}
-\emph{A dissection of size $m$ of a triangle} is a set of $m$ triangles of integral side which cover the original triangle and overlap at most on their boundaries. Such a dissection is \emph{$\circledast$-free} if no six triangles share a common point, \emph{prime} if their sides do not have a common factor, and \emph{trivial} if $m=1$.
+\emph{A dissection of size $m$ of a triangle} is a set of $m$ triangles of integral side which cover the original triangle and overlap at most on their boundaries. Such a dissection is \emph{$\circledast$-free} if no six triangles share a common point, \emph{prime} if their side lengths do not have a common factor, and \emph{trivial} if $m=1$.
 
 We denote by $t(n)$ (respectively, $\hat t(n)$) the minimal size of a non-trivial dissection (respectively, prime dissection) of a triangle of side $n$.
 \end{defn}
@@ -59,7 +59,7 @@ Let us describe an algorithm to dissect an $n \times (n+3)$ rectangle for $n \ge
 \begin{alg} \ 
 \begin{enumerate}
 		\item[(A1)] For $n=2,3,4,5,6,7,8,9,10$ dissect into $4,2,5,5,3,6,6,4,7$ squares respectively such that the dissection is $\oplus$-free and padded;
-		\item[(A2)] for $n$ of form $4k+z$ with $k \geq 2, z \in \{3,4,5,6\}$, depending on $z$ dissect into $3$ or $5$ squares and a rectangle of size $2k \times 2(k+3)$. Then dissect this rectangle with two times larger tiles recursively. Figure \ref{fig:kk3} illustrates the method.
+		\item[(A2)] for $n$ of the form $4k+z$ with $k \geq 2, z \in \{3,4,5,6\}$, depending on $z$ dissect into $3$ or $5$ squares and a rectangle of size $2k \times 2(k+3)$. Then dissect this rectangle with two times larger tiles recursively. Figure \ref{fig:kk3} illustrates the method.
 	\end{enumerate}
 \end{alg}%
 	
@@ -111,7 +111,7 @@ Consider a triangle of side $n$. We can cut off triangles of sides $k$ and $(k+3
 \label{fig:transf}
 \end{figure}
 
-Now, every square in the dissection can be diagonally cut into two right-angled triangles, such that after application of $f^{-1}$ they transform into equilateral triangles. This gives us a dissection of the original triangle into $2\,r_3(k)+2$ triangles. Moreover $\gcd(k+3,3) =\gcd (k,3)$ and $3 \nmid k$, therefore the dissection is prime.
+Now, every square in the dissection can be diagonally cut into two right-angled triangles, such that after application of $f^{-1}$ they transform into equilateral triangles. This gives us a dissection of the original triangle into $2\,r_3(k)+2$ triangles. Moreover $\gcd(k+3,k) =\gcd (k,3) =1$ since $3 \nmid k$, therefore the dissection is prime.
 
 It remains to prove $\circledast$-freeness. Clearly, the condition cannot be violated on the sides of the parallelogram.
 
@@ -162,7 +162,7 @@ Let us count the number of triangles used. If $r > 1$, then
 }
 If $r=1$, then $\hat t(n) \leq 3p + 5q + 1$ and
 \cosyalig{
-	3p + 5q + 1 &< 5 \log_2(2^p3^q) = 5\log_2(n) \qquad \Leftrightarrow \\
+	3p + 5q + 1 &< 5\log_2(n) = 5 \log_2(2^p3^q) \qquad \Leftrightarrow \\
 	5q + 1 &< 2p + 5q \log_2(3) \qquad \Leftrightarrow \\
 	1 &< 2p + (5\log_2(3)-5)q,
 }
@@ -177,7 +177,7 @@ which holds every time at least one of $p,q$ is nonzero.
 
 There is an interesting connection between triangle dissections and latin bitrades, first noted by Drápal \cite{Drapal91}. Let us begin with parametrization of a triangle dissection.
 
-Consider a plane $\rho$ defined by $x+y+z=0$ in 3-dimensional Euclidean space. The planes with one fixed integer coordinate $x=k$, $y=k$, $z=k$ intersect with $\rho$, and lines of the intersections form a triangular grid.
+Consider a plane $\rho$ defined by $x+y+z=0$ in 3-dimensional Euclidean space. The planes with one fixed integer coordinate $x=k$, $y=k$, $z=k$ intersect with $\rho$, and the lines of intersections form a triangular grid.
 
 We identify vector $(x_0, y_0, z_0)$ with the triangle bounded by lines $x=x_0$, $y=y_0$ and $z=z_0$. The number $|x_0+y_0+z_0|$ is the size (or side) of the triangle. Degenerate triangles of size 0 are points in the plane $\rho$.
 
@@ -250,12 +250,12 @@ We call $(T^*, T^\vartriangle)$ \emph{an embedding of the dissection $\D$.}
 Let $\D$ be a $\circledast$-free triangle dissection. Then any embedding $(T^*, T^\vartriangle)$ of the dissection $\D$ is a latin bitrade. All such latin bitrades are from the same main class.
 \end{lem}
 \begin{proof}
- $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation by multiples of $\pi/3$ to conjugacy, therefore the bitrades are from the same main class.
+ $(T^*, T^\vartriangle)$ is a bitrade straightforwardly from $\circledast$-freeness. Translation of the triangle corresponds to isotopy and rotation by multiples of $\pi/3$ to conjugacy composed with isotopy, therefore the bitrades are from the same main class.
 \end{proof}
 
 Let us point out that we use two different notions of embedding -- embedding of a latin bitrade in a group is a homotopy, whereas embedding of a $\circledast$-free dissection (in the plane $x+y+z=0$) is a latin bitrade. 
 
-Let $\Delta_n$ denote a triangle of side~$n$.
+We denote by $\Delta_n$ a triangle of side~$n$.
 
 \begin{lem}
 \label{lem:gdist-leq-tn}
@@ -279,13 +279,13 @@ If $p$ is a prime factor of $n$, then $\gdist(n) \leq \gdist(p)$.
 Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. The rest follows from Cauchy's theorem.
 \end{proof}
 
-Let us mention a conjecture related to this lemma, which states, that actually there is equality:
+Let us mention a conjecture related to this lemma, which states that there is equality for some $p$:
 
 \begin{conj}
 $\gdist(n) = \min \{\gdist(p) \mid p \mbox{ divides } n\}$.
 \end{conj}%
 
-Finally, we have proved everything needed for our main result -- the proof of Conjecture \ref{conj:main}:
+Finally, we have proved everything needed for our main result -- the proof of Conjecture \ref{conj:main}.
 
 \begin{thm}
 \label{cor:conj-proof}
@@ -328,7 +328,7 @@ Let us sketch the method first. A convex hexagon, which we call \emph{core}, def
 In the following, all shapes considered are aligned in a grid formed by unit equilateral triangles, i.e. all lengths are integer and all angles are multiples of $\pi/3$.
 
 \begin{defn}
-A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_1,\dots,a_6 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its sides can be zero. From the properties of such a hexagon, the following holds:
+A convex hexagon $H$ in a unit triangular grid is \emph{a core}. Let us denote its side lengths consecutively by $a_1,\dots,a_6 \in \Z_0^+$. We allow the hexagon to be degenerate, i.e. some of its side lengths can be zero. From the properties of such a hexagon, the following holds:
 \cosyalign{
 	a_1 + a_2 &= a_4 + a_5 =: \alpha \\
 	a_2 + a_3 &= a_5 + a_6 =: \beta \\
@@ -374,7 +374,7 @@ Now, let us set the variables such that we can use the tiling recursively. First
 }
 with $n = 2dk + (d-1)\gamma + a_1$.
 
-Finally, if $n$ can be of any integer value (possibly for $n > n_0$ for some $n_0$), we can use the dissection recursively. Since $k$ can be any integer, it suffices for $(d-1)\gamma + a_1$ to go through all remainders modulo $2d$. The term $(d-1)\gamma$ is a constant, therefore $a_1$ must be such. Because $a_1$ is nonnegative and $a_1 \leq \gamma = a_1 + a_6$, this gives us the final requirement $2d-1 \leq \gamma$.
+Finally, if $n$ can be of any integer value (possibly for $n > n_0$ for some $n_0$), we can use the dissection recursively. Since $k$ can be any integer, it suffices for $(d-1)\gamma + a_1$ to go through all remainders modulo $2d$. The term $(d-1)\gamma$ is a constant, therefore $a_1$ must be such. Because $a_1$ is non-negative, the smallest possible values that span remainders modulo $2d$ are $0,\dots,(2d-1)$. The fact that $a_1 \leq \gamma = a_1 + a_6$ gives us the final requirement $2d-1 \leq \gamma$.
 
 \begin{lem}
 \label{lem:t-gamma-n}
@@ -412,11 +412,11 @@ Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then there exist constants $T
 \end{cor}%
 
 \begin{defn}
-Let us call the dissection constructed in the proof of Lemma \ref{lem:t-gamma-n} \emph{a core dissection} of a parallelogram $n \times (n+\gamma)$. Denote the number of triangles used by $\bar t_\gamma(n)$.
+For fixed $d$ and $\gamma$ Lemma \ref{lem:t-gamma-n} gives a recursive algorithm to dissect parallelograms $n \times (n+\gamma)$. We call the resulting dissection \emph{a core dissection} and denote the number of triangles used by $\bar t_\gamma(n)$. Because it depends as well on the choice of $d$, we will use the notation only in a context with $d$ fixed.
 \end{defn}
 
 \begin{exmp}
-Let us choose $d=2$ and $\gamma=3$, they meet the conditiion $2d-1 \leq \gamma$. Consider the cores on Figure \ref{fig:core-kk3}, they have to have perimeter $d\gamma = 6$.
+Let us choose $d=2$ and $\gamma=3$, they meet the condition $2d-1 \leq \gamma$. Consider the cores on Figure \ref{fig:core-kk3}, they have to have perimeter $d\gamma = 6$.
 
 We chose $a_1 \in \{0,1,2,3\}$ as this is the only choice such that $a_1 \leq \gamma$ and $a_1$ runs through all remainders modulo $2d=4$. We can set $T=4$ and from Corollary \ref{cor:log-t-gamma-n} we have
 \cosyalign{
@@ -439,9 +439,9 @@ It would be desirable to construct a chain of better and better dissections that
 Let $H = (a_1, \alpha, \beta, \gamma)$ be a core of perimeter $d\gamma$ and $a_1 \ne 0 \ne a_6$. Then $t(H) \geq d$.
 \end{lem}
 \begin{proof}
-Let us denote by $a_1, \dots, a_6$ the corresponding sides instead of their lengths. Distance between the pair of parallel lines $a_2, a_5$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_2$ and $a_5$ we have to use at least $(a_2+a_5)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
+Denote by $a_1, \dots, a_6$ the corresponding sides instead of their lengths. Distance between the pair of parallel lines $a_2, a_5$ is $\frac{\sqrt{3}}{2}\gamma$, and therefore the largest triangle that can fit in $H$ can be of side $\gamma$. Therefore to cover the sides $a_2$ and $a_5$ we have to use at least $(a_2+a_5)/\gamma = (d\gamma-2\gamma)/\gamma = d-2$ triangles.
 
-Since $a_1 \ne 0 \ne a_6$, we have to use at least one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_2$ and $a_5$, hence $t(H) \geq d$.
+Since $|a_1| \ne 0 \ne |a_6|$, we have to use at least one more triangle to cover each of these sides. These triangles have to be distinct from those lying on sides $a_2$ and $a_5$, hence $t(H) \geq d$.
 
 \begin{figure}[htb]
 \centering
@@ -452,23 +452,37 @@ Since $a_1 \ne 0 \ne a_6$, we have to use at least one more triangle to cover ea
 
 \begin{lem}
 \label{lem:core-disection-lower-bound}
-Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then
+Let $d,\gamma$ be as in Lemma \ref{lem:t-gamma-n}. Then for all $\varepsilon > 0$ there is a constant $C_\varepsilon$ such that
 \cosyalign{
-	\bar t_\gamma(n) \geq (6+d) \log_{2d}(n).
+	\bar t_\gamma(n) \geq (6+d-\varepsilon) \log_{2d}(n) + C_\varepsilon.
 }
 \end{lem}%
 \begin{proof}
-Let us have $T$, $d$ as in the proof of Lemma \ref{lem:t-gamma-n}. By Lemma \ref{lem:core-dissection-bound}, $T \geq d$. The result now follows by plugging into Corollary \ref{cor:log-t-gamma-n}.
+Let us use the context from the proof of Lemma \ref{lem:t-gamma-n}. Because the core $H$ has perimeter $d\gamma$, from Lemma \ref{lem:core-dissection-bound} we have $t(H) \geq d$. Therefore for $n \geq n_0$
+\cosyalign{
+	\bar t_\gamma(n) = 6 + t(H) +  \bar t_\gamma(k) \geq 6 + d + \bar t_\gamma(k).
+}%
+Since $n = 2dk + (d-1)\gamma + a_1 \leq 2dk + d\gamma$, we have
+\cosyalign{
+	k \geq \frac{n-d\gamma}{2d}.
+}%
+The result now follows by induction, we omit it since it is purely technical.
 \end{proof}
 
-Let us compare core dissections with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Therefore the necessary condition for a core dissection into $\hat t_\gamma(n)$ triangles to be better is
+Let us compare core dissections with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Fix integers $d,\gamma \geq 2$ such that $2d-1 \leq \gamma$ and choose a real $\varepsilon > 0$. Then a necessary condition for a core dissection into $\bar t_\gamma(n)$ triangles to be better is
 \begin{align}
-	& &\frac{\bar t_\gamma(n)}{\log (n)} &< \frac{5 \log_2(n)}{\log(n)} \hspace{8em} \\
-	(Lemma\ \ref{lem:core-disection-lower-bound})&\Rightarrow & \frac{6+d}{\log(2d)} &< \frac{5}{\log(2)} \\
-	&\Leftrightarrow & 2^{6+d} &< (2d)^5 \\
-	&\Leftrightarrow &  2 ^ {1+d} &< d^5.
+	&\ \lim_{n\rightarrow\infty} \frac{\bar t_\gamma(n)}{\log (n)}
+							< \lim_{n\rightarrow\infty} \frac{5 \log_2(n)}{\log(n)} \\
+	(Lem.\ \ref{lem:core-disection-lower-bound}) \Rightarrow&\
+	\lim_{n\rightarrow\infty} \frac{ (6+d-\varepsilon) \log_{2d}(n) + C_\varepsilon}{\log (n)}
+							< \frac{5}{\log(2)} \\
+	\Leftrightarrow&\
+	\frac{6+d-\varepsilon}{\log(2d)} < \frac{5}{\log(2)} \\
+	\Leftrightarrow&\
+	 2^{6+d-\varepsilon} < (2d)^5 \\
+	\Leftrightarrow&\  2 ^ {1+d-\varepsilon} < d^5.
 \end{align}
-The last inequality has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better core dissections (for fixed $d$ there are finitely many, the only significant variable is the positive integer $T$ in the estimate $(6+T)\log_{2d}(n) + C$).
+The last inequality holds for all $\varepsilon > 0$, from which $2 ^ {1+d} < d^5$. This has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better core dissections (for fixed $d$ and $\gamma$ there is single best dissection).
 
 It was not our primary goal to establish that the dissection into $5 \log(n)$ triangles is the best in any sense. However, we conjecture that it actually is among all core dissections.
 

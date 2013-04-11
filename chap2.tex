@@ -25,14 +25,14 @@ We denote by $\overbar{M}_r^c$ the matrix obtained from $M$ by excluding row $r$
 Let $M_1,M_2$ be sparse matrices with the same number of rows such that $M = (M_1,M_2)$ is a square block matrix. Then $\det(M) \in \{-1,0,1\}$.
 \end{lem}
 \begin{proof}
-Let $c_1,c_2$ be the number of columns in $M_1$ and $M_2$ respectively. The proof is by induction on $n := c_1+c_2$. The case with $n=1$ is trivial. Therefore assume $n>1$.
+Let $c_1,c_2$ be the number of columns in $M_1$, $M_2$ respectively. The proof is by induction on $n := c_1+c_2$. The case with $n=1$ is trivial. Therefore assume $n>1$.
 
 There are at most two ones in every row of M.
 \begin{cosyitemize}
 	\item If there is a row with zeros only, then $\det(M) = 0$.
 	\item If every row contains exactly two ones, then
 		\begin{cosyeqnarray}
-			v = (\underbrace{1,\dots,1}_{c_1},\underbrace{-1,\dots,-1}_{c_2}) \nonumber
+			v = (\underbrace{1,\dots,1}_{c_1},\underbrace{-1,\dots,-1}_{c_2})
 		\end{cosyeqnarray}%
 		is such that $Mv^T = 0$. Thus $M$ is singular and $\det(M) = 0$.
 	\item Otherwise there is a row $r$ which contains only a single one in column $c$. Then expanding the determinant by row $r$ yields
@@ -53,7 +53,7 @@ Let $M_1,M_2,M_3$ be sparse matrices of sizes $n \times c_1, n \times c_2, n \ti
 \begin{proof}
 The proof is by induction on $c_1$. Denote $M = (m_{i,j})_{i,j \in[n]}$.
 \begin{enumerate}
-	\item If $c_1 = 0$, then $|\det(M)| \leq \prod_{i\in\emptyset} k_i = 1$ holds by Lemma \ref{lem:sparse2}.
+	\item If $c_1 = 0$, then $M = (M_2,M_3)$ and $|\det(M)| \leq \prod_{i\in\emptyset} k_i = 1$ holds by Lemma~\ref{lem:sparse2}.
 	\item Otherwise expand by the first column:
 	\begin{cosyeqnarray}
 		|\det(M)| \leq \sum_{i\in[n]} m_{i,1}\,|\det(\overbar{M}_i^1)| \leq k_1 \prod_{i \in [2, c_1]} k_i.
@@ -61,8 +61,6 @@ The proof is by induction on $c_1$. Denote $M = (m_{i,j})_{i,j \in[n]}$.
 	The last inequality holds since there are $k_1$ nonzero summands and the product majorizes each subdeterminant from induction.
 \end{enumerate}
 \end{proof}
-
-For our final result we need the following technical lemma:
 
 \begin{lem}
 \label{lem:technical}
@@ -131,7 +129,7 @@ We define a matrix $M = (m_{i,j})_{i \in T, j \in X}$ of size $|T| \times |X|$ s
 We call it the \emph{trade matrix} and denote by $M_T$.
 
 \begin{lem}
-Suppose that all elements of $X$ are used in a connected latin trade $T$. Then
+Suppose that all elements of $X$ are used in a connected latin bitrade $(T,T')$. Then
 \cosyalign{
 	\Ker(M_T) = \{(\underbrace{x, \dots, x}_{|R|}, \underbrace{y, \dots, y}_{|C|}, \underbrace{z, \dots, z}_{|S|}) \mid x+y+z = 0\} \label{eq:KerMT}
 }%
@@ -143,30 +141,34 @@ The proof is divided into several steps.
 %
 %
 \item \textbf{Step 1.}
-Denote the set in (\ref{eq:KerMT}) by $V$, obviously $V \subset \Ker(M_T)$. Take a vector $v \in M_T$, from definition it is a solution of $M_Tv^T = 0$. Let us denote coordinates of $v$ by defining $f_v:X \rightarrow \Q$ such that
+Denote the set in (\ref{eq:KerMT}) by $V$, obviously $V \subset \Ker(M_T)$. Take a vector $v \in \Ker(M_T)$, from definition it is a solution of $M_Tv^T = 0$. Let us denote coordinates of $v$ by defining $f_v:X \rightarrow \Q$ such that
 \begin{align}
 	v = \big(\underbrace{f_v(r_1), \dots, f_v(r_{|R|})}_{|R|}, \underbrace{f_v(c_1), \dots, f_v(c_{|C|})}_{|C|}, \underbrace{f_v(s_1), \dots, f_v(s_{|S|})}_{|S|}\big).
 \end{align}
-Choose $(x_0, y_0, z_0) \in T$ such that $f_v(z_0)$ is maximal. By setting
+Choose $(x_0, y_0, z_0) \in T$ such that $f_v(z_0)$ is maximal. Then also $f_v(x_0)+f_v(y_0)+f_v(z_0) = 0$ and by setting
 \begin{align}
-	w = v+\big(\underbrace{-f_v(x_0), \dots\ }_{|R|}, \underbrace{-f_v(y_0), \dots\ }_{|C|},\underbrace{f_v(x_0)+f_v(y_0), \dots\ }_{|S|}\big)
+	w = v-\big(\underbrace{f_v(x_0), \dots\ }_{|R|}, \underbrace{f_v(y_0), \dots\ }_{|C|},\underbrace{f_v(z_0), \dots\ }_{|S|}\big)
 \end{align}
-we obtain a solution in which $f_w(x_0) = f_w(y_0) = f_w(z_0) = 0$, and moreover $\max \{f_w(z) \mid z\in S\} = 0$. Now, for the other inclusion $\Ker(M_T) \subset V$ it suffices to prove that $w$ must be the zero vector.
+we obtain a solution in which $f_w(x_0) = f_w(y_0) = f_w(z_0) = 0$, and moreover $\max \{f_w(z) \mid z\in S\} = 0$. Now, for the other inclusion $\Ker(M_T) \subset V$ it suffices to prove that $w$ is the zero vector.
 
 Set $f=f_w$. Our goal is thus to prove $f(x) = 0$ for all $x \in X$. To shorten notation, we denote $f(x,y,z) = f((x,y,z)) = (f(x),f(y),f(z))$.
 
 %
 %
 \item \textbf{Step 2.}
-For all $(x,y,z) \in T$ holds $f(x)+f(y)+f(z)=0$. Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$ we have
+Because $w$ is a solution to $Mw^T=0$, for all $(x,y,z) \in T$ holds
+\cosyalign{
+	f(x)+f(y)+f(z)=0. \label{eq:T-sum-zero}
+}%
+Since $0$ is the largest element of $\{f(z) \mid z \in S\}$ and $T'$ occupies the same cells as $T$, for all $(x,y,z) \in T \cup T'$ we have
 \begin{align}
-	f(x) + f(y) \geq 0.
+	f(x) + f(y) \geq 0. \label{eq:xy-leq-zero}
 \end{align}
-In steps 3 and 4 we prove that if $t \in T\cup T'$ and $f(t) = (0,0,0)$, then
+In steps 3 and 4 we prove that if $(x,y,z) \in T\cup T'$ and $f(x,y,z) = (0,0,0)$, then
 \begin{align}
-	f(\sigma_Y(t)) = (0,0,0)
+	f(\sigma_Y(x,y,z)) = (0,0,0)
 \end{align}
-for $Y \in \{R, C, S\}$. Since the bitrade is connected, Lemma \ref{lem:connected-sigma} implies that $f(t) = (0,0,0)$ for all $t \in T \cup T'$. Because all symbols are used in the bitrade, from that we have the desired $f(x) = 0$ for all $x \in X$.
+for $Y \in \{R, C, S\}$. Since the bitrade is connected, Lemma \ref{lem:connected-sigma} implies that $f(x,y,z) = (0,0,0)$ for all $(x,y,z) \in T \cup T'$. Because all symbols are used in the bitrade, from that we have the desired $f(x) = 0$ for all $x \in X$.
 
 %
 %
@@ -186,7 +188,7 @@ Now let $(x_1,y_1,z) \in T$ such that $f(x_1,y_1,z)=(0,0,0)$. Consider a chain o
 	(x_2,y_2,z) &\in T &\xrightarrow{\sigma_C}& &(x_2,y_3,z) &\in T' & \xrightarrow{\sigma_R} \\
 	(x_3,y_3,z) &\in T &\xrightarrow{\sigma_C}& &(x_3,y_4,z) &\in T' & \dots
 \end{align*}
-From $f(x) + f(y) \geq 0$ we have
+From (\ref{eq:T-sum-zero}) and (\ref{eq:xy-leq-zero}) we have
 \begin{align*}
 	f(x_1) + f(y_1) &= 0, \quad f(x_1) + f(y_2) \geq 0, \\
 	f(x_2) + f(y_2) &= 0, \quad f(x_2) + f(y_3) \geq 0, \\
@@ -197,7 +199,7 @@ which yields
 	0 &= f(x_1) \geq f(x_2) \geq f(x_3) \geq \dots \\
 	0 &= f(y_1) \leq f(y_2) \leq f(y_3) \leq \dots
 \end{align*}
-According to Lemma \ref{lem:sigma-cycles}, the chain is a cycle, and thus all terms in the inequalities equal to zero. Especially $f(\sigma_C(x_1,y_1,z)) = (0,0,0)$.
+According to Lemma \ref{lem:sigma-cycles}, the chain is a cycle, and thus all terms in the inequalities are equal to zero. In particular, $f(\sigma_C(x_1,y_1,z)) = (0,0,0)$.
 
 The result for $\sigma_R$ can be obtained by changing the roles of $\sigma_R$ and $\sigma_C$.
 
@@ -207,7 +209,7 @@ For $\sigma_S$, consider a cycle generated by alternating $\sigma_C$ and $\sigma
 
 \begin{cor}
 \label{cor:rank-mt}
-Suppose that all elements of $X$ are used in a connected latin trade $T$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
+Suppose that all elements of $X$ are used in a connected latin bitrade $(T,T')$. Then the trade matrix $M_T$ has rank $|X|-2$ over $\Q$.
 \end{cor}
 
 \begin{note}
@@ -242,12 +244,12 @@ For abelian groups, we will use different definition:
 It easily follows that for abelian groups the Cayley tables by first and second definition are isotopic. Because we will be interested in existence of homotopies into Cayley tables, it does not matter which definition we use.
 
 \begin{defn}
-Let $z(G)$ denote the size of the smallest trade $T$ such that there exist a non-trivial homotopy from $T$ to $G$. Let \emph{$z(n)$} be the minimum across all groups of order $n$.
+Let $z(G)$ denote the size of the smallest latin trade $T$ such that there exist a non-trivial homotopy from $T$ to $G$. Let \emph{$z(n)$} be the minimum across all groups of order $n$.
 \end{defn}
 
 \begin{lem}
 \label{lem:p-leq-det}
-Let $p$ be a prime, $T$ connected latin trade using all symbols in $X$, $h: T \rightarrow \Z_p$ non-trivial homotopy and $M$  square submatrix of $M_T$ of rank $|X-2|$. Then $p \leq \det(M)$.
+Let $p$ be a prime, $(T,T')$ connected latin bitrade using all symbols in $X$, $h: T \rightarrow \Z_p$ non-trivial homotopy and $M$  square submatrix of $M_T$ of rank $|X|-2$. Then $p \leq \det(M)$.
 \end{lem}
 \begin{proof}
 Let $h = (h_R,h_C,h_S)$. Then
@@ -264,7 +266,7 @@ Then
 \end{align*}
 is a solution of $Mw^T = 0$ over $\Z_p$ which is non-trivial, since $h$ is non-trivial.
 
-Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$. Because $M$ is reqular, $\det(M) \ne 0$ and we are done.
+Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$. Because $M$ is regular, $\det(M) \ne 0$ and we are done.
 \end{proof}
 
 \begin{lem}
@@ -272,9 +274,9 @@ Therefore $\det(M) = 0$ in $\Z_p$, which means $p \mid \det(M)$. Because $M$ is 
 $3 \log_3(p) \leq z(p)$.
 \end{lem}%
 \begin{proof}
-Let $T$ be a latin trade such that $|T| = z(p)$ and there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix of $M_T$ of rank $|X|-2$.
+Let $T$ be a latin trade such that $|T| = z(p)$ and there exists a non-trivial homotopy $T \rightarrow \Z_p$. From Lemma \ref{lem:p-leq-det} we know that $p \leq \det(M)$ for a submatrix $M$ of $M_T$ of rank $|X|-2$.
 
-We can write $M_T = (M_1, M_2, M_3)$ for sparse matrices $M_1$, $M_2$, $M_3$, and therefore any submatrix $M$ of $M_T$ is of the same type. Thus from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
+We can write $M_T = (M_1, M_2, M_3)$ for sparse matrices $M_1$, $M_2$, $M_3$, and therefore also the submatrix $M$ is of the same type. Thus from Lemma \ref{lem:3-block-sparse-det} and Corollary \ref{cor:size-of-t}
 \cosyalign{
 	p \leq \det(M) \leq 3^{(|X|-2)/3} \leq 3^{z(p)/3}.
 }%
@@ -282,7 +284,7 @@ We can write $M_T = (M_1, M_2, M_3)$ for sparse matrices $M_1$, $M_2$, $M_3$, an
 
 \begin{lem}
 \label{lem:nontrivial-homotopy-normal-subgroup}
-Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ is a non-trivial homotopy. Then there exists a non-trivial homotopy $h_1: T \rightarrow H$ or $h_2: T \rightarrow G/H$.
+Let $H$ be a normal subgroup of $G$ and $h: T \rightarrow G$ a non-trivial homotopy. Then there exists a non-trivial homotopy $h_1: T \rightarrow H$ or a non-trivial homotopy $h_2: T \rightarrow G/H$.
 \end{lem}
 \begin{proof}
 Let $\pi: G \times G \times G \rightarrow G/H \times G/H \times G/H$ be the natural projection. If $h_2 := \pi h$ is non-trivial, we are done. Otherwise $\Img(h) \subset H \times H \times H$ and we can set $h_1 := h$.
@@ -296,7 +298,7 @@ Let $G$ be a group of odd order. Then
 }%
 \end{lem}
 \begin{proof}
-Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with odd order theorem imply the ``$\geq$'' inequality. The other one follows from Cauchy's theorem.
+Lemma \ref{lem:nontrivial-homotopy-normal-subgroup} together with the odd order theorem imply the ``$\geq$'' inequality. The other one follows from Cauchy's theorem.
 \end{proof}
 
 %%%
@@ -393,7 +395,7 @@ See Figure \ref{fig:z5-embedded-trade}.
 Let $n$ be a positive even integer. Then $\gdist(n) = 4$.
 \end{lem}
 \begin{proof}
-It is an easy exercise that there is up to isotopy one latin bitrade of size $4$, and no smaller latin bitrade exists. Its embedding into $\Z_n = \Z_{2k}$ is depicted on Figure \ref{fig:intercalates}.
+It is an easy exercise that there is up to isotopy only one latin bitrade of size $4$, and no smaller latin bitrade exists. Its embedding into $\Z_n = \Z_{2k}$ is depicted on Figure \ref{fig:intercalates}.
 
 \begin{figure}[htb]
 	\centering
