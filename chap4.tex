@@ -244,7 +244,7 @@ The algorithm to generate all prime triangle dissections is as follows:
 \end{cosyenumerate}
 \end{alg}%
 
-Let us make a brief discussion about the algorithm. For a given graph its time complexity is $O(v^3)$, because the main part involves finding an inverse of a matrix.
+Let us make a brief discussion about the algorithm. For a given graph its time complexity is $O(v^3)$, the most time-expensive part is finding an inverse of a matrix of size $(v-2)\times(v-2)$.
 
 We are also ought to mention how to perform step 5. $T^*$ contains coordinates of the points in the dissection (the special case with the triangle $\Delta$ is easily handled), and $T^\vartriangle$ defines which points to connect. Therefore a set of triangles can be constructed from $(T^*,T^\vartriangle)$.
 

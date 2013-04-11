@@ -262,7 +262,7 @@ We denote by $\Delta_n$ a triangle of side~$n$.
 $\gdist(n) \leq t(n)$.
 \end{lem}
 \begin{proof}
-Let us have a $\circledast$-free dissection of $\Delta_n$ into $t(n)$ triangles. We claim that the map
+Let us have a $\circledast$-free dissection of $\Delta_n$ into $t(n)$ triangles together with an embedding $(T^*,T^\vartriangle)$. Observe that $|T^*|=|T^\vartriangle|=t(n)$. We claim that the map
 \cosyalign{
 	h:(x,y,z) \mapsto \big((x \bmod n), (y \bmod n), (z \bmod n)\big)
 }%
@@ -279,10 +279,10 @@ If $p$ is a prime factor of $n$, then $\gdist(n) \leq \gdist(p)$.
 Clearly if $H$ is a subgroup of $G$, then $\gdist(G) \leq \gdist(H)$. The rest follows from Cauchy's theorem.
 \end{proof}
 
-Let us mention a conjecture related to this lemma, which states that there is equality for some $p$:
+Let us mention a conjecture related to this lemma, which states that equality occurs for some $p$:
 
 \begin{conj}
-$\gdist(n) = \min \{\gdist(p) \mid p \mbox{ divides } n\}$.
+Let $n \geq 2$. Then $\gdist(n) = \min \{\gdist(p) \mid \mbox{prime } p \mbox{ divides } n\}$.
 \end{conj}%
 
 Finally, we have proved everything needed for our main result -- the proof of Conjecture \ref{conj:main}.
@@ -323,7 +323,7 @@ For these reasons, and for simplicity of the argument, in this section we relax 
 
 \bigskip
 
-Let us sketch the method first. A convex hexagon, which we call \emph{core}, defines a dissection of a parallelogram into the core, 6 triangles and a smaller parallelogram. The sizes of the parallelograms depend on the shape of the core, and if chosen appropriately, the smaller parallelogram can be dissected recursively.
+Let us sketch the construction. A convex hexagon, which we call \emph{core}, defines a dissection of a parallelogram into the core, 6 triangles and a smaller parallelogram. The sizes of the parallelograms depend on the shape of the core, and if chosen appropriately, the smaller parallelogram can be dissected recursively.
 
 In the following, all shapes considered are aligned in a grid formed by unit equilateral triangles, i.e. all lengths are integer and all angles are multiples of $\pi/3$.
 
@@ -396,7 +396,7 @@ and define $T = \max \{T_a \mid a \in [0,2d)\}$. $T_a$ is well-defined for every
 
 Set $n_0 = 2d+d\gamma$ and take $n > n_0$. Then there is $a \in [0,2d)$ such that $n \equiv (d-1)\gamma + a \pmod{2d}$ and a core $H=(a_1,\alpha,\beta,\gamma)$ which we have chosen such that $t(H) = T_a$.
 
-Now, $n$ can be written as $2dk + (d-1)\gamma + a_1$ for a positive integer $k$. Plugging into Lemma \ref{lem:core-tiling} we get
+Now, $n$ can be written as $2dk + (d-1)\gamma + a_1$ for a positive integer $k$. By plugging into Lemma \ref{lem:core-tiling} we get
 \cosyalign{
 	t_\gamma(n) \leq 6 + t(H) + t_{d\gamma}(dk) \leq 6 + T + t_\gamma(k).
 }%
@@ -422,7 +422,7 @@ We chose $a_1 \in \{0,1,2,3\}$ as this is the only choice such that $a_1 \leq \g
 \cosyalign{
 	t_3(n) \leq 10 \log_{4}(n) + C = 5 \log_2(n) + C
 }%
-for a constant $C$. The resulting tiling is in fact the tiling from Section \ref{sec:log-rectangle}  with every square diagonally cut in halves.
+for a constant $C$. The resulting tiling is in fact the tiling from Section \ref{sec:log-rectangle}, skewed and with every square diagonally cut in halves.
 
 \begin{figure}[htb]
 \centering
@@ -466,7 +466,7 @@ Since $n = 2dk + (d-1)\gamma + a_1 \leq 2dk + d\gamma$, we have
 \cosyalign{
 	k \geq \frac{n-d\gamma}{2d}.
 }%
-The result now follows by induction, we omit it since it is purely technical.
+The result now follows by induction, we omit detailed proof since it is purely technical.
 \end{proof}
 
 Let us compare core dissections with the dissection into $5 \log_2(n)$ triangles. Because we compare dissections into asymptotically logarithmically many triangles, we are interested in the ratio over $\log(n)$. Fix integers $d,\gamma \geq 2$ such that $2d-1 \leq \gamma$ and choose a real $\varepsilon > 0$. Then a necessary condition for a core dissection into $\bar t_\gamma(n)$ triangles to be better is
@@ -475,14 +475,14 @@ Let us compare core dissections with the dissection into $5 \log_2(n)$ triangles
 							< \lim_{n\rightarrow\infty} \frac{5 \log_2(n)}{\log(n)} \\
 	(Lem.\ \ref{lem:core-disection-lower-bound}) \Rightarrow&\
 	\lim_{n\rightarrow\infty} \frac{ (6+d-\varepsilon) \log_{2d}(n) + C_\varepsilon}{\log (n)}
-							< \frac{5}{\log(2)} \\
+							< \frac{5}{\log(2)} \displaybreak\\
 	\Leftrightarrow&\
 	\frac{6+d-\varepsilon}{\log(2d)} < \frac{5}{\log(2)} \\
 	\Leftrightarrow&\
 	 2^{6+d-\varepsilon} < (2d)^5 \\
 	\Leftrightarrow&\  2 ^ {1+d-\varepsilon} < d^5.
 \end{align}
-The last inequality holds for all $\varepsilon > 0$, from which $2 ^ {1+d} < d^5$. This has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better core dissections (for fixed $d$ and $\gamma$ there is single best dissection).
+The last inequality holds for all $\varepsilon > 0$, from which $2 ^ {1+d} < d^5$. This has integer solutions only for $d \leq 20$. Therefore there can be only finitely many better core dissections (for fixed $d$ there is a single best dissection, the number of triangles in the worst case depends on positive integer $T$).
 
 It was not our primary goal to establish that the dissection into $5 \log(n)$ triangles is the best in any sense. However, we conjecture that it actually is among all core dissections.
 
